@@ -14,9 +14,9 @@
 | path to your installation.
 |
 */
-
+$urlParts = explode('.',$_SERVER['HTTP_HOST']);
 //This allows the install to work on any subdomain of dealeronlinemarketing.com
-$config['base_url']	= 'http://' . basename(dirname(dirname(dirname(__FILE__)))) . '.dealeronlinemarketing.com';
+$config['base_url']	= 'http://' . $urlParts[0] . '.dealeronlinemarketing.com';
 
 /*
 |--------------------------------------------------------------------------
