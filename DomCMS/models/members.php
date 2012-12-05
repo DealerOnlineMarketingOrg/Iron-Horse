@@ -11,7 +11,7 @@ class Members extends CI_Model {
     
     public function check_user($email, $pass) {
         $email = $this->security->xss_clean($email);
-        $pass  = encryipt_password($this->security->xss_clean($pass));
+        $pass  = encrypt_password($this->security->xss_clean($pass));
         
         $sql = 'SELECT u.User_Name,ui.USER_Password,u.USER_ID FROM Users u INNER JOIN Users_Info ui ON u.USER_ID = ui.USER_ID WHERE u.USER_Name = "' . $email . '" AND ui.USER_Password = "' . $pass . '";';
         $query = $this->db->query($sql);
@@ -72,17 +72,18 @@ class Members extends CI_Model {
 	   return FALSE;
    }    
     public function reset_password($email,$new_pass) {
-        
-       //return $email . ' ' . $new_pass;
-        
+		
+		$email = $this->security->xss_clean($this->input->post('email'));
+		$new_pass = createRandomString(8,'ALPHANUM');
+		
         $sql = 'SELECT * FROM Users WHERE USER_Name = "' . $email . '";';
         $query = $this->db->query($sql);
         
-        if($query->num_rows == 1) {
+        if($query->num_rows() == 1) {
             $user_row = $query->row();
             $user_id = $user_row->USER_ID;
             
-            $update_sql = "UPDATE Users_Info SET USER_Password = '" . pass_salt($new_pass) . "', USER_Generated='1' WHERE USER_ID = '" . $user_id . "';";
+            $update_sql = "UPDATE Users_Info SET USER_Password = '" . encrypt_password($new_pass) . "', USER_Generated='1' WHERE USER_ID = '" . $user_id . "';";
             
             $update = $this->db->query($update_sql);
             
@@ -100,20 +101,32 @@ class Members extends CI_Model {
             }else {
                 return FALSE;
             }
-           
         }
-        
         return FALSE;
     }
     
-    public function password_change($user_id, $new_pass) {
-        $update_sql = "UPDATE Users_Info SET USER_Password = '" . $new_pass . "', USER_Generated='0' WHERE USER_ID = '" . $user_id . "';";
-        $update = $this->db->query($update_sql);
-        if($update) {
-            RETURN '2';
-        }else {
-            RETURN '3';
-        }
+    public function password_change() {
+		$email = $this->security->xss_clean($this->input->post('email'));
+		$password = $this->security->xss_clean(encrypt_password($this->input->post('new_pass')));
+		//Get the user id
+		$user_sql = "SELECT USER_ID from Users WHERE USER_Name = '" . $email . "';";
+		$user = $this->db->query($sql);
+		if($user->num_rows() == 1) :
+			$user_id = $user->row()->USER_ID;
+			
+			//update the password based on the user id
+			$update_sql = "UPDATE Users_Info SET USER_Password = '" . $password . "', USER_Generated='0' WHERE USER_ID = '" . $user_id . "';";
+			$update = $this->db->query($update_sql);
+			
+			//if the update successfully triggers return true, else false;
+			if($update) :
+				return TRUE;
+			else:
+				return FALSE;
+			endif;
+		else :
+			return FALSE;
+		endif;
     }
     
     public function email_results($email, $subject, $msg) {
