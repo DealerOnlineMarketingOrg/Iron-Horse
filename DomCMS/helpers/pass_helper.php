@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-    function pass_salt($pass) {
+    function encrypt_password($pass) {
         $salt = sha1(md5(sha1(md5($pass))));
         return $salt;	
     }         

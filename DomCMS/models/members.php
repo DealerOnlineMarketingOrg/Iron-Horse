@@ -11,7 +11,7 @@ class Members extends CI_Model {
     
     public function check_user($email, $pass) {
         $email = $this->security->xss_clean($email);
-        $pass  = pass_salt($this->security->xss_clean($pass));
+        $pass  = encryipt_password($this->security->xss_clean($pass));
         
         $sql = 'SELECT u.User_Name,ui.USER_Password,u.USER_ID FROM Users u INNER JOIN Users_Info ui ON u.USER_ID = ui.USER_ID WHERE u.USER_Name = "' . $email . '" AND ui.USER_Password = "' . $pass . '";';
         $query = $this->db->query($sql);
@@ -25,53 +25,53 @@ class Members extends CI_Model {
         return FALSE;
     }
     
-    public function validate($email,$password) {
-
-        $this->db->select('*');
-        
-        $this->db->join('Users_Info','Users_Info.USER_ID = Users.USER_ID');
-        $this->db->join('Directories','Users_Info.DIRECTORY_ID = Directories.DIRECTORY_ID');
-        $this->db->join('xSystemAccess','Users_Info.ACCESS_ID = xSystemAccess.ACCESS_ID');
-        $this->db->join('Clients','Users_Info.CLIENT_ID = Clients.CLIENT_ID');
-        $this->db->where('Users.USER_Name', $email);
-        $this->db->where('Users_Info.USER_Password', $password);
-        
-        $query = $this->db->get('Users');
-        
-        if($query->num_rows == 1) {
-            $row = $query->row();
-			//This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
-            $data = array(
-                'Username' 			=> (string)$row->USER_Name,
-                'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
-                'LastName' 			=> (string)$row->DIRECTORY_LastName,
-                'Emails' 			=> (object)mod_parser($row->DIRECTORY_Email),
-                'UserID' 			=> (int)$row->USER_ID,
-                'DirectoryID' 		=> (int)$row->DIRECTORY_ID,
-                'ClientName' 		=> (string)$row->CLIENT_Name,
-                'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
-                'ClientPhone' 		=> (object)group_parser($row->CLIENT_Phone),
-                'ClientNotes' 		=> (string)$row->CLIENT_Notes,
-                'ClientCode' 		=> (string)$row->CLIENT_Code,
-                'ClientTags' 		=> (string)$row->CLIENT_Tags,
-                'ClientActive' 		=> (bool)$row->CLIENT_Active,
-                'ClientActiveTS' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
-                'AccessLevel' 		=> (int)$row->ACCESS_Level,
-                'AccessName' 		=> (string)$row->ACCESS_Name,
-                'UserPerm' 			=> (object)mod_parser($row->USER_Perm),
-                'isActive' 			=> (bool)$row->USER_Active,
-                'TimeActive' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
-                'isGenerated' 		=> (int)$row->USER_Generated,
-                'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
-                'validated' 		=> (bool)TRUE
-            );
-            
-            $this->session->set_userdata('valid_user',$data);
-            return $data;
-        }
-        return FALSE;
-    }
-    
+	public function validate() {
+		$email = $this->security->xss_clean($this->input->post('email'));
+		$password = encrypt_password($this->security->xss_clean($this->input->post('password')));
+		
+		$sql = "SELECT u.*,ui.*,d.*,sa.*,c.* FROM Users u
+				INNER JOIN Users_Info ui ON u.USER_ID = ui.USER_ID
+				INNER JOIN Directories d ON d.DIRECTORY_ID = ui.DIRECTORY_ID
+				INNER JOIN xSystemAccess sa ON sa.ACCESS_ID = ui.Access_ID
+				INNER JOIN Clients c ON c.CLIENT_ID = ui.CLIENT_ID
+				WHERE u.USER_Name = '" . $email . "' AND ui.USER_Password = '" . $password . "';"; 
+				
+		$query = $this->db->query($sql);
+			
+	   if($query->num_rows() == 1) {
+		   $row = $query->row();
+		   
+		   //This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
+		   $data = array(
+			   'Username' 		=> (string)$row->USER_Name,
+			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
+			   'LastName' 		=> (string)$row->DIRECTORY_LastName,
+			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
+			   'UserID' 		=> (int)$row->USER_ID,
+			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
+			   'ClientName' 	=> (string)$row->CLIENT_Name,
+			   'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
+			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
+			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
+			   'ClientCode' 	=> (string)$row->CLIENT_Code,
+			   'ClientTags' 	=> (string)$row->CLIENT_Tags,
+			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
+			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
+			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
+			   'AccessName' 	=> (string)$row->ACCESS_Name,
+			   'UserPerm' 		=> (object)mod_parser($row->USER_Perm),
+			   'isActive' 		=> (bool)$row->USER_Active,
+			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
+			   'isGenerated' 	=> (int)$row->USER_Generated,
+			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
+			   'validated' 		=> (bool)TRUE
+		   );
+		   
+		   $this->session->set_userdata('valid_user',$data);
+		   return $data;
+	   }
+	   return FALSE;
+   }    
     public function reset_password($email,$new_pass) {
         
        //return $email . ' ' . $new_pass;
