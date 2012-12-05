@@ -40,7 +40,6 @@ class Members extends CI_Model {
 			
 	   if($query->num_rows() == 1) {
 		   $row = $query->row();
-		   
 		   //This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
 		   $data = array(
 			   'Username' 		=> (string)$row->USER_Name,
@@ -68,7 +67,7 @@ class Members extends CI_Model {
 		   );
 		   
 		   $this->session->set_userdata('valid_user',$data);
-		   return $data;
+		   return (object)$data;
 	   }
 	   return FALSE;
    }    

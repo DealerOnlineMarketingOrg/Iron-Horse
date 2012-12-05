@@ -115,16 +115,16 @@ class Auth extends CI_Controller {
 				$this->login_attempts->increase_attempt($ip_address, $email);
 			}else {	
 				
-			
+				//posts the form to the members model and verifys the data
+				//should return an object
 				$user = $this->members->validate();
-				$user = (object)$user;
 				
 				//print_object($user);
 				
 				//if the user failed to authenticate.
 				//set some error messages and increment our login attempts var.
 				//show the login form.
-				if(!$user) {
+				if(!is_object($user)) {
 					
 					$this->form_validation->set_rules('email',	  'Your email address or password is incorrect.');
 					$this->form_validation->set_rules('password', 'Your email address or password is incorrect.');
