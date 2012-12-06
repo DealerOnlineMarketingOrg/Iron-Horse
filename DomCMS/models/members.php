@@ -29,11 +29,13 @@ class Members extends CI_Model {
 		$email = $this->security->xss_clean($this->input->post('email'));
 		$password = encrypt_password($this->security->xss_clean($this->input->post('password')));
 		
-		$sql = "SELECT u.*,ui.*,d.*,sa.*,c.* FROM Users u
+		$sql = "SELECT u.*,ui.*,d.*,sa.*,c.*,g.*,a.* FROM Users u
 				INNER JOIN Users_Info ui ON u.USER_ID = ui.USER_ID
 				INNER JOIN Directories d ON d.DIRECTORY_ID = ui.DIRECTORY_ID
 				INNER JOIN xSystemAccess sa ON sa.ACCESS_ID = ui.Access_ID
 				INNER JOIN Clients c ON c.CLIENT_ID = ui.CLIENT_ID
+				INNER JOIN Groups g ON g.GROUP_ID = c.GROUP_ID
+				INNER JOIN Agencies a ON a.AGENCY_ID = g.AGENCY_ID
 				WHERE u.USER_Name = '" . $email . "' AND ui.USER_Password = '" . $password . "';"; 
 				
 		$query = $this->db->query($sql);
@@ -48,6 +50,9 @@ class Members extends CI_Model {
 			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
 			   'UserID' 		=> (int)$row->USER_ID,
 			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
+			   'ClientID' 	    => (int)$row->CLIENT_ID,
+			   'GroupID' 	    => (int)$row->GROUP_ID,
+			   'AgencyID' 	    => (int)$row->AGENCY_ID,
 			   'ClientName' 	=> (string)$row->CLIENT_Name,
 			   'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
 			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
@@ -68,6 +73,37 @@ class Members extends CI_Model {
 		   
 		   $this->session->set_userdata('valid_user',$data);
 		   return (object)$data;
+		   
+		   //Start drop down default insert for session
+		   $ClientID = $data['ClientID'];
+		   $GroupID = $data['GroupID'];
+		   $AgencyID = $data['AgencyID'];
+		   $AccessLevel = $data['AccessLevel'];
+		   //process levels of users for drop down
+		   if ($AccessLevel<200000) :
+		    $data1 = array(
+			   'LevelID' 		=> $AgencyID,
+			   'LevelType' 		=> 'SA'
+	   		);
+			elseif ($AccessLevel>200000&&$AccessLevel<300000):
+			$data1 = array(
+			   'LevelID' 		=> $AgencyID,
+			   'LevelType' 		=> 'A'
+	   		);
+			elseif ($AccessLevel>300000&&$AccessLevel<400000):
+			$data1 = array(
+			   'LevelID' 		=> $GroupID,
+			   'LevelType' 		=> 'G'
+	   		);
+			else:
+			$data1 = array(
+			   'LevelID' 		=> $ClientID,
+			   'LevelType' 		=> 'C'
+	   		);
+		   endif;
+		   //set session to correct level for dropdown
+		   $this->session->set_userdata('DropdownDefault',$data1);
+		   
 	   }
 	   return FALSE;
    }    
