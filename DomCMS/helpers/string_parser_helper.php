@@ -49,4 +49,27 @@
 		//return this to the app
 		return $emails;
 	 }
+	 
+	 function dropdown_parser($str) {
+		 $DropString = 'a:1;Dealer Online Marketing^no-indent agency break,1|g:1;Dealer Online Marketing^single-indent group break,0|c:1;Dealer Online Marketing^double-indent client,0|c:2;DDI Marketing^double-indent client break,0|';
+		 $DropString = substr($DropString, 0, -1);
+		 $pattern = '/[|]/';
+		 $pattern2 = '/[:;^,]/';
+		 $arr = preg_split( $pattern, $DropString );
+		 $DropStringCode='';
+		 foreach($arr as &$value){
+			 $value = preg_split( $pattern2, $value );
+			 if($value[4]==1):
+			 	$selected='selected="selected"';
+			else:
+				$selected='';
+			endif;
+			
+			$DropStringCode .= '<option '.$selected.' value="'.$value[0].$value[1].'" class="'.$value[3].'">'.$value[2].'</option>';
+		}
+			//echo '<select>';
+			//echo '<pre>', print_r( $DropStringCode, 1 ), '</pre>';
+			//echo '</select>';
+	 }
+	 
 ?>

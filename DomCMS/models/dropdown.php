@@ -15,188 +15,206 @@ class DealerSelector extends CI_Model {
     }
 	
 	
-	
-	public function DealerSelector(){
-		//Set vars for dropdown
-		$LevelType = $this->DropdownDefault['LevelType'];
+	public function DriveDrop(){
+		$PermType = $this->DropdownDefault['PermType'];
 		$LevelID = $this->DropdownDefault['LevelID'];
-		$DDData = array();
-		//set case switches
-		switch($LevelType){
-			//start of Super-Admin
-			case 'SA':
-			
-			$aSql ="SELECT a.* FROM Agencies a ORDER BY a.AGENCY_Name WHERE a.AGENCY.Active = 1";
-			$aQuery = $this->db->query($aSql);
-			foreach ($aQuery->result() as $aRow){
-				// And default to SELECTED if $LevelID = AGENCY_ID 
-				// And no-indent and  agency style
-				$agentstyle = 'no-indent';
-				//check for default agency
-				if($aRow['AGENCY_ID']==$LevelID):
-				$selected = 'selected="selected"';
-				else:
-				$selected = '';
-				endif;
-				
-				//Put Agency in Array HERE! CAN BE MORE THAN ONE!!    <<<---- PLEASE  ---->>>
-								
-  			 	$gSql ="SELECT g.* FROM Groups g WHERE g.AGENCY_ID =".$aRow[0]." AND g.GROUP_Active = 1 ORDER BY g.GROUP_Name";
-				$gQuery = $this->db->query($gSql);
-				foreach ($gQuery->result() as $gRow){
-					
-					
-					$cSql ="SELECT c.* FROM Clients c WHERE c.GROUP_ID =".$gRow[0]." AND c.CLIENT_Active = 1 ORDER BY c.CLIENT_Name";
-					$cQuery = $this->db->query($cSql);
-					
-					if($cQuery->num_rows > 1):
-            			//Put Group in Array HERE! CAN BE MORE THAN ONE!!    <<<---- PLEASE  ---->>>
-						//And single-indent group style
-						$groupstyle = 'single-indent';
-						$clientstyle = 'double-indent';
-						//And style client as double if more than one.
-			        else:
-            			//only one client no group displayed.
-						$clientstyle = 'single-indent';
-						//use this style for single client groups
-					endif;
-					
-					foreach ($query1->result() as $cRow){
-					
-						//Client stuff here
-						//use style above for indention -->>  $clientstyle  <<--
-						
-						
-					}
-				}
-			 } 
-			
-			break;
-			//end of Super-Admin
-			
-			
-			
-			//start of Admin
-			case 'A':
-				$aSql ="SELECT a.* FROM Agencies a ORDER BY a.AGENCY_Name WHERE a.AGENCY_ID =". $LevelID ." AND a.AGENCY.Active = 1";
-				$aQuery = $this->db->query($aSql);
-			foreach ($aQuery->result() as $aRow){
-				// And default to SELECTED if $LevelID = AGENCY_ID 
-				// And no-indent and  agency style
-				$agentstyle = 'no-indent';
-				//check for default agency
-				if($aRow['AGENCY_ID']==$LevelID):
-				$selected = 'selected="selected"';
-				else:
-				$selected = '';
-				endif;
-				
-				//Put Agency in Array HERE! CAN BE MORE THAN ONE!!    <<<---- PLEASE  ---->>>
-								
-  			 	$gSql ="SELECT g.* FROM Groups g WHERE g.AGENCY_ID =".$aRow[0]." AND g.GROUP_Active = 1 ORDER BY g.GROUP_Name";
-				$gQuery = $this->db->query($gSql);
-				foreach ($gQuery->result() as $gRow){
-					
-					
-					$cSql ="SELECT c.* FROM Clients c WHERE c.GROUP_ID =".$gRow[0]." AND c.CLIENT_Active = 1 ORDER BY c.CLIENT_Name";
-					$cQuery = $this->db->query($cSql);
-					
-					if($cQuery->num_rows > 1):
-            			//Put Group in Array HERE! CAN BE MORE THAN ONE!!    <<<---- PLEASE  ---->>>
-						//And single-indent group style
-						$groupstyle = 'single-indent';
-						$clientstyle = 'double-indent';
-						//And style client as double if more than one.
-			        else:
-            			//only one client no group displayed.
-						$clientstyle = 'single-indent';
-						//use this style for single client groups
-					endif;
-					
-					foreach ($query1->result() as $cRow){
-					
-						//Client stuff here
-						//use style above for indention -->>  $clientstyle  <<--
-						
-						
-					}
-				}
-			 } 
-			
-			break;
-			//end of Admin
-			
-			
-			
-			//start of Group-Admin
-			case 'G':
-			
-				$gSql ="SELECT g.* FROM Groups g WHERE g.GROUP_ID =".$LevelID." AND g.GROUP_Active = 1";
-				$gQuery = $this->db->query($gSql);
-				foreach ($gQuery->result() as $gRow){
-					
-					$cSql ="SELECT c.* FROM Clients c WHERE c.GROUP_ID =".$gRow[0]." AND c.CLIENT_Active = 1 ORDER BY c.CLIENT_Name";
-					$cQuery = $this->db->query($cSql);
-					
-					if($cQuery->num_rows > 1):
-            			//Put Group in Array HERE! CAN BE MORE THAN ONE!!    <<<---- PLEASE  ---->>>
-						//And single-indent group style
-						$groupstyle = 'no-indent';
-						$clientstyle = 'single-indent';
-						//if more than one client which is what there is suppost to be for a group admin
-						//set group as default
-						if($gRow['GROUP_ID']==$LevelID):
-						$selected = 'selected="selected"';
-						else:
-						$selected = '';
-						endif;
-						//And style client as double if more than one.
-			        else:
-            			//only one client no group displayed.
-						$clientstyle = 'no-indent';
-						$selected = 'selected="selected"';
-						//use this style for single client groups
-					endif;
-					
-					foreach ($query1->result() as $cRow){
-					
-						//Client stuff here
-						//use style above for indention -->>  $clientstyle  <<--
-						
-						
-					}
-				}
-			break;
-			//end of Group-Admin
-			
-			
-			
-			
-			//start Client-Admin or less
-			case 'C':
-			$sql = "SELECT * FROM Clients c WHERE c.CLIENT_ID=".$LevelID;
-			$query = $this->db->query($sql);
-			if ($query->num_rows() == 1):
-			   $DDData['SelectorID'] = $row['CLIENTID'];
-			   $DDData['SelectorName'] = $row['CLIENT_Name'];
-			   $DDData['SelectorClass'] = 'no-indent client';
-			   $selected = 'selected="selected"';
-			   //Build array here		
+		$LevelType = $this->DropdownDefault['LevelType'];
+		$SelectedID = $this->DropdownDefault['SelectedID'];
+		if($SelectedID!='null'):
+		$type = $SelectedID[0];
+		$id = substr($SelectedID,1);
+		else:
+		//set defaults
+		$type = $LevelType;
+		$id = $LevelID;
+		endif;
+		//set based on PermType
+		$this->call_user_func ($PermType,$type,$id);
+		
+	}
+	
+	
+	//SUPER ADMIN DROPDOWN FUNCTION 
+	public function SuperAdmin($type,$id){
+		$DropString = '';
+		$selected = 0;
+		$aSql ="SELECT a.* FROM Agencies a ORDER BY a.AGENCY_Name WHERE a.AGENCY_Active = 1";
+		$aQuery = $this->db->query($aSql);
+		foreach ($aQuery->result() as $aRow){
+			// And no-indent and  agency style
+			$agentstyle = 'no-indent agency break';
+			//check for default agency
+			$selected = 0;
+			if($aRow->AGENCY_ID==$id && $type == 'a'):
+			$selected = 1;
+			else:
+			$selected = 0;
 			endif;
-			break;
-			//end of Client-Admin or less
+			$DropString .= 'a:'.$aRow->AGENCY_ID.';'.$aRow->AGENCY_Name.'^'.$agentstyle.','.$selected.'|';
+			$gSql ="SELECT g.* FROM Groups g WHERE g.AGENCY_ID =".$aRow->AGENCY_ID." AND g.GROUP_Active = 1 ORDER BY g.GROUP_Name";
+			$gQuery = $this->db->query($gSql);
+			foreach ($gQuery->result() as $gRow){
+				$cSql ="SELECT c.* FROM Clients c WHERE c.GROUP_ID =".$gRow->GROUP_ID." AND c.CLIENT_Active = 1 ORDER BY c.CLIENT_Name";
+				$cQuery = $this->db->query($cSql);
+				if($cQuery->num_rows() > 1):
+					//Put Group
+					//And single-indent group style
+					$groupstyle = 'single-indent group';
+					$clientstyle = 'double-indent client';
+					//And style client as double if more than one.
+					$selected = 0;
+					if($gRow->GROUP_ID==$id && $type == 'g'):
+					$selected = 1;
+					else:
+					$selected = 0;
+					endif;
+					$DropString .= 'g:'.$gRow->GROUP_ID.';'.$gRow->GROUP_Name.'^'.$groupstyle.','.$selected.'|';
+				else:
+           			$clientstyle = 'single-indent';
+					//use this style for single client groups
+				endif;
+				//counting for last client 
+				$i=0;
+				$n=$cQuery->num_rows();
+				foreach ($cQuery->result() as $cRow){
+					$selected = 0;
+					$i++;
+					if($cRow->CLIENT_ID==$id && $type == 'c'):
+					$selected = 1;
+					else:
+					$selected = 0;
+					endif;
+					if ($i == $n):
+					$clientstyle .= ' break';
+					endif;
+					$DropString .= 'c:'.$cRow->CLIENT_ID.';'.$cRow->CLIENT_Name.'^'.$clientstyle.','.$selected.'|';
+				}
+			}
+				
+		} 
+		return $DropString;
+	}
 			
-			
-			default:
-			//if case fails
-			$DDData="oops";
-			
-			break;
+	//ADMIN DROPDOWN FUNCTION 	
+	public function AgencyAdmin($type,$id){
+		$DropString = '';
+		$selected = 0;
+		$aSql ="SELECT a.* FROM Agencies a ORDER BY a.AGENCY_Name WHERE a.AGENCY_Active = 1 AND a.AGENCY_ID=".$this->DropdownDefault['LevelID'];
+		$aQuery = $this->db->query($aSql);
+		foreach ($aQuery->result() as $aRow){
+			// And no-indent and  agency style
+			$agentstyle = 'no-indent agency break';
+			//check for default agency
+			$selected = 0;
+			if($aRow->AGENCY_ID==$id && $type == 'a'):
+			$selected = 1;
+			else:
+			$selected = 0;
+			endif;
+			$DropString .= 'a:'.$aRow->AGENCY_ID.';'.$aRow->AGENCY_Name.'^'.$agentstyle.','.$selected.'|';
+			$gSql ="SELECT g.* FROM Groups g WHERE g.AGENCY_ID =".$aRow->AGENCY_ID." AND g.GROUP_Active = 1 ORDER BY g.GROUP_Name";
+			$gQuery = $this->db->query($gSql);
+			foreach ($gQuery->result() as $gRow){
+				$cSql ="SELECT c.* FROM Clients c WHERE c.GROUP_ID =".$gRow->GROUP_ID." AND c.CLIENT_Active = 1 ORDER BY c.CLIENT_Name";
+				$cQuery = $this->db->query($cSql);
+				if($cQuery->num_rows() > 1):
+					//Put Group
+					//And single-indent group style
+					$groupstyle = 'single-indent group';
+					$clientstyle = 'double-indent client';
+					//And style client as double if more than one.
+					$selected = 0;
+					if($gRow->GROUP_ID==$id && $type == 'g'):
+					$selected = 1;
+					else:
+					$selected = 0;
+					endif;
+					$DropString .= 'g:'.$gRow->GROUP_ID.';'.$gRow->GROUP_Name.'^'.$groupstyle.','.$selected.'|';
+				else:
+           			$clientstyle = 'single-indent';
+					//use this style for single client groups
+				endif;
+				//counting for last client 
+				$i=0;
+				$n=$cQuery->num_rows();
+				foreach ($cQuery->result() as $cRow){
+					$selected = 0;
+					$i++;
+					if($cRow->CLIENT_ID==$id && $type == 'c'):
+					$selected = 1;
+					else:
+					$selected = 0;
+					endif;
+					if ($i == $n):
+					$clientstyle .= ' break';
+					endif;
+					$DropString .= 'c:'.$cRow->CLIENT_ID.';'.$cRow->CLIENT_Name.'^'.$clientstyle.','.$selected.'|';
+				}
+			}
+				
+		} 
+		return $DropString;
+	}
+	
+	//GROUP DROPDOWN FUNCTION
+	public function GroupAdmin($type,$id){
+		$DropString = '';
+		$selected = 0;
+		$gSql ="SELECT g.* FROM Groups g WHERE g.GROUP_ID =".$this->DropdownDefault['LevelID'];
+		$gQuery = $this->db->query($gSql);
+		foreach ($gQuery->result() as $gRow){
+			$cSql ="SELECT c.* FROM Clients c WHERE c.GROUP_ID =".$gRow->GROUP_ID." AND c.CLIENT_Active = 1 ORDER BY c.CLIENT_Name";
+			$cQuery = $this->db->query($cSql);
+			if($cQuery->num_rows() > 1):
+				//Put Group
+				//And single-indent group style
+				$groupstyle = 'no-indent group';
+				$clientstyle = 'single-indent client';
+				//And style client as double if more than one.
+				$selected = 0;
+				if($gRow->GROUP_ID==$id && $type == 'g'):
+				$selected = 1;
+				else:
+				$selected = 0;
+				endif;
+				$DropString .= 'g:'.$gRow->GROUP_ID.';'.$gRow->GROUP_Name.'^'.$groupstyle.','.$selected.'|';
+			else:
+           		$clientstyle = 'no-indent';
+			//use this style for single client groups
+			endif;
+			//counting for last client 
+			$i=0;
+			$n=$cQuery->num_rows();
+			foreach ($cQuery->result() as $cRow){
+				$selected = 0;
+				$i++;
+				if($cRow->CLIENT_ID==$id && $type == 'c'):
+					$selected = 1;
+				else:
+					$selected = 0;
+				endif;
+				if ($i == $n):
+					$clientstyle .= ' break';
+				endif;
+					$DropString .= 'c:'.$cRow->CLIENT_ID.';'.$cRow->CLIENT_Name.'^'.$clientstyle.','.$selected.'|';
+				
+			}
+				
+		} 
+		return $DropString;
+	}
+	//GROUP DROPDOWN FUNCTION
+	public function Client($type,$id){
+		$DropString = '';
+		$selected = 0;
+		$cSql ="SELECT c.* FROM Clients c WHERE c.CLIENT_ID =".$this->DropdownDefault['LevelID'];
+		$cQuery = $this->db->query($cSql);
+		$clientstyle = 'no-indent client'.' break';
+		$selected = 1;
+		foreach ($cQuery->result() as $cRow){
+			$DropString .= 'c:'.$cRow->CLIENT_ID.';'.$cRow->CLIENT_Name.'^'.$clientstyle.','.$selected.'|';
 		}
+		return $DropString;
 	}
 }
-
-			
-//if($query->num_rows() == 1) {
-//   $row = $query->row();
 ?>

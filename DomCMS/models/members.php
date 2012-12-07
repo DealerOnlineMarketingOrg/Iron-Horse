@@ -59,7 +59,7 @@ class Members extends CI_Model {
 		   return (object)$data;
 		   
 		   //Start drop down default insert for session
-		  $ClientID = $data['ClientID'];
+		   $ClientID = $data['ClientID'];
 		   $GroupID = $data['GroupID'];
 		   $AgencyID = $data['AgencyID'];
 		   $AccessLevel = $data['AccessLevel'];
@@ -67,22 +67,30 @@ class Members extends CI_Model {
 		   if ($AccessLevel<200000) :
 		    $data1 = array(
 			   'LevelID' 		=> $AgencyID,
-			   'LevelType' 		=> 'SA'
+			   'PermType' 		=> 'SuperAdmin',
+			   'LevelType'      => 'a',
+			   'SelectedID' 	=> 'null'
 	   		);
 			elseif ($AccessLevel>200000&&$AccessLevel<300000):
 			$data1 = array(
 			   'LevelID' 		=> $AgencyID,
-			   'LevelType' 		=> 'A'
+			   'PermType' 		=> 'AgencyAdmin',
+			   'LevelType'      => 'a',
+			   'SelectedID' 	=> 'null'
 	   		);
 			elseif ($AccessLevel>300000&&$AccessLevel<400000):
 			$data1 = array(
 			   'LevelID' 		=> $GroupID,
-			   'LevelType' 		=> 'G'
+			   'PermType' 		=> 'GroupAdmin',
+			   'LevelType'      => 'g',
+			   'SelectedID' 	=> 'null'
 	   		);
 			else:
 			$data1 = array(
 			   'LevelID' 		=> $ClientID,
-			   'LevelType' 		=> 'C'
+			   'PermType' 		=> 'Client',
+			   'LevelType'      => 'c',
+			   'SelectedID' 	=> 'null'
 	   		);
 		   endif;
 		   //set session to correct level for dropdown
