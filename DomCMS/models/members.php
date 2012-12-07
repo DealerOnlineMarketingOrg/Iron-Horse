@@ -9,25 +9,9 @@ class Members extends CI_Model {
 		$this->load->helper('string_parser');
     }
     
-    public function check_user($email, $pass) {
-        $email = $this->security->xss_clean($email);
-        $pass  = encrypt_password($this->security->xss_clean($pass));
-        
-        $sql = 'SELECT u.User_Name,ui.USER_Password,u.USER_ID FROM Users u INNER JOIN Users_Info ui ON u.USER_ID = ui.USER_ID WHERE u.USER_Name = "' . $email . '" AND ui.USER_Password = "' . $pass . '";';
-        $query = $this->db->query($sql);
-        
-        if($query->num_rows == 1) {
-            return $query;
-        }else {
-            return FALSE;
-        }
-        
-        return FALSE;
-    }
-    
 	public function validate() {
-		$email = $this->security->xss_clean($this->input->post('email'));
-		$password = encrypt_password($this->security->xss_clean($this->input->post('password')));
+		$email 		= $this->security->xss_clean($this->input->post('email'));
+		$password 	= encrypt_password($this->security->xss_clean($this->input->post('password')));
 		
 		$sql = "SELECT u.*,ui.*,d.*,sa.*,c.*,g.*,a.* FROM Users u
 				INNER JOIN Users_Info ui ON u.USER_ID = ui.USER_ID
@@ -71,11 +55,11 @@ class Members extends CI_Model {
 			   'validated' 		=> (bool)TRUE
 		   );
 		   
-		   $this->session->set_userdata('valid_user',$data);
+		   $this->session->set_userdata('valid_user', $data);
 		   return (object)$data;
 		   
 		   //Start drop down default insert for session
-		   $ClientID = $data['ClientID'];
+		  $ClientID = $data['ClientID'];
 		   $GroupID = $data['GroupID'];
 		   $AgencyID = $data['AgencyID'];
 		   $AccessLevel = $data['AccessLevel'];
@@ -105,80 +89,9 @@ class Members extends CI_Model {
 		   $this->session->set_userdata('DropdownDefault',$data1);
 		   
 	   }
-	   return FALSE;
    }    
-    public function reset_password($email,$new_pass) {
-		
-		$email = $this->security->xss_clean($this->input->post('email'));
-		$new_pass = createRandomString(8,'ALPHANUM');
-	   if($query->num_rows() == 1) {
-		   $row = $query->row();
-		   //This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
-		   $data = array(
-			   'Username' 		=> (string)$row->USER_Name,
-			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
-			   'LastName' 		=> (string)$row->DIRECTORY_LastName,
-			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
-			   'UserID' 		=> (int)$row->USER_ID,
-			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
-			   'ClientID' 	    => (int)$row->CLIENT_ID,
-			   'GroupID' 	    => (int)$row->GROUP_ID,
-			   'AgencyID' 	    => (int)$row->AGENCY_ID,
-			   'ClientName' 	=> (string)$row->CLIENT_Name,
-			   'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
-			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
-			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
-			   'ClientCode' 	=> (string)$row->CLIENT_Code,
-			   'ClientTags' 	=> (string)$row->CLIENT_Tags,
-			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
-			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
-			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
-			   'AccessName' 	=> (string)$row->ACCESS_Name,
-			   'UserPerm' 		=> (object)mod_parser($row->USER_Perm),
-			   'isActive' 		=> (bool)$row->USER_Active,
-			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
-			   'isGenerated' 	=> (int)$row->USER_Generated,
-			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
-			   'validated' 		=> (bool)TRUE
-		   );
-		   
-		   $this->session->set_userdata('valid_user',$data);
-		   return (object)$data;
-		   
-		   //Start drop down default insert for session
-		   $ClientID = $data['ClientID'];
-		   $GroupID = $data['GroupID'];
-		   $AgencyID = $data['AgencyID'];
-		   $AccessLevel = $data['AccessLevel'];
-		   //process levels of users for drop down
-		   if ($AccessLevel<200000) :
-		    $data1 = array(
-			   'LevelID' 		=> $AgencyID,
-			   'LevelType' 		=> 'SA'
-	   		);
-			elseif ($AccessLevel>200000&&$AccessLevel<300000):
-			$data1 = array(
-			   'LevelID' 		=> $AgencyID,
-			   'LevelType' 		=> 'A'
-	   		);
-			elseif ($AccessLevel>300000&&$AccessLevel<400000):
-			$data1 = array(
-			   'LevelID' 		=> $GroupID,
-			   'LevelType' 		=> 'G'
-	   		);
-			else:
-			$data1 = array(
-			   'LevelID' 		=> $ClientID,
-			   'LevelType' 		=> 'C'
-	   		);
-		   endif;
-		   //set session to correct level for dropdown
-		   $this->session->set_userdata('DropdownDefault',$data1);
-		   
-	   }
-	   return FALSE;
-   }    
-    public function reset_password($email,$new_pass) {
+   
+   public function reset_password($email,$new_pass) {
 		
 		$email = $this->security->xss_clean($this->input->post('email'));
 		$new_pass = createRandomString(8,'ALPHANUM');
