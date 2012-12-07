@@ -1,29 +1,26 @@
-/*Body Styles */
 body{font-family:"Open Sans", sans-serif}
-/*Header Styles*/
 h1,h2,h3,h4,h5,h6{font-family:Ubuntu, sans-serif}
-/* Header block styles */
+.content-page h2{border-top:0 none;padding-top:.1667em;margin-top:0;color:#039;font-size:1.5em;font-weight:300;letter-spacing:0;line-height:1;word-spacing:.0625em;word-wrap:break-word;border-bottom:1px dotted #666;padding-bottom:5px}
+.content-page h3{border-top:0 none;color:#333;font-size:1.25em;font-weight:400;line-height:1.2;margin:1.2em 0 0}
+code{color:#7D005A;font:400 .875em/90% source-code-pro,monospace}
 #header{background:#fff}
-#header h1{width:150px;height:38px;background:url('../imgs/Logo.png') no-repeat top left;float:left;margin:10px 0 10px 10px}
-#header h1:hover {cursor:pointer;}
+#header h1{width:150px;height:38px;background:url(../imgs/Logo.png) no-repeat top left;float:left;margin:10px 0 10px 10px}
+#header h1:hover{cursor:pointer}
 #header #clientSwitch{float:left;margin-left:60px;padding-top:15px;width:180px}
 #header #clientTags{float:left;padding-top:15px;width:135px}
 #header #siteSearch{padding-top:13px}
-#header #siteSearch input.input{-webkit-border-radius:3px;border-radius:3px;border:1px solid #ccc;color:#666;font-size:11px;background:url('../imgs/search_icon.jpg') no-repeat top right #fff;margin-top:2px;padding:6px}
-/*Footer styles*/
-#footer{padding-top:10px;padding-bottom:10px;font-size:11px;color:#666;}
-/*Navigation styles - User nav*/
-#userNav{position:absolute;top:0;right:2px;background:url('../imgs/gradient.png') repeat-x top left #06F;-webkit-border-radius:0 0 5px 5px;border-radius:0 0 5px 5px;padding:8px 14px}
+#header #siteSearch input.input{-webkit-border-radius:3px;border-radius:3px;border:1px solid #ccc;color:#666;font-size:11px;background:url(../imgs/search_icon.jpg) no-repeat top right #fff;margin-top:2px;padding:6px}
+#footer{padding-top:10px;padding-bottom:10px;font-size:11px;color:#666}
+#userNav{position:absolute;top:0;right:2px;background:url(../imgs/gradient.png) repeat-x top left #06F;-webkit-border-radius:0 0 5px 5px;border-radius:0 0 5px 5px;padding:8px 14px}
 #userNav h5{font-size:12px;clear:both;color:#fff;margin-bottom:2px;text-align:center;font-family:"Open Sans",sans-serif}
 #userNav ul li{display:inline}
 #userNav ul li a{text-shadow:0 1px 0 #292929;float:left;display:block;color:#ddd;font-size:11px;margin-right:10px}
-/*Main navigation styles*/
-#nav{min-height:60px;background:url('../imgs/gradient.png') repeat-x top left #292929;border-bottom:1px solid #222;border-top:1px solid #515151;-webkit-box-shadow:0 2px 3px 3px #ccc;box-shadow:0 2px 3px 3px #ccc;padding:10px}
+#nav{min-height:60px;background:url(../imgs/gradient.png) repeat-x top left #292929;border-bottom:1px solid #222;border-top:1px solid #515151;-webkit-box-shadow:0 2px 3px 3px #ccc;box-shadow:0 2px 3px 3px #ccc;padding:10px}
 ul.main_nav{float:left;width:700px}
 ul.main_nav li{float:left;min-width:80px;min-height:75px;margin-right:2px}
 ul.main_nav li.active{min-width:80px}
-ul.main_nav li a{text-shadow:0 1px 0 #292929;float:left;display:block;width:80px;padding-top:45px;color:rgba(255,255,255,0.6);font-size:11px;background:url('../imgs/iconset_off.png') no-repeat;background-position:-20px -30px;text-align:center}
-ul.main_nav li a:hover,ul.main_nav li.active a{background:url('../imgs/iconset_on.png') no-repeat;color:#b8d018;background-position:-20px -30px}
+ul.main_nav li a{text-shadow:0 1px 0 #292929;float:left;display:block;width:80px;padding-top:45px;color:rgba(255,255,255,0.6);font-size:11px;background:url(../imgs/iconset_off.png) no-repeat;background-position:-20px -30px;text-align:center}
+ul.main_nav li a:hover,ul.main_nav li.active a{background:url(../imgs/iconset_on.png) no-repeat;color:#b8d018;background-position:-20px -30px}
 ul.main_nav li img{display:none;position:absolute;bottom:-24px;left:0}
 ul.main_nav li.active img{display:block}
 ul.main_nav li.dashboard a{background-position:-153px -225px}
@@ -36,12 +33,12 @@ ul.main_nav li.creative a{background-position:-218px -225px}
 ul.main_nav li.reputations a{background-position:-288px -163px}
 #nav h5{color:rgba(255,255,255,0.9);padding-top:5px;width:100%;font-size:12px;float:right;text-align:center;font-weight:700;text-shadow:0 1px 0 rgba(0,0,0,0.6)}
 #nav h4{color:rgba(0,0,0,0.6);width:100%;font-size:14px;float:right;text-align:center;font-weight:700;text-shadow:0 1px 0 rgba(255,255,255,0.3)}
-#nav #orgInfo{margin-top:5px;margin-right:2px;float:right;width:205px;-webkit-border-radius:5px;border-radius:5px;background:url('../imgs/notif-bg.jpg') repeat-x;background-position:0 -150px;box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.3);box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;padding:10px 5px}
-#nav div.subnav{position:absolute;bottom:-42px;left:0;width:930px;display:none;background:url('../imgs/grad-overlay-s.png') repeat scroll 0 0 #fff;border:1px solid #ccc;-webkit-border-radius:5px;border-radius:5px;padding:10px}
+#nav #orgInfo{margin-top:5px;margin-right:2px;float:right;width:205px;-webkit-border-radius:5px;border-radius:5px;background:url(../imgs/notif-bg.jpg) repeat-x;background-position:0 -150px;box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.3);box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;padding:10px 5px}
+#nav div.subnav{position:absolute;bottom:-42px;left:0;width:930px;display:none;background:url(../imgs/grad-overlay-s.png) repeat scroll 0 0 #fff;border:1px solid #ccc;-webkit-border-radius:5px;border-radius:5px;padding:10px}
 #nav div.subnav a{width:auto;padding-top:0;background:none;float:left;color:#666;display:block;font-size:12px;text-shadow:0 1px 0 rgba(255,255,255,0.6)}
 #nav div.subnav a:hover{background:none;color:#06f}
 #nav div.subnav span{float:left;margin-left:15px;margin-right:15px;margin-top:-2px;color:#ccc}
-#nav div.subnav .pivot{background:url('../imgs/pivot.png') no-repeat top left;width:28px;height:16px;position:absolute;top:-15px;left:25px}
+#nav div.subnav .pivot{background:url(../imgs/pivot.png) no-repeat top left;width:28px;height:16px;position:absolute;top:-15px;left:25px}
 #nav ul.main_nav li.advertising div.subnav div.pivot{left:108px}
 #nav ul.main_nav li.creative div.subnav div.pivot{left:186px}
 #nav ul.main_nav li.content div.subnav div.pivot{left:280px}
@@ -52,40 +49,34 @@ ul.main_nav li.reputations a{background-position:-288px -163px}
 #header h1 span,#nav div.subnav span:last-child{display:none}
 #userNav h5 span,#userNav ul li a:hover{color:#fff}
 #userNav ul li:last-child a,ul.main_nav li:last-child a,#nav div.subnav a:last-child{margin-right:0}
-/* Content styles */
-.content-padding{padding-top:50px;}
-.content-page{border-radius:5px;-webkit-border-radius:5px;border:1px solid #ccc;background:#fafafa;min-height:400px;padding:20px;}
-.content-page h2 {font-size:24px;border-bottom:1px dotted #666;padding-bottom:5px;color:#003399;}
-.content-block {padding:10px;margin-top:15px;font-size:12px;}
-.content-block p.note{color:#666;font-size:11px;background:#eee;border:1px solid #ccc;padding:10px;border-radius:5px;margin-top:5px;}
-.content-block p.note span {color:red;font-weight:bold;}
-/*Form styles*/
-.form_group {padding:5px 0;} /* div to surround a form so we can seperate it from content */
-.content-page form {padding:10px;margin-top:15px;}
-.content-page form label {color:#666;}
-.content-page form input.input{border:1px solid #bbb;box-shadow:1px 1px 3px 1px #ddd inset;padding:8px 8px 7px 40px;border-radius:3px;min-width:250px;background-color:#fff;padding:5px;margin-top:3px;color:#666;}
-/*Button styles*/
-.button{background-image:url("../imgs/grad-overlay-s.png");background-repeat:repeat-x;background-position:bottom left;border-radius:3px 3px 3px 3px;box-shadow:0 1px 0 0 rgba(255,255,255,0.3) inset;color:#292929;cursor:pointer;font-size:10px!important;font-weight:600!important;height:28px;margin-right:5px;max-height:40px!important;text-shadow:0 1px 0 rgba(255,255,255,0.3);padding:4px 14px 5px}
-.green{background-color: #A6BA1E;border:1px solid #869A00;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3);}
-.green:hover{background-color:#97AB0E;}
-.orange{background-color:#DEB93A;color:rgba(0,0,0,0.3);border:1px solid #C79F16;}
+.content-padding{padding-top:50px}
+.content-page{border-radius:5px;-webkit-border-radius:5px;border:1px solid #ccc;background:#fafafa;min-height:400px;padding:20px}
+.content-block{margin-top:15px;font-size:12px;padding:10px}
+.content-block p.note{color:#666;font-size:11px;background:#eee;border:1px solid #ccc;border-radius:5px;margin-top:5px;padding:10px}
+.content-block p.note span{color:red;font-weight:700}
+.form_group{padding:5px 0}
+.content-page form{margin-top:15px;padding:10px}
+.content-page form label{color:#666}
+.content-page form input.input{border:1px solid #bbb;box-shadow:1px 1px 3px 1px #ddd inset;border-radius:3px;min-width:250px;background-color:#fff;margin-top:3px;color:#666;padding:5px}
+.button{background-image:url(../imgs/grad-overlay-s.png);background-repeat:repeat-x;background-position:bottom left;border-radius:3px 3px 3px 3px;box-shadow:0 1px 0 0 rgba(255,255,255,0.3) inset;color:#292929;cursor:pointer;font-size:10px!important;font-weight:600!important;height:28px;margin-right:5px;max-height:40px!important;text-shadow:0 1px 0 rgba(255,255,255,0.3);padding:4px 14px 5px}
+.green{background-color:#A6BA1E;border:1px solid #869A00;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3)}
+.green:hover{background-color:#97AB0E}
+.orange{background-color:#DEB93A;color:rgba(0,0,0,0.3);border:1px solid #C79F16}
 .orange:hover{background-color:#CDA828;color:rgba(0,0,0,1)}
-.red{background-color:#DF3030;border:1px solid #C90000;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3);}
+.red{background-color:#DF3030;border:1px solid #C90000;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3)}
 .red:hover{background-color:#CA3636}
 .blue{background-color:#52B0E6;color:rgba(0,0,0,0.6);text-shadow:0 1px 0 rgba(255,255,255,0.8)}
-.blue:hover{background-color:#308EEF;color:#eee;}
-.grey{background-color:#555;color:rgba(255,255,255,0.6);text-shadow:0 1px 0 rgba(0,0,0,0.3);border-top:1px solid #515151;border-bottom:1px solid #222;border-right:1px solid #222;border-left:1px solid #515151;}
-.grey:hover{background-color:#3E3E3D;}
-.black{}
-.black:hover{}
-
-/*Generic styles*/
-.green_text{color:#A1B900;}
-.green_bg{background-color:#A1B900;}
-.orange_button{}
-label.required span.red{color:red;background-color:transparent !important;border:none;}
-/* Block is intended for a block of content for messages out in the middle of content */
-.block {padding:10px;border:1px solid #ccc;background:#eee;font-size:11px;}
-div.error{padding:10px;border:1px solid red;background-color:pink;color:#000;font-size:12px;font-weight:bold;margin-bottom:10px;border-radius:5px;}
-div.success{padding:10px;border:1px solid #A1B900;background:#fff;color:#666;font-size:12px;font-weight:bold;margin-bottom:10px;border-radius:5px;}
-
+.blue:hover{background-color:#308EEF;color:#eee}
+.grey{background-color:#555;color:rgba(255,255,255,0.6);text-shadow:0 1px 0 rgba(0,0,0,0.3);border-top:1px solid #515151;border-bottom:1px solid #222;border-right:1px solid #222;border-left:1px solid #515151}
+.grey:hover{background-color:#3E3E3D}
+.green_text{color:#A1B900}
+.green_bg{background-color:#A1B900}
+label.required span.red{color:red;background-color:transparent!important;border:none}
+.block{border:1px solid #ccc;background:#eee;font-size:11px;padding:10px}
+div.error{border:1px solid red;background-color:#FFC0CB;color:#000;font-size:12px;font-weight:700;margin-bottom:10px;border-radius:5px;padding:10px}
+div.success{border:1px solid #A1B900;background:#fff;color:#666;font-size:12px;font-weight:700;margin-bottom:10px;border-radius:5px;padding:10px}
+.example{outline:1px dashed #DDD;margin:1em -1em 2em;padding:.5em 1em}
+hr:after{color:#BBB;content:"···";height:0;letter-spacing:1em;padding-left:1em}
+hr{border:0 none;clear:both;display:block;font-size:2em;font-weight:400;height:0;line-height:1;text-align:center;margin:1em 0 2em;padding:0}
+pre{white-space:pre-line;margin:.5em 0 .5em 1.5em}
+samp{color:#333;font:400 .875em/90% source-code-pro,monospace;margin:0 .25em}
