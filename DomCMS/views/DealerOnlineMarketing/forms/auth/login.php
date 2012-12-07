@@ -25,7 +25,7 @@
                     <div class="separator"></div>
                 </div>
                 <div class="login">
-                    <?= LoginForm(); ?>
+                    <?= $form; ?>
                     
                 </div>
             </div>

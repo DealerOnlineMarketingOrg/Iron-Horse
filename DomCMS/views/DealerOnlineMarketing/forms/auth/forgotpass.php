@@ -25,9 +25,8 @@
                     <div class="separator"></div>
                 </div>
                 <div class="login">
-                	<p class="msg">Give us your emaixl address you use to login to the system. After you submit, you will receive an email with a generated password. Please log back in with this password to change it to something you can remember.</p>
-                    <?= $form; ?>
-                    
+                    <p class="msg">Give us your email address you use to login to the system. After you submit, you will receive an email with a generated password. Please log back in with this password to change it to something you can remember.</p>
+                    <?= $form; ?>                   
                 </div>
             </div>
         </div>

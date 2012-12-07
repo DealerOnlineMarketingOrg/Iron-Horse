@@ -44,6 +44,7 @@ class Dashboard extends CI_Controller {
         
         $header_data = array(
             'name' => $this->session->userdata['valid_user']['FirstName'] . ' ' . $this->session->userdata['valid_user']['LastName'],
+            'user' => $this->session->userdata('valid_user')
         );
 
         $data = array(
