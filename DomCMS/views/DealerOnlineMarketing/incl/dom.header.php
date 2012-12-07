@@ -1,9 +1,9 @@
 <div id="header">
     <div class="wrapper relative">
         <h1 id="DOM"><span>Dealer Online Marketing</span></h1>
- 		<div id="clientSwitch">
-        	<select id="client" class="select">
-            	<option value="0" class="parent">Dealer Online Marketing</option>
+            <div id="clientSwitch">
+            <select id="client" class="select">
+                <option value="0" class="parent">Dealer Online Marketing</option>
                 <option value="1" class="child">DDI</option>
                 <option value="2" class="child">DOM</option>
                 <option value="3" class="child">Test</option>
@@ -36,5 +36,17 @@
         $('#header h1').click(function() {
             window.location = '<?= base_url(); ?>';
         })
+        $('#client').change(function() {
+        var name = $(this).find('option:selected').text();
+        $.ajax({
+            url:'/ajax/name_changer',
+            data:({Agency:name}),
+            method:'post',
+            success:function(data) {
+               $('div#orgInfo h5').text(data); 
+            }
+        });
+    });
+
     })
 </script>

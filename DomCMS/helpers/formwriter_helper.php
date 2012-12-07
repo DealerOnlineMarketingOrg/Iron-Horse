@@ -44,20 +44,15 @@
                     '<ul>',
                         '<li id="usr-field">',
                             form_input($email_address),
-                            '<span style="color:red;">' . form_error('email') . '</span>',
+                            '<span style="color:red;" class="login_error">' . form_error('email') . '</span>',
                             '<span id="usr-field-icon"></span>',
                         '</li>',
                         '<li id="psw-field">',
                             form_password($password),
-                            '<span style="color:red;">' . form_error('password') . '</span>',
+                            '<span style="color:red;" class="login_error">' . form_error('password') . '</span>',
                             '<span id="psw-field-icon"></span>',
                         '</li>',
-                        '<li>',
-                            form_submit($submit),
-                        '</li>',
-						'<li>',
-							
-						'</li>',
+                        '<li>', form_submit($submit), '</li>',
                     '</ul>',
                  '</fieldset>',
             form_close(),
@@ -86,8 +81,8 @@
         );
 
         $email_input = array(
-            'name' => 'email_address',
-            'id' => 'email_addy',
+            'name' => 'email',
+            'id' => 'emailInput',
             'class' => 'validate[required,custom[email]] input'
         );
         
@@ -97,18 +92,16 @@
             'value' => 'Reset Password'
         );
 		
-		$form_array = array(
+	$form_array = array(
             form_open('generate_password',$form_attr),
                 '<fieldset>',
                     '<ul>',
                         '<li id="usr-field">',
                             form_input($email_input),
-                            '<span style="color:red;">' . form_error('email_address') . '</span>',
+                            '<span class="login_error" style="color:red;">' . form_error('email') . '</span>',
                             '<span id="usr-field-icon"></span>',
                         '</li>',
-                        '<li>',
-                            form_submit($submit_button),
-                        '</li>',
+                        '<li>', form_submit($submit_button), '</li>',
                     '</ul>',
                  '</fieldset>',
             form_close(),
@@ -156,16 +149,13 @@
             'value' => 'Change Password'
         );        
         
-        //this is used for the labels that are required in the form.
-        $required = array(
-            'class' => 'required'
-        );
                 
         /*
          * We build an array of the entire form
          */
-		$form_array = array(
+	$form_array = array(
             form_open('process_change_password',$form_attr),
+                form_hidden('email',$email),
                 '<fieldset>',
                     '<ul>',
                         '<li id="usr-field">',
@@ -178,9 +168,7 @@
                             '<span style="color:red;">' . form_error('confirm_pass') . '</span>',
                             '<span id="psw-field-icon"></span>',
                         '</li>',
-                        '<li>',
-                            form_submit($submit_button),
-                        '</li>',
+                        '<li>', form_submit($submit_button), '</li>',
                     '</ul>',
                  '</fieldset>',
             form_close(),
@@ -199,4 +187,3 @@
         return $form;
         
     }
-?>

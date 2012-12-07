@@ -1,3 +1,4 @@
+
 <div class="wrapper content-padding">
     <div id="styleguide" class="content-page block">
         <h2>Styleguide</h2>
@@ -96,7 +97,7 @@
 			</ul>
 		</div>
         <h3>Definition List</h3>
-        <p>The <code>dl</code> element is for another type of list called a definition list. Instead of list items, the content of a <code>dl</code> consists of <code>dt</code> (Definition Term) and <code>dd</code> (Definition description) pairs. Though it may be called a “definition list”, <code>dl</code> can apply to other scenarios where a parent/child relationship is applicable. For example, it may be used for marking up dialogues, with each <code>dt</code> naming a speaker, and each <code>dd</code> containing his or her words.</p>
+        <p>The <code>dl</code> element is for another type of list called a definition list. Instead of list items, the content of a <code>dl</code> consists of <code>dt</code> (Definition Term) and <code>dd</code> (Definition description) pairs. Though it may be called a “definition list�?, <code>dl</code> can apply to other scenarios where a parent/child relationship is applicable. For example, it may be used for marking up dialogues, with each <code>dt</code> naming a speaker, and each <code>dd</code> containing his or her words.</p>
         <div class="example">
 			<dl>
 				<dt>This is a term.</dt>

@@ -9,16 +9,10 @@
  * @package	Tank_auth
  * @author	Ilya Konyukhov (http://konyukhov.com/soft/)
  */
-class Login_attempts extends CI_Model
-{
-	private $table_name = 'LoginFail';
+class Login_attempts extends CI_Model {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
-
-		$ci =& get_instance();
-		$this->table_name = $this->table_name;
 	}
 	
 	/**
@@ -28,9 +22,8 @@ class Login_attempts extends CI_Model
 	 * @param	string
 	 * @return	int
 	 */
-	function get_attempts_count($ip_address, $login)
-	{
-		$sql = 'SELECT * FROM ' . $this->table_name . ' WHERE LFAIL_IP = "' . $ip_address . '" AND LFAIL_Email = "' . $login . '";';
+	function get_count($ip_address, $email) {
+		$sql = "SELECT * FROM LoginFail WHERE LFAIL_IP = '" . $ip_address . "' AND LFAIL_Email = '" . $email . "';";
 		$result = $this->db->query($sql);
 		return (($result->num_rows() > 0) ? $result->num_rows() : 0);
 	}
@@ -42,15 +35,10 @@ class Login_attempts extends CI_Model
 	 * @param	string
 	 * @return	Bool
 	 */
-	function increase_attempt($ip_address, $login)
-	{
-		$sql = 'INSERT INTO ' . $this->table_name . ' (LFAIL_IP,LFAIL_Email) VALUES("' . $ip_address . '","' . $login . '");';
+	function add($ip_address, $email) {
+		$sql = "INSERT INTO LoginFail (LFAIL_IP,LFAIL_Email) VALUES('" . $ip_address . "','" . $email . "');";
 		$query = $this->db->query($sql);
-		
-		if($query)
-			return TRUE;
-		else
-			return FALSE;
+		return (($query) ? TRUE : FALSE);
 	}
 
 	/**
@@ -62,14 +50,11 @@ class Login_attempts extends CI_Model
 	 * @param	int
 	 * @return	void
 	 */
-	function clear_attempts($ip_address, $login, $expire_period = 86400)
-	{
-		$this->db->where(array('LFAIL_IP' => $ip_address, 'LFAIL_Email' => $login));
-
+	function clear($ip_address,$email,$expire_period=86400) {
+		$this->db->where(array('LFAIL_IP' => $ip_address, 'LFAIL_Email' => $email));
 		// Purge obsolete login attempts
 		$this->db->or_where('UNIX_TIMESTAMP(LFAIL_TS) <', time() - $expire_period);
-
-		$this->db->delete($this->table_name);
+		$this->db->delete('LoginFail');
 	}
 
 }

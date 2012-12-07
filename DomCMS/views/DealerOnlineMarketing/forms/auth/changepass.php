@@ -9,7 +9,7 @@
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="<?= base_url(); ?>Assets/<?= DOMDIR; ?>css/reset.css" type="text/css" />
-    <link href="<?= base_url(); ?>Assets/<?= THEMEDIR; ?>css/login.css" type="text/css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>Assets/<?= THEMEDIR; ?>css/change_pass.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="<?= base_url(); ?>Assets/<?= DOMDIR; ?>css/validationEngine.jquery.css" type="text/css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?= base_url(); ?>Assets/<?=DOMDIR; ?>js/jquery.formvalidation-en.js"></script>

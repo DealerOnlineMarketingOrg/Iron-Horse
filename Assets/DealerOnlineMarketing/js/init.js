@@ -5,4 +5,5 @@ $(document).ready(function() {
     
     $('#reset_pass_form,.validate_init').validationEngine();
     
+    
 });
