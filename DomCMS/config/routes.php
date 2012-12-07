@@ -39,21 +39,21 @@
 */
 
 //login page form
-$route['login'] 			= 'auth/login';
+$route['login'] 						= 'auth/login';
 //reset password form
-$route['reset_password'] 		= 'auth/reset_password';
+$route['reset_password'] 				= 'auth/reset_password';
 //change password form
-$route['change_password'] 		= 'auth/change_password';
+$route['change_password'] 				= 'auth/change_password';
 //used to process the password_reset form
-$route['generate_password']		= 'auth/process_forgot_pass';
+$route['generate_password']				= 'auth/process_forgot_pass';
 //process change password
 $route['process_change_password']       = 'auth/password_change';
 //used to process the login
-$route['authenticate'] 			= 'auth/login_user';
+$route['authenticate'] 					= 'auth/login_user';
 //logout
-$route['logout']			= 'auth/logout';
+$route['logout']						= 'auth/logout';
 //system routes
 $route['default_controller']            = "dashboard";
-$route['404_override'] 			= '';
+$route['404_override'] 					= '';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
