@@ -2,6 +2,26 @@
 body{font-family:"Open Sans", sans-serif}
 /*Header Styles*/
 h1,h2,h3,h4,h5,h6{font-family:Ubuntu, sans-serif}
+/*Styleguide styles*/
+
+.content-page h2 {/*font-size:24px;color:#003399;*/border-top: 0 none;
+    padding-top: 0.1667em;margin-top: 0;color: #003399;
+    font-size: 1.5em;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1;word-spacing: 0.0625em;word-wrap: break-word;}
+.content-page h3 {border-top: 0 none;
+    color: #333333;
+    font-size: 1.25em;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 1.2em 0 0;}
+	
+code {
+    color: #7D005A;
+    font: 400 0.875em/90% source-code-pro,monospace;
+}
+	
 /* Header block styles */
 #header{background:#fff}
 #header h1{width:150px;height:38px;background:url('../imgs/Logo.png') no-repeat top left;float:left;margin:10px 0 10px 10px}
@@ -55,7 +75,7 @@ ul.main_nav li.reputations a{background-position:-288px -163px}
 /* Content styles */
 .content-padding{padding-top:50px;}
 .content-page{border-radius:5px;-webkit-border-radius:5px;border:1px solid #ccc;background:#fafafa;min-height:400px;padding:20px;}
-.content-page h2 {font-size:24px;border-bottom:1px dotted #666;padding-bottom:5px;color:#003399;}
+.content-page h2 {border-bottom:1px dotted #666;padding-bottom:5px;}
 .content-block {padding:10px;margin-top:15px;font-size:12px;}
 .content-block p.note{color:#666;font-size:11px;background:#eee;border:1px solid #ccc;padding:10px;border-radius:5px;margin-top:5px;}
 .content-block p.note span {color:red;font-weight:bold;}
@@ -88,4 +108,13 @@ label.required span.red{color:red;background-color:transparent !important;border
 .block {padding:10px;border:1px solid #ccc;background:#eee;font-size:11px;}
 div.error{padding:10px;border:1px solid red;background-color:pink;color:#000;font-size:12px;font-weight:bold;margin-bottom:10px;border-radius:5px;}
 div.success{padding:10px;border:1px solid #A1B900;background:#fff;color:#666;font-size:12px;font-weight:bold;margin-bottom:10px;border-radius:5px;}
+.example {margin:1em -1em 2em;outline: 1px dashed #DDDDDD;padding: 0.5em 1em;}
+hr:after {color: #BBBBBB;content: "···";height: 0;letter-spacing: 1em;padding-left: 1em;}
+hr {border: 0 none;clear: both;display: block;font-size: 2em;font-weight: 400;height: 0;line-height: 1;margin: 1em 0 2em;padding: 0;text-align: center;}
+pre {margin: 0.5em 0 0.5em 1.5em;white-space: pre-line;}
+samp {color: #333333;font: 400 0.875em/90% source-code-pro,monospace;margin: 0 0.25em;}
+
+
+
+
 
