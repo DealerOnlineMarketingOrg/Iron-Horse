@@ -7,13 +7,13 @@ class Dropdown extends CI_Model {
         parent::__construct();
     }
 		
-	public function AgenciesQuery($a_id) {
-		$aSql ="SELECT a.* FROM Agencies a ORDER BY a.AGENCY_Name WHERE a.AGENCY_Active = 1 " . (($a_id) ? "AGENCY_ID = '" . $a_id . "'" : '') . " ORDER BY AGENCY_Name";
+	public function AgenciesQuery($a_id = false) {
+		$sql ="SELECT * FROM Agencies WHERE AGENCY_Active = 1 " . (($a_id) ? "AGENCY_ID = '" . $a_id . "'" : '') . " ORDER BY AGENCY_Name";
 		return $this->db->query($sql)->result();	
 	}
 	
 	public function GroupsQuery($g_id = false, $a_id = false) {
-		$sql = "SELECT * FROM Groups WHERE " . (($g_id) ? "GROUP_ID = '" . $g_id . "' " : "AGENCY_ID = '" . $a_id . "' ") . "GROUP_Active = '1' ORDER BY GROUP_Name;";
+		$sql = "SELECT * FROM Groups WHERE " . (($g_id) ? "GROUP_ID = '" . $g_id . "' " : "AGENCY_ID = '" . $a_id . "' ") . "AND GROUP_Active = '1' ORDER BY GROUP_Name;";
 		return $this->db->query($sql)->result();	
 	}
 	

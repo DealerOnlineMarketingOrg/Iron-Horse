@@ -10,7 +10,6 @@ class Dashboard extends CI_Controller {
 	
     public function __construct() {
         parent::__construct();	
-
         //loading the member model here makes it available for any member of the dashboard controller.
         $this->load->model('members');
         $this->active_button = 'dashboard'; 
@@ -20,6 +19,11 @@ class Dashboard extends CI_Controller {
 
     public function index() {
         $this->load->helper('pass');
+		$this->load->helper('string_parser');
+		
+		$dropdown = $this->load->library('DropdownGen');
+		
+		var_dump($dropdown);
 		
         /*
         | Load the template in anyway you like, my personal preference with an indexed array to be able to label what which template peice is
@@ -49,6 +53,7 @@ class Dashboard extends CI_Controller {
 
         $data = array(
             'google' => $google,
+			'dropdown' => $dropdown
             //'user' => $this->session->userdata('valid_user')
         );
 

@@ -5,21 +5,22 @@
 		var $DropdownDefault;
 		var $ci;
 
-		public function __construct($params) {
+		public function __construct() {
 			//DO NOTHING
 			$this->ci =& get_instance();
 			$this->ci->load->model('dropdown');	
-			$this->ci->load->helper('string_parser');
-			$this->ci->validUser = $this->session->userdata('valid_user');
-			$this->ci->DropdownDefault = $this->session->userdata('DropdownDefault');
-
-		}
-		
-		public function DriveDrop(){
-			$PermType = $this->ci->DropdownDefault['PermType'];
-			$LevelID = $this->ci->DropdownDefault['LevelID'];
-			$LevelType = $this->ci->DropdownDefault['LevelType'];
-			$SelectedID = $this->ci->DropdownDefault['SelectedID'];
+			//$this->ci->load->helper('string_parser');
+			$this->ci->load->model('members');
+			$this->validUser = $this->ci->session->userdata('valid_user');
+			$this->DropdownDefault = $this->validUser['DropdownDefault'];
+			
+			$PermType = $this->DropdownDefault->PermType;
+			$LevelID = $this->DropdownDefault->LevelID;
+			$LevelType = $this->DropdownDefault->LevelType;
+			$SelectedID = $this->DropdownDefault->SelectedID;
+			
+			var_dump($this->DropdownDefault);
+			
 			if($SelectedID!='null'):
 				$type = $SelectedID[0];
 				$id = substr($SelectedID,-1);
@@ -29,7 +30,18 @@
 				$id = $LevelID;
 			endif;
 			//set based on PermType
-			$this->call_user_func($PermType,$type,$id);
+			//call_user_func($PermType,$type,$id);
+			$str = '';
+			if($PermType == 'SuperAdmin') {
+				$str .= $this->SuperAdmin($type,$id);	
+			}else if($PermType == 'GroupAdmin') {
+				$str .= $this->GroupAdmin($type,$id);	
+			}else if($PermType == 'ClientAdmin') {
+				$str .= $this->Client($type,$id);	
+			}
+			
+			return $str;
+			
 		}
 		
 		public function SuperAdmin($type, $id) {
@@ -51,7 +63,7 @@
 				$gQuery = $this->ci->dropdown->GroupsQuery(false, $aRow->AGENCY_ID);
 				
 				foreach ($gQuery as $gRow){
-					$cQuery = $this->dropdown->ClientQuery(false, $gRow->GROUP_ID);
+					$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
 					if(count($cQuery) > 1) :
 						//Put Group
 						//And single-indent group style
