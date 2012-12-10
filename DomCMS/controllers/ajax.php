@@ -15,8 +15,13 @@
 
         public function name_changer() {
             $name = $this->input->get('Agency');
-            
             echo $name;
         }
+		
+		public function selected_dealer() {
+			$selected_id = $this->input->post('selected_id');
+			$this->session->userdata['valid_user']['DropdownDefault']->SelectedID = $selected_id;
+			$this->session->sess_write();
+		}
         
     }

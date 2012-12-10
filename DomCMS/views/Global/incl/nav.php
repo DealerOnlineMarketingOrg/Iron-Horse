@@ -94,8 +94,8 @@
             </li>
         </ul>
         <div id="orgInfo">
-            <h4>Agency Name:</h4>
-            <h5>Dealer Online Marketing</h5>
+            <h4><?= get_client_type(); ?></h4>
+            <h5><?= get_client_name(); ?></h5>
         </div>
     </div>
 </div>

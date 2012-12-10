@@ -24,7 +24,7 @@
 			$LevelType = $this->DropdownDefault->LevelType;
 			$SelectedID = $this->DropdownDefault->SelectedID;
 			
-			if($SelectedID!='null'):
+			if($SelectedID != 'null'):
 				$type = $SelectedID[0];
 				$id = substr($SelectedID,-1);
 			else:
@@ -57,6 +57,7 @@
 				$agentstyle = 'no-indent agency break';
 				//check for default agency
 				$selected = 0;
+				
 				if($aRow->AGENCY_ID == $id && $type == 'a'):
 					$selected = 1;
 				else:

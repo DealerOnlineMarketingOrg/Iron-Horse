@@ -7,7 +7,6 @@ class Dashboard extends CI_Controller {
     var $active_button;
     var $session_data;
     var $validUser;
-	var $dropdown;
 	
     public function __construct() {
         parent::__construct();	
@@ -20,10 +19,6 @@ class Dashboard extends CI_Controller {
 
     public function index() {
         $this->load->helper('pass');
-		$this->load->helper('string_parser');
-		$this->load->library('dropdowngen');
-		
-		$dropdown = $this->dropdowngen->drivedrop();
 		
         /*
         | Load the template in anyway you like, my personal preference with an indexed array to be able to label what which template peice is
@@ -42,14 +37,11 @@ class Dashboard extends CI_Controller {
         }
 
         $google .= '<p>Total pageviews: ' . $ga->getPageviews() . ' total visits: ' . $ga->getVisits() . '</p>';
-        */
-        
+        */		        
         $google = '';
         
         $header_data = array(
-            'name' => $this->session->userdata['valid_user']['FirstName'] . ' ' . $this->session->userdata['valid_user']['LastName'],
             'user' => $this->session->userdata('valid_user'),
-			'dropdown' => dropdown_parser($dropdown)
         );
 
         $data = array(

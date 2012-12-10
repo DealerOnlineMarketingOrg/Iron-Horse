@@ -2,8 +2,8 @@
     <div class="wrapper relative">
         <h1 id="DOM"><span>Dealer Online Marketing</span></h1>
             <div id="clientSwitch">
-            <select id="client" class="select">
-                <?= $dropdown ?>
+            <select id="client" class="select" name="dealer_dropdown">
+               <?= dealer_selector(); ?>
             </select>
         </div>
         <div id="clientTags">

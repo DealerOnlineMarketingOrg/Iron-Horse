@@ -14,6 +14,8 @@ class Admin extends CI_Controller {
 		$this->load->model('administration');
 		$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
         if(!$this->validUser) redirect('login','refresh');
+		
+		print_object($this->session->userdata('valid_user'));
 
 	}
 
@@ -70,11 +72,10 @@ class Admin extends CI_Controller {
 	}
 	
 	public function Edit_agency($agency_id) {
-		
 		$header_data = array(
-            'name' => $this->session->userdata['valid_user']['FirstName'] . ' ' . $this->session->userdata['valid_user']['LastName'],
-            'user' => $this->session->userdata('valid_user') 
-        );
+			'name' => $this->session->userdata['valid_user']['FirstName'] . ' ' . $this->session->userdata['valid_user']['LastName'],
+			'user' => $this->session->userdata('valid_user') 
+		);
 		
 		$nav = array(
 			'active_button' => $this->active_button
