@@ -15,7 +15,7 @@
             </select>
         </div>
         <div id="userNav" class="insetShadow">
-            <h5 class="textShadow">Welcome, <?= $name; ?></h5>
+            <h5 class="textShadow"><?= get_welcome_message(); ?></h5>
             <ul>
             	<li><a href="<?= base_url(); ?>account/preferences">Preferences</a></li>
                 <li><a href="#">My Account</a></li>

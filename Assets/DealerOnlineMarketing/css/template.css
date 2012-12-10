@@ -62,7 +62,7 @@ ul.main_nav li.reputations a{background-position:-288px -163px}
 .green{background-color:#A6BA1E;border:1px solid #869A00;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3)}
 .green:hover{background-color:#97AB0E}
 .orange{background-color:#DEB93A;color:rgba(0,0,0,0.3);border:1px solid #C79F16}
-.orange:hover{background-color:#CDA828;color:rgba(0,0,0,1)}
+.orange:hover{background-color:#CDA828;color:rgba(0,0,0,0.8)}
 .red{background-color:#DF3030;border:1px solid #C90000;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3)}
 .red:hover{background-color:#CA3636}
 .blue{background-color:#52B0E6;color:rgba(0,0,0,0.6);text-shadow:0 1px 0 rgba(255,255,255,0.8)}
@@ -80,3 +80,12 @@ hr:after{color:#BBB;content:"···";height:0;letter-spacing:1em;padding-left:1e
 hr{border:0 none;clear:both;display:block;font-size:2em;font-weight:400;height:0;line-height:1;text-align:center;margin:1em 0 2em;padding:0}
 pre{white-space:pre-line;margin:.5em 0 .5em 1.5em}
 samp{color:#333;font:400 .875em/90% source-code-pro,monospace;margin:0 .25em}
+
+table {width:100%;font-size:11px;margin-top:10px;}
+table th,table td{padding:5px;}
+table th {font-size:14px;font-weight:bold;text-align:left;border-bottom:1px dotted #999;background:rgba(51,51,51,0.8);color:rgba(255,255,255,0.9);text-shadow:0 1px 0 #222;border-right:1px solid #777;}
+table th:last-child{border-right:none;}
+table td {font-size:11px;}
+
+table tbody tr.even td {background:#eee;}
+table tbody tr.odd td {background:#fff;}

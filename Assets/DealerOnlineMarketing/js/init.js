@@ -5,5 +5,6 @@ $(document).ready(function() {
     
     $('#reset_pass_form,.validate_init').validationEngine();
     
-    
+    $('table tr:even').addClass('even');
+	$('table tr:odd').addClass('odd');
 });

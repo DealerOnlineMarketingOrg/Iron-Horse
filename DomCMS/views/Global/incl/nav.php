@@ -81,7 +81,7 @@
             	<a href="<?= base_url(); ?>admin/"><span>Admin</span></a>
                 <div class="subnav" id="admin_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#">Agency</a>
+                    <a href="<?= base_url(); ?>admin/agency">Agency</a>
                     <a href="#">Groups</a>
                     <a href="#">Clients</a>
                     <a href="#">Users</a>
