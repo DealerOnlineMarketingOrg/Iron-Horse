@@ -14,8 +14,6 @@ class Admin extends CI_Controller {
 		$this->load->model('administration');
 		$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
         if(!$this->validUser) redirect('login','refresh');
-		
-		print_object($this->session->userdata('valid_user'));
 
 	}
 
