@@ -3,10 +3,7 @@
         <h1 id="DOM"><span>Dealer Online Marketing</span></h1>
             <div id="clientSwitch">
             <select id="client" class="select">
-                <option value="0" class="parent">Dealer Online Marketing</option>
-                <option value="1" class="child">DDI</option>
-                <option value="2" class="child">DOM</option>
-                <option value="3" class="child">Test</option>
+                <?= $dropdown ?>
             </select>
         </div>
         <div id="clientTags">

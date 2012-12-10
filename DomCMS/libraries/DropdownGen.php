@@ -1,25 +1,28 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	if (!session_id()) session_start();
 	class DropdownGen {
 		
-		var $validUser;
+		var $ValidUser;
 		var $DropdownDefault;
 		var $ci;
-
+		public $str;
+		
 		public function __construct() {
+			$this->str = $this->drivedrop();
+			//print_r($str);
+		}
+		
+		public function drivedrop() {
 			//DO NOTHING
 			$this->ci =& get_instance();
 			$this->ci->load->model('dropdown');	
-			//$this->ci->load->helper('string_parser');
-			$this->ci->load->model('members');
-			$this->validUser = $this->ci->session->userdata('valid_user');
-			$this->DropdownDefault = $this->validUser['DropdownDefault'];
-			
+			$this->ValidUser = $this->ci->session->userdata('valid_user');
+			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
+			//var_dump($this->DropdownDefault);
 			$PermType = $this->DropdownDefault->PermType;
 			$LevelID = $this->DropdownDefault->LevelID;
 			$LevelType = $this->DropdownDefault->LevelType;
 			$SelectedID = $this->DropdownDefault->SelectedID;
-			
-			var_dump($this->DropdownDefault);
 			
 			if($SelectedID!='null'):
 				$type = $SelectedID[0];
@@ -30,8 +33,7 @@
 				$id = $LevelID;
 			endif;
 			//set based on PermType
-			//call_user_func($PermType,$type,$id);
-			$str = '';
+		    $str = '';
 			if($PermType == 'SuperAdmin') {
 				$str .= $this->SuperAdmin($type,$id);	
 			}else if($PermType == 'GroupAdmin') {
@@ -39,12 +41,14 @@
 			}else if($PermType == 'ClientAdmin') {
 				$str .= $this->Client($type,$id);	
 			}
-			
+			//var_dump($str);
+			//print_r($str);
 			return $str;
 			
 		}
 		
 		public function SuperAdmin($type, $id) {
+			
 			$DropString = '';
 			$selected = 0;
 			$aQuery = $this->ci->dropdown->AgenciesQuery();
@@ -102,6 +106,7 @@
 					
 			} 
 			return $DropString;
+			
 		}
 		
 		public function GroupAdmin($type,$id) {
@@ -147,6 +152,7 @@
 					
 			} 
 			return $DropString;
+			
 		}
 		
 		public function Client($type,$id){

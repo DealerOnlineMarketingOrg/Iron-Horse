@@ -32,6 +32,7 @@ class Members extends CI_Model {
 		   $GroupID 	= $row->GROUP_ID;
 		   $AgencyID 	= $row->AGENCY_ID;
 		   $AccessLevel = $row->ACCESS_Level;
+		   
 		   //process levels of users for drop down
 		   if($AccessLevel<200000) :
 		    $data1 = array(
@@ -89,7 +90,7 @@ class Members extends CI_Model {
 			   'isGenerated' 	=> (int)$row->USER_Generated,
 			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
 			   'validated' 		=> (bool)TRUE,
-			   'DropdownDefault' => (object)$data1
+			   'DropdownDefault' =>(object)$data1
 		   );
 		   
 		   $this->session->set_userdata('valid_user', $data);
