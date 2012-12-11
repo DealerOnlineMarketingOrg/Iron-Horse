@@ -18,12 +18,12 @@
 			if(!$this->validUser) redirect('login','refresh');
 		}
 		
-		public function LoadTemplate($filepath,$data) {
+		public function LoadTemplate($filepath,$data = false) {
 			/* THEME BLOCK */
 			$this->load->view(DOMDIR 	. 'incl/header');
 			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
 			$this->load->view(DOMDIR 	. 'incl/nav');
-			$this->load->view(THEMEDIR 	. $filepath,$data);
+			$this->load->view(THEMEDIR 	. $filepath, (($data) ? $data : array()));
 			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
 			$this->load->view(DOMDIR 	. 'incl/footer');
 		}

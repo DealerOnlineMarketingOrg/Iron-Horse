@@ -2,8 +2,6 @@
 
 	class Admin extends DOM_Controller {
 	
-		var $header_data;
-		
 		public function __construct() {
 			parent::__construct();	
 			//loading the member model here makes it available for any member of the dashboard controller.
@@ -18,14 +16,7 @@
 			|	- Once template is loaded the code has already ran so always load the template last.
 			|   - The second paramater of the template load is the data you want to pass to the template peice.
 			*/
-			
-			/* THEME BLOCK */
-			$this->load->view(DOMDIR 	. 'incl/header');
-			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
-			$this->load->view(DOMDIR 	. 'incl/nav');
-			$this->load->view(THEMEDIR 	. 'pages/dashboard');
-			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
-			$this->load->view(DOMDIR 	. 'incl/footer');
+			$this->LoadTemplate('pages/dashboard');
 		}
 		
 		public function Agency() {
@@ -37,13 +28,7 @@
 				'userLvl'  => $this->session->userdata['valid_user']['AccessLevel']
 			);
 			
-			/* THEME BLOCK */
-			$this->load->view(DOMDIR 	. 'incl/header');
-			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
-			$this->load->view(DOMDIR 	. 'incl/nav');
-			$this->load->view(THEMEDIR 	. 'pages/admin/agency',$data);
-			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
-			$this->load->view(DOMDIR 	. 'incl/footer');
+			$this->LoadTemplate('pages/admin/agency',$data);
 		}
 		
 		public function Edit_agency($agency_id) {
@@ -51,14 +36,7 @@
 				'agencies' => (($this->session->userdata['valid_user']['AccessLevel'] >= 100000) ? $this->administration->getAgencies(false) : $this->administration->getAgencies($this->session->userdata['valid_user']['AgencyID'])),
 				'userLvl'  => $this->session->userdata['valid_user']['AccessLevel']
 			);
-			
-			/* THEME BLOCK */
-			$this->load->view(DOMDIR 	. 'incl/header');
-			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
-			$this->load->view(DOMDIR 	. 'incl/nav');
-			$this->load->view(THEMEDIR 	. 'pages/admin/agency',$data);
-			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
-			$this->load->view(DOMDIR 	. 'incl/footer');
+			$this->LoadTemplate('pages/admin/agency',$data);
 		}
 	
 	}
