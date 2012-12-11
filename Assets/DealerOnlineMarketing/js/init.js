@@ -32,8 +32,26 @@ $(document).ready(function() {
 	
 });
 
+function remove_popup_form(div,speed) {
+	jQuery(div).find('div.popup').fadeOut(speed,function() {
+		jQuery(div).find('#blackout').fadeOut(speed,function() {
+			jQuery(div).empty();	
+		});
+	});
+}
+
 function fade_in_popup(div,speed) {
+	center_popup(div);	
 	jQuery(div).find('#blackout').fadeIn(speed,function() {
 		jQuery(div).find('.popup').fadeIn(speed);
+	});
+}
+
+function center_popup(div) {
+	var margin_left = (jQuery(div).find('div.popup').width()  + 10) / 2;
+	var margin_top  = (jQuery(div).find('div.popup').height() + 10) / 2;
+	$(div).find('div.popup').css({
+		'margin-top': '-' + margin_top + 'px',
+		'margin-left': '-' + margin_left + 'px'
 	});
 }
