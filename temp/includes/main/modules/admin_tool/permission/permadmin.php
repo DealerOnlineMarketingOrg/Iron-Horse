@@ -1,1 +1,0 @@
-<?php echo 'Permission Administration coming soon!'; ?>
