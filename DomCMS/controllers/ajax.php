@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-    session_start();
-    class Ajax extends CI_Controller {
+    class Ajax extends DOM_Controller {
         var $user;
         public function __construct() {
             parent::__construct();	

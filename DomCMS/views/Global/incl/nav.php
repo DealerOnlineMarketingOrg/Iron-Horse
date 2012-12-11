@@ -65,7 +65,7 @@
                     <div class="clear"></div>
                 </div>
             </li>
-            <li class="reputations">
+            <li class="reputation">
             	<a href="<?= base_url(); ?>reputation"><span>Reputation</span></a>
                 <div class="subnav" id="rep_nav">
                     <div class="pivot">&nbsp;</div>
@@ -102,7 +102,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.main_nav').IconNav({
-            defaultIcon:$('li.<?= $active_button; ?>')
+            defaultIcon:$('li.<?= ACTIVE_BUTTON; ?>')
         });
     });
 </script>
