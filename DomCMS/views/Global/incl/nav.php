@@ -65,7 +65,7 @@
                     <div class="clear"></div>
                 </div>
             </li>
-            <li class="reputations">
+            <li class="reputation">
             	<a href="<?= base_url(); ?>reputation"><span>Reputation</span></a>
                 <div class="subnav" id="rep_nav">
                     <div class="pivot">&nbsp;</div>
@@ -81,7 +81,7 @@
             	<a href="<?= base_url(); ?>admin/"><span>Admin</span></a>
                 <div class="subnav" id="admin_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#">Agency</a>
+                    <a href="<?= base_url(); ?>admin/agency">Agency</a>
                     <a href="#">Groups</a>
                     <a href="#">Clients</a>
                     <a href="#">Users</a>
@@ -94,15 +94,15 @@
             </li>
         </ul>
         <div id="orgInfo">
-            <h4>Agency Name:</h4>
-            <h5>Dealer Online Marketing</h5>
+            <h4><?= get_client_type(); ?></h4>
+            <h5><?= get_client_name(); ?></h5>
         </div>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.main_nav').IconNav({
-            defaultIcon:$('li.<?= $active_button; ?>')
+            defaultIcon:$('li.<?= ACTIVE_BUTTON; ?>')
         });
     });
 </script>

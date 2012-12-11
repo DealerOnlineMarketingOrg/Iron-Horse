@@ -23,47 +23,18 @@ class Members extends CI_Model {
 				
 		$query = $this->db->query($sql);
 			
-	   if($query->num_rows() == 1) {
+	    if($query->num_rows() == 1) {
 		   $row = $query->row();
 		   //This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
-		   $data = array(
-			   'Username' 		=> (string)$row->USER_Name,
-			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
-			   'LastName' 		=> (string)$row->DIRECTORY_LastName,
-			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
-			   'UserID' 		=> (int)$row->USER_ID,
-			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
-			   'ClientID' 	    => (int)$row->CLIENT_ID,
-			   'GroupID' 	    => (int)$row->GROUP_ID,
-			   'AgencyID' 	    => (int)$row->AGENCY_ID,
-			   'ClientName' 	=> (string)$row->CLIENT_Name,
-			   'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
-			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
-			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
-			   'ClientCode' 	=> (string)$row->CLIENT_Code,
-			   'ClientTags' 	=> (string)$row->CLIENT_Tags,
-			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
-			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
-			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
-			   'AccessName' 	=> (string)$row->ACCESS_Name,
-			   'UserPerm' 		=> (object)mod_parser($row->USER_Perm),
-			   'isActive' 		=> (bool)$row->USER_Active,
-			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
-			   'isGenerated' 	=> (int)$row->USER_Generated,
-			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
-			   'validated' 		=> (bool)TRUE
-		   );
-		   
-		   $this->session->set_userdata('valid_user', $data);
-		   return (object)$data;
 		   
 		   //Start drop down default insert for session
-		   $ClientID = $data['ClientID'];
-		   $GroupID = $data['GroupID'];
-		   $AgencyID = $data['AgencyID'];
-		   $AccessLevel = $data['AccessLevel'];
+		   $ClientID 	= $row->CLIENT_ID;
+		   $GroupID 	= $row->GROUP_ID;
+		   $AgencyID 	= $row->AGENCY_ID;
+		   $AccessLevel = $row->ACCESS_Level;
+		   
 		   //process levels of users for drop down
-		   if ($AccessLevel<200000) :
+		   if($AccessLevel<200000) :
 		    $data1 = array(
 			   'LevelID' 		=> $AgencyID,
 			   'PermType' 		=> 'SuperAdmin',
@@ -92,9 +63,39 @@ class Members extends CI_Model {
 			   'SelectedID' 	=> 'null'
 	   		);
 		   endif;
-		   //set session to correct level for dropdown
-		   $this->session->set_userdata('DropdownDefault',$data1);
+
+		   $data = array(
+			   'Username' 		=> (string)$row->USER_Name,
+			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
+			   'LastName' 		=> (string)$row->DIRECTORY_LastName,
+			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
+			   'UserID' 		=> (int)$row->USER_ID,
+			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
+			   'ClientID' 	    => (int)$row->CLIENT_ID,
+			   'GroupID' 	    => (int)$row->GROUP_ID,
+			   'AgencyID' 	    => (int)$row->AGENCY_ID,
+			   'ClientName' 	=> (string)$row->CLIENT_Name,
+			   'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
+			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
+			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
+			   'ClientCode' 	=> (string)$row->CLIENT_Code,
+			   'ClientTags' 	=> (string)$row->CLIENT_Tags,
+			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
+			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
+			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
+			   'AccessName' 	=> (string)$row->ACCESS_Name,
+			   'UserPerm' 		=> (object)mod_parser($row->USER_Perm),
+			   'isActive' 		=> (bool)$row->USER_Active,
+			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
+			   'isGenerated' 	=> (int)$row->USER_Generated,
+			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
+			   'validated' 		=> (bool)TRUE,
+			   'DropdownDefault' =>(object)$data1
+		   );
 		   
+		   $this->session->set_userdata('valid_user', $data);
+		   return (object)$data;
+
 	   }
    }    
    
