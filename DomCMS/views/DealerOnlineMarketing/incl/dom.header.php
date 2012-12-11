@@ -8,7 +8,8 @@
         </div>
         <div id="clientTags">
         	<select id="tags" class="select">
-            	<option value="0" class="parent">Green Team</option>
+            	<option value="FALSE" class="parent">-none-</option>
+                <option value="0" class="parent">Green Team</option>
                 <option value="1" class="child">Red Team</option>
                 <option value="2" class="child">Purple Team</option>
                 <option value="3" class="child">Blue Team</option>
