@@ -100,7 +100,7 @@ class Members extends CI_Model {
    }    
    
    public function reset_password($email,$new_pass) {
-		
+		$this->load->helper('msg_helper');
 		$email = $this->security->xss_clean($this->input->post('email'));
 		$new_pass = createRandomString(8,'ALPHANUM');
 		
@@ -118,9 +118,8 @@ class Members extends CI_Model {
             if($update) {
                 //return TRUE;
                 $subject = 'Password Reset';
-                $msg = 'Your password at dealeronlinemarketing.com has been reset to ' . $new_pass . ' please login to change it to something you can remember.';
+				$msg = email_reset_msg();
                 $emailed = $this->email_results($email, $subject, $msg);
-                
                 if($emailed) {
                     return TRUE;
                 }else {

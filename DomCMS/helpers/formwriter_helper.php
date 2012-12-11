@@ -68,6 +68,47 @@
         return $form;
         
     }
+	
+	function AddAgencyForm() {
+		$ci =& get_instance();
+		$ci->load->helper('form');
+		
+		$form_attr = array(
+			'name' => 'add_agency_form',
+			'class' => 'validate',
+			'id' => 'add_agency_form'
+		);	
+		
+		$name = array(
+			'name' => 'agency_name',
+			'class' => 'validate[required,onlyLetterSp] required',
+			'id' => 'agency_name'
+		);
+		
+		$desc = array(
+			'name' => 'agency_desc',
+			'class' => '',
+			'id' => 'agency_desc'
+		);
+		
+		$form_array = array(
+			form_open('ajax/add_agency', $form_attr),
+			'<ul>',
+				'<li>' . form_input($name) . '</li>',
+				'<li class="error">' . form_error('name') . '</li>',
+				'<li>' . form_textarea($desc) . '</li>',
+				'<li class="error">' . form_error('desc') . '</li>',
+			'</ul>',
+			form_close()
+		);
+		
+		$form = '';
+		
+		foreach($form_array as $item) {
+			$form .= $item . "\n";	
+		}
+		
+	}
      
     function ForgotPassForm() {
          
@@ -92,7 +133,7 @@
             'value' => 'Reset Password'
         );
 		
-	$form_array = array(
+		$form_array = array(
             form_open('generate_password',$form_attr),
                 '<fieldset>',
                     '<ul>',

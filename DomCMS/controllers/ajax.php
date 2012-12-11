@@ -22,5 +22,16 @@
 			$this->session->userdata['valid_user']['DropdownDefault']->SelectedID = $selected_id;
 			$this->session->sess_write();
 		}
+		
+		/*
+			ADMIN CONTROLLERS
+		*/
+		
+		public function add_agency_popup() {
+			$data = array(
+				'form' => AddAgencyForm()
+			);
+			$this->load->view(THEMEDIR . 'popups/basic_form', $data);	
+		}
         
     }
