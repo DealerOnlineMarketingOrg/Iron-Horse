@@ -35,13 +35,6 @@
 				//'user' => $this->session->userdata('valid_user')
 			);
 			
-			/* THEME BLOCK */
-			$this->load->view(DOMDIR 	. 'incl/header');
-			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
-			$this->load->view(DOMDIR 	. 'incl/nav');
-			$this->load->view(THEMEDIR 	. 'pages/dashboard',$data);
-			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
-			$this->load->view(DOMDIR 	. 'incl/footer');
-	
+			$this->LoadTemplate('pages/dashboard',$data);
 		}	
 	}

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-	class Auth extends DOM_Controller {
+	class Auth extends CI_Controller {
 		
 		var $user_session;
 		var $attemps;
