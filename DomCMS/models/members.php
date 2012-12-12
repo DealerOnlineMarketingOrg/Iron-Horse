@@ -79,7 +79,7 @@ class Members extends CI_Model {
 			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
 			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
 			   'ClientCode' 	=> (string)$row->CLIENT_Code,
-			   'ClientTags' 	=> (string)$row->CLIENT_Tags,
+			   //'ClientTags' 	=> (string)$row->CLIENT_Tags,
 			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
 			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
 			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
