@@ -20,15 +20,36 @@
 		}
 		
 		public function Agency() {
+			$this->load->helper('html');
+			$this->load->library('table');
+			
+			//Get the agencies into an array
+			$agencies = (($this->session->userdata['valid_user']['AccessLevel'] >= 100000) ? $this->administration->getAgencies(false) : $this->administration->getAgencies($this->session->userdata['valid_user']['AgencyID']));
+			
+			//create html table with codeigniter library. This is awesome btw.
+			$this->table->set_heading('Name','Description','Status','Edit');
+			
+			foreach($agencies as $agency) :
+				$this->table->add_row($agency->Name, $agency->Description, $agency->Status, (($this->session->userdata['valid_user']['AccessLevel'] >= 100000) ? anchor(base_url() . 'admin/agency/edit','Edit','class="button blue"') : ''));
+			endforeach;
+			
+			$add_button = array(
+				'class' => 'button green float_right',
+				'id'    => 'add_agency_btn',
+				'href' => 'javascript:void(0)'
+			);
+			
+			$page_html = heading('Agencies',2) . anchor('javascript:void(0)','+','class="button green float_right" id="add_agency_btn"') . $this->table->generate();
+			
 			/**
 			  * Agency list based on permission level.
 			  */
 			$data = array(
-				'agencies' => (($this->session->userdata['valid_user']['AccessLevel'] >= 100000) ? $this->administration->getAgencies(false) : $this->administration->getAgencies($this->session->userdata['valid_user']['AgencyID'])),
-				'userLvl'  => $this->session->userdata['valid_user']['AccessLevel']
+				'page_id'  => 'agency',
+				'page_html' => $page_html
 			);
 			
-			$this->LoadTemplate('pages/admin/agency',$data);
+			$this->LoadTemplate('pages/listings',$data);
 		}
 		
 		public function Edit_agency($agency_id) {

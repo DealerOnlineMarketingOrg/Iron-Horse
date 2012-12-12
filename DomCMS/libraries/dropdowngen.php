@@ -8,7 +8,7 @@
 		public $str;
 		
 		public function __construct() {
-			$this->str = $this->drivedrop();
+			//$this->str = $this->drivedrop();
 			//print_r($str);
 		}
 		
@@ -18,11 +18,21 @@
 			$this->ci->load->model('dropdown');	
 			$this->ValidUser = $this->ci->session->userdata('valid_user');
 			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
-			//var_dump($this->DropdownDefault);
+			
+			var_dump($this->DropdownDefault);
+			
 			$PermType = $this->DropdownDefault->PermType;
 			$LevelID = $this->DropdownDefault->LevelID;
 			$LevelType = $this->DropdownDefault->LevelType;
 			$SelectedID = $this->DropdownDefault->SelectedID;
+			$SelectedTag = $this->DropdownDefault->SelectedTag;
+			
+			//$tQuery = $this->ci->dropdown->TagsQuery($SelectedTag);
+			//$tag_list_row = $tQuery->row();
+            //$tag_list_set = $user_row->USER_ID;
+			//$tag_list_id = client_tag_parser($tag_list_set);
+			
+			var_dump($SelectedTag);
 			
 			if($SelectedID != 'null'):
 				$type = $SelectedID[0];
@@ -68,7 +78,18 @@
 				$gQuery = $this->ci->dropdown->GroupsQuery(false, $aRow->AGENCY_ID);
 				
 				foreach ($gQuery as $gRow){
-					$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
+					
+					//if ($SelectedTag!='noshow'&&$SelectedTag!=0){
+					//	$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID, $tag_list_id);}
+					//else{
+						$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
+					//}
+					
+					/*$tags ='';
+					  foreach ($tag_list_id as $v) {
+    				  	$tags =''.$v;
+					  }*/
+					//$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
 					if(count($cQuery) > 1) :
 						//Put Group
 						//And single-indent group style

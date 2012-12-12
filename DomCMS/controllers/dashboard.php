@@ -20,7 +20,9 @@
 				}
 				$google .= '<p>Total pageviews: ' . $ga->getPageviews() . ' total visits: ' . $ga->getVisits() . '</p>';
 			*/
-			        
+			$this->ValidUser = $this->session->userdata('valid_user');
+			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
+			//var_dump($this->DropdownDefault);    
 			$google = '';
 			
 			$data = array(
