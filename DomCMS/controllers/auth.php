@@ -96,7 +96,6 @@
 				die('Your system does not have a valid ip address associated with it. We require that you do.');
 			};
 			
-			
 			//check how many times this email address from this IP address has attempted to login unsuccessfully.
 			$check_attempts = $this->attempts->get_count($ip_address,$email);
 			//$check_attempts = FALSE;

@@ -5,11 +5,9 @@
             parent::__construct();	
             //loading the member model here makes it 
             //available for any member of the dashboard controller.
-            $this->load->model('members');
-            $this->load->helper('form');
             $this->load->helper('url');
-            $this->load->helper('pass');
             $this->user = $this->session->userdata('valid_user');
+			$this->load->library('security');
         }
 
         public function name_changer() {
@@ -34,10 +32,13 @@
 		*/
 		
 		public function add_agency_popup() {
+			$this->load->helper('formwriter');
 			$data = array(
+				'formName' => 'Add New Agency',
 				'form' => AddAgencyForm()
 			);
 			$this->load->view(THEMEDIR . 'popups/basic_form', $data);	
 		}
+		
         
     }

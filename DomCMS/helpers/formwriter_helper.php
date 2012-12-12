@@ -37,7 +37,7 @@
           'value' => 'Login',
           'id'    => 'login_button'
         );
-
+		
         $form_array = array(
             form_open('authenticate',$form_attr),
                 '<fieldset>',
@@ -91,13 +91,33 @@
 			'id' => 'agency_desc'
 		);
 		
+		$submit_button = array(
+            'id' => 'submit',
+            'class' => 'button green',
+            'value' => 'Add'
+        );
+		
+		$clear_button = array(
+			'id' => 'reset',
+			'class' => 'button blue',
+			'value' => 'Clear Form'
+		);
+		
+		$required = array(
+			'class' => 'required'
+		);
+
 		$form_array = array(
-			form_open('ajax/add_agency', $form_attr),
+			form_open('admin/add_agency', $form_attr),
 			'<ul>',
+				'<li>' . form_label('Agency Name','agency_name',$required) . '</li>',
 				'<li>' . form_input($name) . '</li>',
+				'<li>' . form_label('Agency Description', 'agency_desc') . '</li>',
 				'<li class="error">' . form_error('name') . '</li>',
 				'<li>' . form_textarea($desc) . '</li>',
 				'<li class="error">' . form_error('desc') . '</li>',
+				'<li class="error">' . form_error('query_error') . '</li>',
+				'<li class="buttons">' . form_reset($clear_button) . form_submit($submit_button) . '&nbsp;&nbsp;' . '</li>',
 			'</ul>',
 			form_close()
 		);
@@ -107,7 +127,7 @@
 		foreach($form_array as $item) {
 			$form .= $item . "\n";	
 		}
-		
+		return $form;
 	}
      
     function ForgotPassForm() {

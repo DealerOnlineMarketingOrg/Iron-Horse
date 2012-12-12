@@ -24,5 +24,12 @@
 		public function getGroups($id=false) {
 			
 		}
+		
+		public function addAgencies($data) {
+			if($this->db->insert($data))
+				return TRUE;
+			else
+				return FALSE;
+		}
 			
 	}
