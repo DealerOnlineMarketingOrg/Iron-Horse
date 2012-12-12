@@ -11,6 +11,19 @@
 		return dropdown_parser($ci->dropdowngen->drivedrop());
 	}
 	
+	
+	function tag_selector() {
+		$ci =& get_instance();
+		$ci->load->library('tagdropgen');
+		//print_r(client_tag_parser($ci->tagdropgen->drivetagdrop()));
+		$ValidUser = $ci->session->userdata('valid_user');
+		$DropdownDefault = $ValidUser['DropdownDefault'];
+		$tag_id = $DropdownDefault->SelectedTag;
+		return client_tag_parser($ci->tagdropgen->drivetagdrop(), $tag_id);
+		
+	}
+	
+	
 	function get_client_type() {
 		//get client type from session
 		$level_type = get_level_type();

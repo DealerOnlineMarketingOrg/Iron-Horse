@@ -36,5 +36,11 @@ class Dropdown extends CI_Model {
 			return $query->row();	
 		}
 	}
+	
+	public function TagQuery(){
+		$sql = "SELECT * FROM xTags WHERE TAG_Active= 1";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
