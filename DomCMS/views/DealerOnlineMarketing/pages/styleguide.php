@@ -1,13 +1,8 @@
 <style type="text/css">.example {outline:1px dashed #CCC;padding:.5em 1em}</style>
 <div class="wrapper content-padding">
     <div id="styleguide" class="content-page block">
-<<<<<<< HEAD
         <h2>Styleguide</h2>
     	<section>
-=======
-    	<section>
-        <h2>Styleguide</h2>
->>>>>>> master
         <p>This document is a guide to the mark-up styles used throughout the site.</p>
         <h2>Sections</h2>
         <p>The logo is the <code>h1</code> element. Any header elements may include links, as depicted in the example.</p>
@@ -118,11 +113,7 @@
         <div class="example">
 			<dl>
 				<dt>This is a term.</dt>
-<<<<<<< HEAD
 				<dd>This is the definition of that term, which both live in a <code>dl</code>.</dd>
-=======
-				<dd>This is the definition of that term, which both live in a<code>dl</code>.</dd>
->>>>>>> master
 				<dt>Here is another term.</dt>
 				<dd>And it gets a definition too, which is this line.</dd>
 				<dt>Here is term that shares a definition with the term below.</dt>
@@ -155,22 +146,13 @@
 		</div>
         
         <h2>Text-level Semantics</h2>
-<<<<<<< HEAD
         <p>There are a number of inline <abbr title="HyperText Markup Language">HTML</abbr> elements you may use anywhere within other elements.</p>
-=======
-        <p>There are a number of inline<abbr title="HyperText Markup Language">HTML</abbr>elements you may use anywhere within other elements.</p>
->>>>>>> master
         </section>
         <section>
         <h3>Links and Anchors</h3>
         <p>The <code>a</code> element is used to hyperlink text, be that to another page, a named fragment on the current page or any other location on the web. Example:</p>
-<<<<<<< HEAD
         <div class="example prose">
 			<p><a href="/">Go to the home page </a>or<a href="#banner"> return to the top of this page</a>.</p>
-=======
-        <div class="example">
-			<p><a href="/">Go to the home page</a>or<a href="#banner">return to the top of this page</a>.</p>
->>>>>>> master
 		</div>
         </section>
         <section>
@@ -209,24 +191,10 @@
 		</div>
         </section>
         <section>
-<<<<<<< HEAD
         <h3>Definition</h3>
         <p>The <code>dfn</code> element is used to highlight the first use of a term. The <code>title</code> attribute can be used to describe the term. Example:</p>
         <div class="example">
 			<p>Bob’s <dfn title="Dog">canine</dfn> mother and <dfn title="Horse">equine</dfn> father sat him down and carefully explained that he was an<dfn title="A mutation that combines two or more sets of chromosomes from different species"> allopolyploid</dfn> organism.</p>
-=======
-        <h3>Inline Quotes</h3>
-        <p>The <code>q</code> element is used for quoting text inline. Example showing nested quotations:</p>
-        <div class="example">
-			<p>John said, <q>I saw Lucy at lunch, she told me<q>Mary wants you to get some ice cream on your way home</q>. I think I will get some at Ben and Jerry’s, on Gloucester Road.</q></p>
-		</div>
-        </section>
-        <section>
-        <h3>Definition</h3>
-        <p>The <code>dfn</code> element is used to highlight the first use of a term. The <code>title</code> attribute can be used to describe the term. Example:</p>
-        <div class="example">
-			<p>Bob’s <dfn title="Dog">canine</dfn> mother and <dfn title="Horse">equine</dfn> father sat him down and carefully explained that he was an<dfn title="A mutation that combines two or more sets of chromosomes from different species">allopolyploid</dfn> organism.</p>
->>>>>>> master
 		</div>
         </section>
         <section>
@@ -250,13 +218,9 @@
 		</div>
         <p>Used in conjunction with the <code>pre</code> element:</p>
         <div class="example">
-<<<<<<< HEAD
 			<pre><code>function getJelly() {
                         echo $aDeliciousSnack;
                     }</code></pre>
-=======
-			<pre><code>function getJelly() { echo $aDeliciousSnack; }</code></pre>
->>>>>>> master
 		</div>
         <p>Shown with line numbers:</p>
         <div class="example">

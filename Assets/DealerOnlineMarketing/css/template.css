@@ -1,15 +1,16 @@
 body{font-family:"Open Sans", sans-serif}
 h1,h2,h3,h4,h5,h6{font-family:Ubuntu, sans-serif}
-h2{color:#039;font-size:1.5em;font-weight:300;letter-spacing:0;line-height:1;margin:0 0;padding:0}
-section h2{color:#039;font-size:1.5em;font-weight:300;letter-spacing:0;line-height:1;margin:1.3333em 0 0;padding:.3333em 0}
+h2{color:#039;font-size:1.5em;font-weight:300;letter-spacing:0;line-height:1;margin:0;padding:0}
+section h2{margin: 1.3333em 0 0;padding: 0.3333em 0;}
 section h3{border-top:0 none;color:#333;font-size:1.25em;font-weight:400;line-height:1.2;margin:1.2em 0 0}
 section h4{color:#444;font-size:1em;font-weight:400;line-height:1;margin:1.5em 0 0}
 section h5,section h6{color:#555;font-size:.875em;font-weight:400;letter-spacing:.1429em;line-height:1.1429;text-transform:uppercase;margin:1.7143em 0 0}
 p{font-size:1.125em;line-height:1.5556;margin:.5em 0}
 p,pre,blockquote,figure,figcaption,table,fieldset{font-size:1.125em;line-height:1.5;margin:.5em 0}
 em,em a,i,var,samp,cite,cite a{font-size:1em;font-style:italic;font-weight:300;line-height:90%}
-.prose a{border-bottom:1px solid rgba(0,85,187,0.1)}
 a{color:#05B}
+section div.prose a {border-bottom: 1px solid rgba(0, 85, 187, 0.1);}
+section div.prose a:hover {border-bottom-color: rgba(0, 119, 221, 0.2);}
 section,.section{}
 hr:after{color:#BBB;content:"···";height:0;letter-spacing:1em;padding-left:1em}
 hr{border:0 none;clear:both;display:block;font-size:2em;font-weight:400;height:0;line-height:1;text-align:center;margin:1em 0 2em;padding:0}
@@ -36,15 +37,10 @@ section strong, b {color: #333;font-size: 1em;font-weight: 600;line-height: 90%;
 section small {display: inline-block;font-size: 0.8125em;line-height: 1.2308;opacity: 0.9;}
 section del, s {line-height: 90%;text-decoration: line-through;}
 section abbr[title]:hover, dfn[title] {border-bottom: 1px dotted rgba(0, 0, 0, 0.3);cursor: help;}
-section ol{list-style-type:decimal}
-section li{margin-left:1.5em}
 
-section ul {
-    list-style-type: square;
-}
-section ul li li {
-    list-style-type: circle;
-}
+
+	
+
 code {
     color: #003399;
     font: 14px/90% source-code-pro,monospace;
@@ -128,7 +124,7 @@ ul.main_nav li.reputation a{background-position:-288px -163px}
 .orange:hover{background-color:#CDA828;color:rgba(0,0,0,1)}
 .red{background-color:#DF3030;border:1px solid #C90000;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3);}
 .red:hover{background-color:#CA3636}
-.blue{background-color:#52B0E6;color:rgba(0,0,0,0.6);text-shadow:0 1px 0 rgba(255,255,255,0.3);border:1px solid #52B0E6;}
+.blue{background-color:#52B0E6;color:rgba(0,0,0,0.6);text-shadow:0 1px 0 rgba(255,255,255,0.3);}
 .blue:hover{background-color:#308EEF;color:rgba(0,0,0,1)}
 .grey{background-color:#555;color:rgba(255,255,255,0.6);text-shadow:0 1px 0 rgba(0,0,0,0.3);border-top:1px solid #515151;border-bottom:1px solid #222;border-right:1px solid #222;border-left:1px solid #515151;}
 .grey:hover{background-color:#3E3E3D;}
@@ -155,3 +151,4 @@ table td {font-size:11px;}
 table tr.even {background:#ddd;}
 table a.button {height:auto !important;width:auto !important;display:inline;text-align:center;display:block;}
 table tr.odd{background:#fff;}
+
