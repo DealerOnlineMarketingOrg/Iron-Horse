@@ -3,5 +3,10 @@
         <h2>Dashboard</h2>
         
 		
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
     </div>
 </div>

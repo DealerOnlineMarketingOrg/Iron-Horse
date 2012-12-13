@@ -16,6 +16,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+<<<<<<< HEAD
 		
 	$('#tags').change(function(evt) {
 		$.ajax({
@@ -28,6 +29,9 @@ $(document).ready(function() {
 		});
 	});
 		
+=======
+	
+>>>>>>> master
 	$('#add_agency_btn').click(function() {
 		$.ajax({
 			url:'/ajax/add_agency_popup',

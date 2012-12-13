@@ -8,7 +8,11 @@
 		}
 		
 		public function getAgencies($id = false) {
+<<<<<<< HEAD
 			$sql = "SELECT AGENCY_Name as Name,AGENCY_Notes as Description, AGENCY_Active as Status FROM Agencies " . (($id) ? " WHERE AGENCY_ID = '" . $id . "'" : "") . " ORDER BY AGENCY_Name; ";
+=======
+			$sql = "SELECT AGENCY_ID as Id, AGENCY_Name as Name,AGENCY_Notes as Description, AGENCY_Active as Status FROM Agencies " . (($id) ? " WHERE AGENCY_ID = '" . $id . "'" : "") . " ORDER BY AGENCY_Name; ";
+>>>>>>> master
 			$query = $this->db->query($sql);
 			
 			if($query) 
