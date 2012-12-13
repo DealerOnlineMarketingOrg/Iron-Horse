@@ -1,8 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Members extends CI_Model {
 
-    function __construct()
-    {
+    function __construct() {
         // Call the Model constructor
         parent::__construct();
         $this->load->helper('pass');
@@ -24,9 +23,47 @@ class Members extends CI_Model {
 				
 		$query = $this->db->query($sql);
 			
-	   if($query->num_rows() == 1) {
+	    if($query->num_rows() == 1) {
 		   $row = $query->row();
 		   //This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
+		   
+		   //Start drop down default insert for session
+		   $ClientID 	= $row->CLIENT_ID;
+		   $GroupID 	= $row->GROUP_ID;
+		   $AgencyID 	= $row->AGENCY_ID;
+		   $AccessLevel = $row->ACCESS_Level;
+		   
+		   //process levels of users for drop down
+		   if($AccessLevel<200000) :
+		    $data1 = array(
+			   'LevelID' 		=> $AgencyID,
+			   'PermType' 		=> 'SuperAdmin',
+			   'LevelType'      => 'a',
+			   'SelectedID' 	=> 'null'
+	   		);
+			elseif ($AccessLevel>200000&&$AccessLevel<300000):
+			$data1 = array(
+			   'LevelID' 		=> $AgencyID,
+			   'PermType' 		=> 'AgencyAdmin',
+			   'LevelType'      => 'a',
+			   'SelectedID' 	=> 'null'
+	   		);
+			elseif ($AccessLevel>300000&&$AccessLevel<400000):
+			$data1 = array(
+			   'LevelID' 		=> $GroupID,
+			   'PermType' 		=> 'GroupAdmin',
+			   'LevelType'      => 'g',
+			   'SelectedID' 	=> 'null'
+	   		);
+			else:
+			$data1 = array(
+			   'LevelID' 		=> $ClientID,
+			   'PermType' 		=> 'Client',
+			   'LevelType'      => 'c',
+			   'SelectedID' 	=> 'null'
+	   		);
+		   endif;
+
 		   $data = array(
 			   'Username' 		=> (string)$row->USER_Name,
 			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
@@ -42,7 +79,7 @@ class Members extends CI_Model {
 			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
 			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
 			   'ClientCode' 	=> (string)$row->CLIENT_Code,
-			   'ClientTags' 	=> (string)$row->CLIENT_Tags,
+			   //'ClientTags' 	=> (string)$row->CLIENT_Tags,
 			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
 			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
 			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
@@ -52,47 +89,18 @@ class Members extends CI_Model {
 			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
 			   'isGenerated' 	=> (int)$row->USER_Generated,
 			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
-			   'validated' 		=> (bool)TRUE
+			   'validated' 		=> (bool)TRUE,
+			   'DropdownDefault' =>(object)$data1
 		   );
 		   
 		   $this->session->set_userdata('valid_user', $data);
 		   return (object)$data;
-		   
-		   //Start drop down default insert for session
-		  $ClientID = $data['ClientID'];
-		   $GroupID = $data['GroupID'];
-		   $AgencyID = $data['AgencyID'];
-		   $AccessLevel = $data['AccessLevel'];
-		   //process levels of users for drop down
-		   if ($AccessLevel<200000) :
-		    $data1 = array(
-			   'LevelID' 		=> $AgencyID,
-			   'LevelType' 		=> 'SA'
-	   		);
-			elseif ($AccessLevel>200000&&$AccessLevel<300000):
-			$data1 = array(
-			   'LevelID' 		=> $AgencyID,
-			   'LevelType' 		=> 'A'
-	   		);
-			elseif ($AccessLevel>300000&&$AccessLevel<400000):
-			$data1 = array(
-			   'LevelID' 		=> $GroupID,
-			   'LevelType' 		=> 'G'
-	   		);
-			else:
-			$data1 = array(
-			   'LevelID' 		=> $ClientID,
-			   'LevelType' 		=> 'C'
-	   		);
-		   endif;
-		   //set session to correct level for dropdown
-		   $this->session->set_userdata('DropdownDefault',$data1);
-		   
+
 	   }
    }    
    
    public function reset_password($email,$new_pass) {
-		
+		$this->load->helper('msg_helper');
 		$email = $this->security->xss_clean($this->input->post('email'));
 		$new_pass = createRandomString(8,'ALPHANUM');
 		
@@ -110,9 +118,8 @@ class Members extends CI_Model {
             if($update) {
                 //return TRUE;
                 $subject = 'Password Reset';
-                $msg = 'Your password at dealeronlinemarketing.com has been reset to ' . $new_pass . ' please login to change it to something you can remember.';
+				$msg = email_reset_msg();
                 $emailed = $this->email_results($email, $subject, $msg);
-                
                 if($emailed) {
                     return TRUE;
                 }else {
