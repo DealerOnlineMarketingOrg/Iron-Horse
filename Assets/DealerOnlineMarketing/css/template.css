@@ -90,7 +90,7 @@ fieldset em {color: #666666;display: block;font-size: 0.875em;line-height: 1.142
 ul.main_nav{float:left;width:700px}
 ul.main_nav li{float:left;min-width:80px;min-height:75px;margin-right:2px}
 ul.main_nav li.active{min-width:80px}
-ul.main_nav li a{text-shadow:0 1px 0 #292929;float:left;display:block;width:80px;padding-top:45px;color:rgba(255,255,255,0.6);font-size:11px;background:url('../imgs/iconset_off.png') no-repeat;background-position:-20px -30px;text-align:center}
+ul.main_nav li a{text-shadow:0 1px 0 #292929;float:left;display:block;width:80px;padding-top:45px;color:rgba(255,255,255,0.6);font-size:11px;background:url('../imgs/iconset_off.png') no-repeat;background-position:-20px -30px;text-align:center;margin-left:10px;}
 ul.main_nav li a:hover,ul.main_nav li.active a{background:url('../imgs/iconset_on.png') no-repeat;color:#b8d018;background-position:-20px -30px}
 ul.main_nav li img{display:none;position:absolute;bottom:-24px;left:0}
 ul.main_nav li.active img{display:block}
@@ -101,12 +101,12 @@ ul.main_nav li.dms a{background-position:-282px -295px;width:90px}
 ul.main_nav li.merchandising a{background-position:-210px -93px;width:95px}
 ul.main_nav li.advertising a{background-position:-353px -225px}
 ul.main_nav li.creative a{background-position:-218px -225px}
-ul.main_nav li.reputation a{background-position:-288px -163px}
+ul.main_nav li.reputation a{background-position:-280px -163px;width:105px;}
 #nav h5{color:rgba(255,255,255,0.9);padding-top:5px;width:100%;font-size:12px;float:right;text-align:center;font-weight:700;text-shadow:0 1px 0 rgba(0,0,0,0.6)}
 #nav h4{color:rgba(0,0,0,0.6);width:100%;font-size:14px;float:right;text-align:center;font-weight:700;text-shadow:0 1px 0 rgba(255,255,255,0.3)}
 #nav #orgInfo{margin-top:5px;margin-right:2px;float:right;width:205px;-webkit-border-radius:5px;border-radius:5px;background:url('../imgs/notif-bg.jpg') repeat-x;background-position:0 -150px;box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.3);box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;padding:10px 5px}
 #nav div.subnav{position:absolute;bottom:-42px;left:0;width:930px;display:none;background:url('../imgs/grad-overlay-s.png') repeat scroll 0 0 #fff;border:1px solid #ccc;-webkit-border-radius:5px;border-radius:5px;padding:10px}
-#nav div.subnav a{width:auto;padding-top:0;background:none;float:left;color:#666;display:block;font-size:12px;text-shadow:0 1px 0 rgba(255,255,255,0.6)}
+#nav div.subnav a{width:auto;padding-top:0;background:none;float:left;color:#666;display:block;font-size:12px;text-shadow:0 1px 0 rgba(255,255,255,0.6);margin-left:0;}
 #nav div.subnav a:hover{background:none;color:#06f}
 #nav div.subnav span{float:left;margin-left:15px;margin-right:15px;margin-top:-2px;color:#ccc}
 #nav div.subnav .pivot{background:url('../imgs/pivot.png') no-repeat top left;width:28px;height:16px;position:absolute;top:-15px;left:25px}
@@ -128,10 +128,10 @@ ul.main_nav li.reputation a{background-position:-288px -163px}
 .content-block p.note{color:#666;font-size:11px;background:#eee;border:1px solid #ccc;padding:10px;border-radius:5px;margin-top:5px;}
 .content-block p.note span {color:red;font-weight:bold;}
 /*Form styles*/
-.form_group {padding:5px 0;} /* div to surround a form so we can seperate it from content */
-.content-page form {padding:10px;margin-top:15px;}
-.content-page form label {color:#666;}
-.content-page form input.input{border:1px solid #bbb;box-shadow:1px 1px 3px 1px #ddd inset;padding:8px 8px 7px 40px;border-radius:3px;min-width:250px;background-color:#fff;padding:5px;margin-top:3px;color:#666;}
+.form_group {padding:5px 0;} 
+/* div to surround a form so we can seperate it from content  */
+form {padding:10px;margin-top:15px;}
+form input.text{border:1px solid #ddd;box-shadow:1px 1px 3px 1px #eee inset;padding:8px 8px 7px 40px;border-radius:3px;min-width:250px;background-color:#fff;padding:8px;margin-top:3px;color:#666;} 
 /*Button styles*/
 .button{background-image:url("../imgs/grad-overlay-s.png");background-repeat:repeat-x;background-position:bottom left;border-radius:3px 3px 3px 3px;box-shadow:0 1px 0 0 rgba(255,255,255,0.3) inset;color:#292929;cursor:pointer;font-size:12px!important;font-weight:600!important;height:28px;margin-right:5px;max-height:40px!important;text-shadow:0 1px 0 rgba(255,255,255,0.3);padding:4px 14px 5px}
 .green{background-color: #A6BA1E;border:1px solid #869A00;color:rgba(255,255,255,0.8);text-shadow:0 1px 0 rgba(0,0,0,0.3);}
@@ -160,7 +160,7 @@ div.success{padding:10px;border:1px solid #A1B900;background:#fff;color:#666;fon
 #error_notification{background-image:url("../imgs/grad-overlay-s.png"); background-repeat:repeat-x;background-position:bottom left;border-radius:3px;box-shadow:0 1px 0 0 rgba(255,255,255,0.3) inset;font-size:12px !important;font-weight:600 !important;padding:5px;margin-bottom:10px;}
 
 #error_notification div.close {float:right;width:10px;}
-#error_notification div.close:hover{font-size:140%;cursor:pointer;margin-top:-3px;margin-left:-10px;}
+#error_notification div.close:hover{font-size:140%;cursor:pointer;margin-top:-3px;margin-left:-22px;}
 
 .float_right{float:right;margin-top:-27px;height:auto !important;}
 

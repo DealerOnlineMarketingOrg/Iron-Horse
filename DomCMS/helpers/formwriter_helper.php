@@ -119,20 +119,23 @@
 		$form_array = array(
 			'<div class="form_group">',
 				form_open('admin/form_processor/agency/add', $form_attr),
-				'<ul>',
-					'<li>' . form_label('Agency Name','agency_name',$required) . '</li>',
-					'<li>' . form_input($name) . '</li>',
-					'<li>' . form_label('Agency Description', 'agency_desc') . '</li>',
-					'<li class="error">' . form_error('name') . '</li>',
-					'<li>' . form_textarea($desc) . '</li>',
-					'<li class="error">' . form_error('desc') . '</li>',
-					'<li class="error">' . form_error('query_error') . '</li>',
-					form_hidden($created), form_hidden($active),
-					'<li class="buttons">' . form_reset($clear_button) . form_submit($submit_button) . '&nbsp;&nbsp;' . '</li>',
-				'</ul>',
+				'<fieldset>',
+					'<div>' . 
+						form_label('Agency Name','agency_name',$required) . '<em>The Agency name</em>' .
+						form_input($name) . 
+						'<div class="error">' . form_error('name') . '</div>' .
+					'</div>',
+					'<div>' . 
+						form_label('Agency Description', 'agency_desc') .
+						form_textarea($desc)  .
+						'<div class="error">' . form_error('desc') . '</div>' .
+						'<div class="error">' . form_error('query_error') . '</div>' .
+						form_hidden($created) . form_hidden($active) .
+					'</div>',
+					'<div class="buttons" style="text-align:right">' . form_reset($clear_button) . form_submit($submit_button) . '&nbsp;&nbsp;' . '</div>',
+				'</fieldset>',
 				form_close(),
 			'</div>'
-			
 		);
 		
 		$form = '';
