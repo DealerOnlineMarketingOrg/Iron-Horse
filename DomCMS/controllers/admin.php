@@ -29,7 +29,7 @@
 						'form' => AgencyAddForm(),
 						'page_id' => 'add_agency',
 						'formName' => 'Add New Agency',
-						'msg' => (($msg) ? 'There was an error adding your agency to the system. Please try again' : false)
+						'msg' => (($msg) ? 'There was an error adding your agency to the system. Please try again' : '')
 					);
 					$this->LoadTemplate('forms/generic_form',$data);
 				endif;

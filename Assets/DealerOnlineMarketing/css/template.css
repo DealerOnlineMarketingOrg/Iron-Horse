@@ -156,7 +156,11 @@ label.required span.red{color:red;background-color:transparent !important;border
 .block {padding:10px;border:1px solid #ccc;font-size:11px;}
 div.error{padding:10px;border:1px solid red;background-color:pink;color:#000;font-size:12px;font-weight:bold;margin-bottom:10px;border-radius:5px;}
 div.success{padding:10px;border:1px solid #A1B900;background:#fff;color:#666;font-size:12px;font-weight:bold;margin-bottom:10px;border-radius:5px;}
+/*Notifications*/
+#error_notification{background-image:url("../imgs/grad-overlay-s.png"); background-repeat:repeat-x;background-position:bottom left;border-radius:3px;box-shadow:0 1px 0 0 rgba(255,255,255,0.3) inset;font-size:12px !important;font-weight:600 !important;padding:5px;margin-bottom:10px;}
 
+#error_notification div.close {float:right;width:10px;}
+#error_notification div.close:hover{font-size:140%;cursor:pointer;margin-top:-3px;margin-left:-10px;}
 
 .float_right{float:right;margin-top:-27px;height:auto !important;}
 
