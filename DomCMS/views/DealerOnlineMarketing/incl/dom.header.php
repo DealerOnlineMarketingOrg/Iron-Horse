@@ -7,15 +7,14 @@
             </select>
         </div>
         <div id="clientTags">
-<<<<<<< HEAD
-        	<select id="tags" class="select" name="tag_dropdown">
-            	<?  echo tag_selector(); ?>          
-            </select>
-=======
+        <select id="tags" class="select" name="tags">
+        	<option value="0">Green Team</option>
+            <option value="1">Red Team</option>
+            <option value="2">Purple Team</option>
+        </select>
         	<!-- <select id="tags" class="select" name="tag_dropdown">
             	<?  // echo tag_selector(); ?>          
             </select> -->
->>>>>>> master
         </div>
         <div id="userNav" class="insetShadow">
             <h5 class="textShadow"><?= get_welcome_message(); ?></h5>

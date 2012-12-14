@@ -39,48 +39,32 @@ class Members extends CI_Model {
 			   'LevelID' 		=> $AgencyID,
 			   'PermType' 		=> 'SuperAdmin',
 			   'LevelType'      => 'a',
-<<<<<<< HEAD
 			   'SelectedID' 	=> 'null',
 			   'SelectedTag'	=> '0'
-=======
-			   'SelectedID' 	=> 'null'
->>>>>>> master
 	   		);
 			elseif ($AccessLevel>200000&&$AccessLevel<300000):
 			$data1 = array(
 			   'LevelID' 		=> $AgencyID,
 			   'PermType' 		=> 'AgencyAdmin',
 			   'LevelType'      => 'a',
-<<<<<<< HEAD
 			   'SelectedID' 	=> 'null',
 			   'SelectedTag'	=> '0'
-=======
-			   'SelectedID' 	=> 'null'
->>>>>>> master
 	   		);
 			elseif ($AccessLevel>300000&&$AccessLevel<400000):
 			$data1 = array(
 			   'LevelID' 		=> $GroupID,
 			   'PermType' 		=> 'GroupAdmin',
 			   'LevelType'      => 'g',
-<<<<<<< HEAD
 			   'SelectedID' 	=> 'null',
 			   'SelectedTag'	=> 'noshow'
-=======
-			   'SelectedID' 	=> 'null'
->>>>>>> master
 	   		);
 			else:
 			$data1 = array(
 			   'LevelID' 		=> $ClientID,
 			   'PermType' 		=> 'Client',
 			   'LevelType'      => 'c',
-<<<<<<< HEAD
 			   'SelectedID' 	=> 'null',
 			   'SelectedTag'	=> 'noshow'
-=======
-			   'SelectedID' 	=> 'null'
->>>>>>> master
 	   		);
 		   endif;
 
@@ -99,10 +83,6 @@ class Members extends CI_Model {
 			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
 			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
 			   'ClientCode' 	=> (string)$row->CLIENT_Code,
-<<<<<<< HEAD
-=======
-			   //'ClientTags' 	=> (string)$row->CLIENT_Tags,
->>>>>>> master
 			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
 			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
 			   'AccessLevel' 	=> (int)$row->ACCESS_Level,

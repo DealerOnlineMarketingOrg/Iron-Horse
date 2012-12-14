@@ -11,8 +11,6 @@
 		return dropdown_parser($ci->dropdowngen->drivedrop());
 	}
 	
-<<<<<<< HEAD
-	
 	function tag_selector() {
 		$ci =& get_instance();
 		$ci->load->library('tagdropgen');
@@ -25,8 +23,6 @@
 	}
 	
 	
-=======
->>>>>>> master
 	function get_client_type() {
 		//get client type from session
 		$level_type = get_level_type();
