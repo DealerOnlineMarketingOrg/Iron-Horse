@@ -1,7 +1,7 @@
 body{font-family:"Open Sans", sans-serif}
 h1,h2,h3,h4,h5,h6{font-family:Ubuntu, sans-serif}
-h2{color:#039;font-size:1.5em;font-weight:300;letter-spacing:0;line-height:1;margin:0;padding:0}
-section h2{margin: 1.3333em 0 0;padding: 0.3333em 0;}
+h2, legend{color:#039;font-size:1.5em;font-weight:300;letter-spacing:0;line-height:1;margin:0;padding:0}
+section h2, legend{margin: 1.3333em 0 0;padding: 0.3333em 0;}
 section h3{border-top:0 none;color:#333;font-size:1.25em;font-weight:400;line-height:1.2;margin:1.2em 0 0}
 section h4{color:#444;font-size:1em;font-weight:400;line-height:1;margin:1.5em 0 0}
 section h5,section h6{color:#555;font-size:.875em;font-weight:400;letter-spacing:.1429em;line-height:1.1429;text-transform:uppercase;margin:1.7143em 0 0}
@@ -37,21 +37,37 @@ section strong, b {color: #333;font-size: 1em;font-weight: 600;line-height: 90%;
 section small {display: inline-block;font-size: 0.8125em;line-height: 1.2308;opacity: 0.9;}
 section del, s {line-height: 90%;text-decoration: line-through;}
 section abbr[title]:hover, dfn[title] {border-bottom: 1px dotted rgba(0, 0, 0, 0.3);cursor: help;}
+section code {color: #003399;font: 14px/90% source-code-pro,monospace;}
+section abbr {font-size: 14px;letter-spacing: 0.0714em;line-height: 90%;opacity: 0.8;}
+table {width:100%;border:1px solid #ccc;}
+table th{text-align:left;}
+table th,td{padding:5px;}
+table th {background:#666;color:#fff;border-bottom:1px solid #ccc;font-size:12px;padding:10px 5px;font-weight:normal;}
+table td {font-size:11px;}
+table tr.even {background:#ddd;}
+table a.button {height:auto !important;width:auto !important;display:inline;text-align:center;display:block;}
+table tr.odd{background:#fff;}
+section fieldset {margin-top: 2em;}
+section fieldset legend {margin-top: 0;}
+fieldset > div:first-of-type {}
+fieldset div {margin: 0.5em 0 1em;}
+label, fieldset.options legend {float: left;padding: 0;width: 23.539%;}
+label {cursor: pointer;}
+label, fieldset.options legend {color: #333333;display: block;font-size: 1em;font-weight: 400;line-height: 1;margin: 0.5em 0;}
+fieldset abbr[title="Required"] {border-bottom: 0 none;color: #990000;font-size: 1.25em;font-weight: 400;line-height: 0.1;}
+input.text, button select, textarea {background-color: #EEEEEE;font-size: 1em;line-height: 1.5;padding: 0.25em;vertical-align: middle;width: 96%;}
+input.text, select, textarea {width: 66%;}
+input[type=text], input[type=password], input[type=url], input[type=email], input[type=search], textarea{border: 0 none;}
+pre, select, input, textarea, button {color: #444444;font: 300 1em/1 source-sans-pro,sans-serif;text-rendering: optimizelegibility;}
+fieldset div em, fieldset div.submit, fieldset.options ul, label.check {margin-left: 23.539%;}
+fieldset em {color: #666666;display: block;font-size: 0.875em;line-height: 1.1429;margin: 0.5714em 0 0;}
 
 
-	
 
-code {
-    color: #003399;
-    font: 14px/90% source-code-pro,monospace;
-}
 
-abbr {
-    font-size: 14px;
-    letter-spacing: 0.0714em;
-    line-height: 90%;
-    opacity: 0.8;
-}
+
+
+
 
 
 /* Header block styles */
@@ -143,12 +159,4 @@ div.success{padding:10px;border:1px solid #A1B900;background:#fff;color:#666;fon
 
 
 .float_right{float:right;margin-top:-27px;height:auto !important;}
-table {width:100%;border:1px solid #ccc;}
-table th{text-align:left;}
-table th,td{padding:5px;}
-table th {background:#666;color:#fff;border-bottom:1px solid #ccc;font-size:12px;padding:10px 5px;font-weight:normal;}
-table td {font-size:11px;}
-table tr.even {background:#ddd;}
-table a.button {height:auto !important;width:auto !important;display:inline;text-align:center;display:block;}
-table tr.odd{background:#fff;}
 

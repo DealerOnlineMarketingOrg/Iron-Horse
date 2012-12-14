@@ -393,7 +393,7 @@
 						</div>
 						<div><label for="search">Search</label>
 								<input id="search" class="text" type="search">
-								<input id="password" class="search button" type="submit"><em>Note about this field</em>
+								<input id="password" class="button green" type="submit"><em>Note about this field</em>
 						</div>
 						<div><label for="textarea">Textarea</label>
 								<textarea id="textarea" cols="48" rows="8"></textarea><em class="clear">Note about this field</em>
