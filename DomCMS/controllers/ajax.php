@@ -21,15 +21,14 @@
 			$this->session->sess_write();
 		}
 		
-<<<<<<< HEAD
+
 		public function selected_tag() {
 			$selected_tag = $this->input->post('selected_tag');
 			$this->session->userdata['valid_user']['DropdownDefault']->SelectedTag= $selected_tag;
 			$this->session->sess_write();			
 		}		
 		
-=======
->>>>>>> master
+
 		/*
 			ADMIN CONTROLLERS
 		*/

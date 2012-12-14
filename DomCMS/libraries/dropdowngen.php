@@ -8,21 +8,27 @@
 		public $str;
 		
 		public function __construct() {
-			$this->str = $this->drivedrop();
+			//$this->str = $this->drivedrop();
 			//print_r($str);
 		}
 		
 		public function drivedrop() {
 			//DO NOTHING
 			$this->ci =& get_instance();
-			$this->ci->load->model('dropdown');	
+			$this->ci->load->model('dropdown');
+			$this->ci->load->model('tagdrop');	
 			$this->ValidUser = $this->ci->session->userdata('valid_user');
 			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
+			
 			//var_dump($this->DropdownDefault);
+			
 			$PermType = $this->DropdownDefault->PermType;
 			$LevelID = $this->DropdownDefault->LevelID;
 			$LevelType = $this->DropdownDefault->LevelType;
 			$SelectedID = $this->DropdownDefault->SelectedID;
+			$SelectedTag = $this->DropdownDefault->SelectedTag;
+			$TagView=false;
+			(($SelectedTag=='0' || $SelectedTag=='noshow' ) ? $TagView=false : $TagView = $this->ci->tagdrop->TagsQuery( $SelectedTag )) ;
 			
 			if($SelectedID != 'null'):
 				$type = $SelectedID[0];
@@ -35,7 +41,12 @@
 			//set based on PermType
 		    $str = '';
 			if($PermType == 'SuperAdmin') {
-				$str .= $this->SuperAdmin($type,$id);	
+				if($TagView){
+				$str .= $this->SuperAdmin($type,$id,$TagView);
+				}
+				else{
+				$str .= $this->SuperAdmin($type,$id,false);	
+				}
 			}else if($PermType == 'GroupAdmin') {
 				$str .= $this->GroupAdmin($type,$id);	
 			}else if($PermType == 'ClientAdmin') {
@@ -47,7 +58,7 @@
 			
 		}
 		
-		public function SuperAdmin($type, $id) {
+		public function SuperAdmin($type, $id, $tag_c_ids) {
 			
 			$DropString = '';
 			$selected = 0;
@@ -67,45 +78,52 @@
 				$DropString .= 'a:' . $aRow->AGENCY_ID . ';' . $aRow->AGENCY_Name . '^' . $agentstyle . ',' . $selected . '|';
 				$gQuery = $this->ci->dropdown->GroupsQuery(false, $aRow->AGENCY_ID);
 				
+				
+				
 				foreach ($gQuery as $gRow){
-					$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
-					if(count($cQuery) > 1) :
-						//Put Group
-						//And single-indent group style
-						$groupstyle  = 'single-indent group';
-						$clientstyle = 'double-indent client';
-						//And style client as double if more than one.
-						$selected = 0;
-						if($gRow->GROUP_ID == $id && $type == 'g'):
-							$selected = 1;
-						else:
-							$selected = 0;
-						endif;
-						$DropString .= 'g:' . $gRow->GROUP_ID . ';' . $gRow->GROUP_Name . '^' . $groupstyle . ',' . $selected .'|';
+					$selected = 0;
+					if($gRow->GROUP_ID == $id && $type == 'g'):
+						$selected = 1;
 					else:
-						$clientstyle = 'single-indent';
-						//use this style for single client groups
-					endif;
-					//counting for last client 
-					$i = 0;
-					$n = count($cQuery);
-					
-					foreach ($cQuery as $cRow){
 						$selected = 0;
-						$i++;
-						if($cRow->CLIENT_ID == $id && $type == 'c'):
-							$selected = 1;
-						else:
+					endif;
+					
+					$groupstyle  = 'single-indent group';
+					
+					$DropString .= 'g:' . $gRow->GROUP_ID . ';' . $gRow->GROUP_Name . '^' . $groupstyle . ',' . $selected .'|';
+					
+					$cQuery =  $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
+					
+					/*if($tag_c_ids){
+						$arr = $tag_c_ids;
+						foreach ($arr as $value) {
+							if($value!=$cQuery[0]->CLIENT_ID){
+								unset($cQuery);
+								$buildstuff = (object) array('0' => (object) array('Client_ID' => '0'));
+								$cQuery = array();
+								$cQuery = array_push($items, $buildstuff);
+							}
+						}
+					}*/
+					
+					$clientstyle = 'double-indent client';
+					//And style client as double if more than one.
+					
+					//counting for last client 
+					foreach ($cQuery as $cRow){
 							$selected = 0;
-						endif;
-						if ($i == $n):
-							$clientstyle .= ' break';
-						endif;
-						$DropString .= 'c:' . $cRow->CLIENT_ID . ';' . $cRow->CLIENT_Name . '^' . $clientstyle . ',' . $selected . '|';
+							if($cRow->CLIENT_ID == $id && $type == 'c'):
+								$selected = 1;
+							else:
+								$selected = 0;
+							endif;
+							$DropString .= 'c:' . $cRow->CLIENT_ID . ';' . $cRow->CLIENT_Name . '^' . $clientstyle . ',' . $selected . '|';
+						}
 					}
 				}
 					
-			} 
+			//}
+			
 			return $DropString;
 			
 		}
