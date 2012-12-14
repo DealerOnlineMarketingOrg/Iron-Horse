@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-	class Dashboard extends DOM_Controller {
+	class Reports extends DOM_Controller {
 		
 		public function __construct() {
 			parent::__construct();	
 			//loading the member model here makes it available for any member of the dashboard controller.
 		}
 	
-		public function index() {
+		public function Dashboard() {
 			$this->load->helper('pass');
 			/*
 				$ga = $this->gapi;
@@ -27,9 +27,33 @@
 			
 			$data = array(
 				'google' => $google
-				//'user' => $this->session->userdata('valid_user')
 			);
 			
 			$this->LoadTemplate('pages/dashboard',$data);
-		}	
+		}
+		
+		public function DPR() {
+			$this->LoadTemplate('pages/dashboard');
+		}
+		
+		public function Reports_query() {
+			$this->LoadTemplate('pages/dashboard');
+		}
+		
+		public function Gameday() {
+			$this->LoadTemplate('pages/dashboard');
+		}
+		
+		public function Dms_database() {
+			$this->LoadTemplate('pages/dashboard');
+		}
+		
+		public function Web() {
+			$this->LoadTemplate('pages/dashboard');
+		}
+		
+		public function Leads() {
+			$this->LoadTemplate('pages/dashboard');	
+		}
+		
 	}

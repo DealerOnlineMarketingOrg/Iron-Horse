@@ -74,7 +74,6 @@
 			//echo '</select>';
 	 }
 	 
-<<<<<<< HEAD
 	  function client_tag_parser($tag_list_set, $tag_id) {
 		  $tag_list_set = substr($tag_list_set, 0, -1);
 		  $pattern = '/[|]/';
@@ -98,6 +97,4 @@
 		  return $TagDropCode;
 	  }
 	 
-=======
->>>>>>> master
 ?>

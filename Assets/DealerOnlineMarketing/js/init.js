@@ -29,6 +29,10 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('#error_notification div.close').click(function() {
+		$(this).parent().slideUp('fast');
+	});
+	
 });
 
 function remove_popup_form(div,speed) {

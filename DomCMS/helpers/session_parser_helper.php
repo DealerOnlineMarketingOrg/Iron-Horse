@@ -7,8 +7,6 @@
 		return $level_type;
 	}
 	
-<<<<<<< HEAD
-	
 	function get_tag_id() {
 		$ci =& get_instance();
 		$tagdrop = $ci->session->userdata['valid_user']['DropdownDefault'];
@@ -17,8 +15,6 @@
 	}
 	
 	
-=======
->>>>>>> master
 	function get_level_id() {
 		$ci =& get_instance();
 		$dropdown = $ci->session->userdata['valid_user']['DropdownDefault'];
