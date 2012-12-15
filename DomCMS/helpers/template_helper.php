@@ -5,6 +5,31 @@
 		return 'Welcome, ' . $ci->session->userdata['valid_user']['FirstName'] . ' ' . $ci->session->userdata['valid_user']['LastName'];
 	}
 	
+	function breadcrumb(){
+		$ci = &get_instance();
+		$i=1;
+		$uri = $ci->uri->segment($i);
+		$link = '<ul class="crumbs">';
+		$link .= '<li class="first"><a href="base_url();">Home</a></li>';
+		while($uri != ''){
+			$prep_link = '';
+			for($j=1; $j<=$i;$j++){
+				$prep_link .= $ci->uri->segment($j).'/';
+			}
+			if($ci->uri->segment($i+1) == ''){
+				$link.='<li class="last"><a href="'.site_url($prep_link).'">';
+				$link.=$ci->uri->segment($i).'</a></li> ';
+			}else{
+				$link.='<li><a href="'.site_url($prep_link).'">';
+				$link.=$ci->uri->segment($i).'</a></li> ';
+			}
+			$i++;
+			$uri = $ci->uri->segment($i);
+		}
+		$link .= '</ul>';
+		return $link;
+	}
+	
 	function dealer_selector() {
 		$ci =& get_instance();
 		$ci->load->library('dropdowngen');

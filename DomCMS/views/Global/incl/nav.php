@@ -1,11 +1,11 @@
 <div id="nav">
-    <div class="wrapper">
+    <div class="wrapper relative">
         <ul class="main_nav relative">
-            <li class="dashboard">
+            <li class="reports">
             	<a href="<?= base_url(); ?>"><span>Reports</span></a>
-                <div class="subnav" id="dashboard_nav">
+                <div class="subnav" id="reports_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="<?= base_url(); ?>dashboard">Dashboard</a>
+                    <a href="/reports/dashboard">Dashboard</a>
                     <a href="#">DPR</a>
                     <a href="#">Reports Query</a>
                     <a href="#">Game Day</a>
@@ -16,7 +16,7 @@
                 </div>
             </li>
             <li class="advertising">
-            	<a href="<?= base_url(); ?>advertising"><span>Advertising</span></a>
+            	<a href="/advertising"><span>Advertising</span></a>
                 <div class="subnav" id="advertising_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#" class="google">Google</a>
@@ -27,7 +27,7 @@
                 </div>
             </li>
 			<li class="creative">
-            	<a href="<?= base_url(); ?>creative"><span>Creative</span></a>
+            	<a href="/creative"><span>Creative</span></a>
                 <div class="subnav" id="creative_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#">Campaigns</a>
@@ -40,7 +40,7 @@
                 </div>
             </li>
             <li class="content">
-                <a href="<?= base_url(); ?>content"><span>Content</span></a>
+                <a href="/content"><span>Content</span></a>
                 <div class="subnav" id="content_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#">Dealership Pages</a>
@@ -52,7 +52,7 @@
                 </div>
             </li>
             <li class="merchandising">
-            	<a href="<?= base_url(); ?>merchandising"><span>Merchandising</span></a>
+            	<a href="/merchandising"><span>Merchandising</span></a>
                 <div class="subnav" id="merch_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#">New Car</a>
@@ -64,7 +64,7 @@
                 </div>
             </li>
             <li class="reputation">
-            	<a href="<?= base_url(); ?>reputation"><span>Reputation/Social</span></a>
+            	<a href="/reputation"><span>Reputation/Social</span></a>
                 <div class="subnav" id="rep_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#" class="google_plus">Google+</a>
@@ -75,11 +75,11 @@
                 </div>
             </li>
             <li class="admin">
-            	<a href="<?= base_url(); ?>admin/"><span>Admin</span></a>
+            	<a href="/admin"><span>Admin</span></a>
                 <div class="subnav" id="admin_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#">Portal</a>
-                    <a href="<?= base_url(); ?>admin/agency">Agency</a>
+                    <a href="/admin/agency">Agency</a>
                     <a href="#">Groups</a>
                     <a href="#">Clients</a>
                     <a href="#">Users</a>
@@ -95,10 +95,21 @@
             <h4><?= get_client_type(); ?></h4>
             <h5><?= get_client_name(); ?></h5>
         </div>
+        <div id="breadcrumbs">
+        	<?= breadcrumb(); ?>
+            <div class="clear"></div>
+        </div>
+        <div id="siteSearch">
+            <form class="form-wrapper cf">
+                <input type="text" placeholder="Search here..." required>
+                <button type="submit">Search</button>
+            </form>         
+        </div>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+		$('li.<?= ACTIVE_BUTTON; ?>').find('a[href$="<?= SUBNAV_BUTTON; ?>"]').addClass('current');
         $('.main_nav').IconNav({
             defaultIcon:$('li.<?= ACTIVE_BUTTON; ?>')
         });

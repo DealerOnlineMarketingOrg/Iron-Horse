@@ -6,9 +6,6 @@
                <?= dealer_selector(); ?>
             </select>
         </div>
-        <div id="clientTags">
-        <?php /* future check of sessionid*/ (('0' == '0') ? $str = tag_selector() : $str='' ) ; echo $str;	 ?>
-        </div>
         <div id="userNav" class="insetShadow">
             <h5 class="textShadow"><?= get_welcome_message(); ?></h5>
             <ul>
@@ -16,9 +13,6 @@
                 <li><a href="#">My Account</a></li>
                 <li><a href="<?= base_url(); ?>logout">Logout</a></li>
             </ul>
-        </div>
-        <div id="siteSearch">
-        	<input type="text" value="Search" class="input" onfocus="if(this.value == 'Search') { this.value = '' }" onblur="if(this.value == '') { this.value = 'Search' }"/>
         </div>
         <div class="clearfix"></div>
     </div>

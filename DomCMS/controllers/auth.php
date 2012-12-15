@@ -153,7 +153,7 @@
 						   //load the change password form after a user logs in
 						   $this->load->view(THEMEDIR . 'forms/auth/changepass', $data);
 						}else {
-						   redirect('dashboard','refresh');
+						   redirect('reports/dashboard','location');
 						}
 					}  
 				}
@@ -191,7 +191,7 @@
 			}else {
 				$change = $this->members->password_change();
 				if($change) {
-					redirect('dashboard','refresh');
+					redirect('reports/dashboard','location');
 				}else {
 					$data = array(
 						'form' => ChangePasswordAfterLoginForm($this->security->xss_clean($this->input->post('email')))

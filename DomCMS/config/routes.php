@@ -54,7 +54,6 @@ $route['authenticate'] 					= 'auth/login_user';
 $route['logout']						= 'auth/logout';
 //system routes
 $route['default_controller']            = "reports/dashboard";
-$route['dashboard']						= 'reports/dashboard';
 $route['404_override'] 					= 'errors/file_not_found';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

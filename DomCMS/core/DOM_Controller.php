@@ -12,9 +12,13 @@
 		
 		public function __construct() {
 			parent::__construct();
+			$this->load->helper('template');
 			//Active button sets the highlighted icon on the view
-			$this->active_button = $this->router->fetch_class();
-			define('ACTIVE_BUTTON',$this->active_button);
+			$active_button = $this->router->fetch_class();
+			$current_subnav_button = $this->uri->rsegment(2); // The Function 
+			
+			define('ACTIVE_BUTTON',$active_button);
+			define('SUBNAV_BUTTON','/' . $active_button  . '/' . $current_subnav_button);
 			
 			$this->user = $this->session->userdata('valid_user');
 			
