@@ -1,7 +1,7 @@
 body{font-family:"Open Sans", sans-serif}
 h1,h2,h3,h4,h5,h6{font-family:Ubuntu, sans-serif}
 h2, legend{color:#666;font-size:1.2em;font-weight:300;letter-spacing:0;line-height:1;margin:0;padding:0}
-section h2, legend{margin: 1.3333em 0 0;padding: 0.3333em 0;}
+section h2, legend{color:#666;font-size:1.2em;font-weight:300;letter-spacing:0;line-height:1;margin: 1.3333em 0 0;padding: 0.3333em 0;}
 section h3{border-top:0 none;color:#333;font-size:1.25em;font-weight:400;line-height:1.2;margin:1.2em 0 0}
 section h4{color:#444;font-size:1em;font-weight:400;line-height:1;margin:1.5em 0 0}
 section h5,section h6{color:#555;font-size:.875em;font-weight:400;letter-spacing:.1429em;line-height:1.1429;text-transform:uppercase;margin:1.7143em 0 0}
@@ -61,6 +61,7 @@ input[type=text], input[type=password], input[type=url], input[type=email], inpu
 pre, select, input, textarea, button {color: #444444;font: 300 1em/1 source-sans-pro,sans-serif;text-rendering: optimizelegibility;}
 fieldset div em, fieldset div.submit, fieldset.options ul, label.check {margin-left: 23.539%;}
 fieldset em {color: #666666;display: block;font-size: 0.875em;line-height: 1.1429;margin: 0.5714em 0 0;}
+
 
 
 /* Header block styles */
