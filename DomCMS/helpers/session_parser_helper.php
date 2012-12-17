@@ -7,6 +7,14 @@
 		return $level_type;
 	}
 	
+	function get_tag_id() {
+		$ci =& get_instance();
+		$tagdrop = $ci->session->userdata['valid_user']['DropdownDefault'];
+		$tag_id = (($tagdrop->SelectedTag != FALSE) ? $tagdrop->SelectedTag : $tagdrop=FALSE);
+		return $tag_id;
+	}
+	
+	
 	function get_level_id() {
 		$ci =& get_instance();
 		$dropdown = $ci->session->userdata['valid_user']['DropdownDefault'];

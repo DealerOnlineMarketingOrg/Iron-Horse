@@ -26,7 +26,7 @@
 		}
 		
 		public function addAgencies($data) {
-			if($this->db->insert($data))
+			if($this->db->insert('Agencies', $data))
 				return TRUE;
 			else
 				return FALSE;

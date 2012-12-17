@@ -5,10 +5,45 @@
 		return 'Welcome, ' . $ci->session->userdata['valid_user']['FirstName'] . ' ' . $ci->session->userdata['valid_user']['LastName'];
 	}
 	
+	function breadcrumb(){
+		$ci = &get_instance();
+		$i=1;
+		$uri = $ci->uri->segment($i);
+		$link = '<ul class="crumbs">';
+		while($uri != ''){
+			$prep_link = '';
+			for($j=1; $j<=$i;$j++){
+				$prep_link .= $ci->uri->segment($j).'/';
+			}
+			if($ci->uri->segment($i+1) == ''){
+				$link.='<li><a class="current" href="'.site_url($prep_link).'">';
+				$link.=$ci->uri->segment($i).'</a></li> ';
+			}else{
+				$link.='<li><a href="'.site_url($prep_link).'">';
+				$link.=$ci->uri->segment($i).'</a></li> ';
+			}
+			$i++;
+			$uri = $ci->uri->segment($i);
+		}
+		$link .= '</ul>';
+		return $link;
+	}
+	
 	function dealer_selector() {
 		$ci =& get_instance();
 		$ci->load->library('dropdowngen');
 		return dropdown_parser($ci->dropdowngen->drivedrop());
+	}
+	
+	function tag_selector() {
+		$ci =& get_instance();
+		$ci->load->library('tagdropgen');
+		//print_r(client_tag_parser($ci->tagdropgen->drivetagdrop()));
+		$ValidUser = $ci->session->userdata('valid_user');
+		$DropdownDefault = $ValidUser['DropdownDefault'];
+		$tag_id = $DropdownDefault->SelectedTag;
+		return client_tag_parser($ci->tagdropgen->drivetagdrop(), $tag_id);
+		
 	}
 	
 	function get_client_type() {

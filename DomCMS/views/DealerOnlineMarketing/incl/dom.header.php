@@ -7,9 +7,9 @@
             </select>
         </div>
         <div id="clientTags">
-        	<!-- <select id="tags" class="select" name="tag_dropdown">
-            	<?  // echo tag_selector(); ?>          
-            </select> -->
+        	<select id="tags" class="select" name="tag_dropdown">
+            	<?  echo tag_selector(); ?>          
+            </select>
         </div>
         <div id="userNav" class="insetShadow">
             <h5 class="textShadow"><?= get_welcome_message(); ?></h5>
@@ -18,9 +18,6 @@
                 <li><a href="#">My Account</a></li>
                 <li><a href="<?= base_url(); ?>logout">Logout</a></li>
             </ul>
-        </div>
-        <div id="siteSearch">
-        	<input type="text" value="Search" class="input" onfocus="if(this.value == 'Search') { this.value = '' }" onblur="if(this.value == '') { this.value = 'Search' }"/>
         </div>
         <div class="clearfix"></div>
     </div>

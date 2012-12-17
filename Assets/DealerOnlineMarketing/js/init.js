@@ -16,7 +16,16 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+	$('#tags').change(function(evt) {
+		$.ajax({
+			url:'/ajax/selected_tag',
+			data:{selected_tag:$('#tags').val()},
+			type:'POST',
+			success:function(data) {
+				location.reload();
+			}
+		});
+	});
 	$('#add_agency_btn').click(function() {
 		$.ajax({
 			url:'/ajax/add_agency_popup',
@@ -28,6 +37,10 @@ $(document).ready(function() {
 				}
 			}
 		});
+	});
+	
+	$('#error_notification div.close').click(function() {
+		$(this).parent().slideUp('fast');
 	});
 	
 });

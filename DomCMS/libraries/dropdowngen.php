@@ -15,14 +15,17 @@
 		public function drivedrop() {
 			//DO NOTHING
 			$this->ci =& get_instance();
-			$this->ci->load->model('dropdown');	
+			$this->ci->load->model('dropdown');
+			$this->ci->load->model('tagdrop');	
 			$this->ValidUser = $this->ci->session->userdata('valid_user');
 			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
-			//var_dump($this->DropdownDefault);
 			$PermType = $this->DropdownDefault->PermType;
 			$LevelID = $this->DropdownDefault->LevelID;
 			$LevelType = $this->DropdownDefault->LevelType;
 			$SelectedID = $this->DropdownDefault->SelectedID;
+			$SelectedTag = $this->DropdownDefault->SelectedTag;
+			$TagView=false;
+			(($SelectedTag=='0' || $SelectedTag=='noshow' ) ? $TagView=false : $TagView = $this->ci->tagdrop->TagsQuery( $SelectedTag )) ;
 			
 			if($SelectedID != 'null'):
 				$type = $SelectedID[0];
@@ -36,6 +39,12 @@
 		    $str = '';
 			if($PermType == 'SuperAdmin') {
 				$str .= $this->SuperAdmin($type,$id);	
+				if($TagView){
+				$str .= $this->SuperAdmin($type,$id,$TagView);
+				}
+				else{
+				$str .= $this->SuperAdmin($type,$id,false);	
+				}
 			}else if($PermType == 'GroupAdmin') {
 				$str .= $this->GroupAdmin($type,$id);	
 			}else if($PermType == 'ClientAdmin') {
@@ -47,7 +56,7 @@
 			
 		}
 		
-		public function SuperAdmin($type, $id) {
+		public function SuperAdmin($type, $id, $tag_c_ids) {
 			
 			$DropString = '';
 			$selected = 0;
@@ -106,6 +115,7 @@
 				}
 					
 			} 
+			
 			return $DropString;
 			
 		}

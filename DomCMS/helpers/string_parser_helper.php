@@ -74,4 +74,35 @@
 			//echo '</select>';
 	 }
 	 
+	  function client_tag_parser($tag_list_set, $tag_id) {
+		  $tag_list_set = substr($tag_list_set, 0, -1);
+		  $pattern = '/[|]/';
+		  $pattern2 = '/[,]/';
+		  $arr = preg_split( $pattern, $tag_list_set );
+		  (($tag_id=='0') ? $selected='selected="selected"':$selected='');
+		  $TagDropCode='<select id="tags" class="select" name="tag_dropdown"><option value="0" '.$selected.'>-none-</option>';	
+		  foreach($arr as &$value){
+			  $value = preg_split( $pattern2, $value );
+			  $selected='';
+			  if($value[3]==1):
+			 	$selected='selected="selected"';
+			  else:
+				$selected='';
+			  endif; 
+			  
+			  $TagDropCode .= '<option class="'.$value[2].'" '.$selected.' value="'.$value[1].'">'.$value[0].'</option>';
+			  //<span class="height:10px; width:10px; backgorund-color:'.$value[2].'"></span>
+		  }
+		  
+		  //<option value="'.$tags_ids.'">'.$tag_name.'<div class="tag_color" style="height:5px; width:5px; background-color:'.$tag_color.'; "></div></option>
+		  $TagDropCode .= '</select>';
+		  return $TagDropCode;
+	  }
+	  
+	  function client_id_parser($c_ids) {
+		  $c_ids = substr($c_ids, 0, -1);
+		  $special = explode(",", $c_ids);
+		  return $special;
+	  }
+	 
 ?>

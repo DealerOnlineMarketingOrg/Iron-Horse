@@ -7,11 +7,20 @@
 	session_start();
 	class DOM_Controller extends CI_Controller {
 		//All we need is the construct and all controllers will pass through this on every page.
+		
+		public $user;
+		
 		public function __construct() {
 			parent::__construct();
+			$this->load->helper('template');
 			//Active button sets the highlighted icon on the view
-			$this->active_button = $this->router->fetch_class();
-			define('ACTIVE_BUTTON',$this->active_button);
+			$active_button = $this->router->fetch_class();
+			$current_subnav_button = $this->uri->rsegment(2); // The Function 
+			
+			define('ACTIVE_BUTTON',$active_button);
+			define('SUBNAV_BUTTON','/' . $active_button  . '/' . $current_subnav_button);
+			
+			$this->user = $this->session->userdata('valid_user');
 			
 			//This checks the user validation
 			$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
@@ -29,10 +38,28 @@
 		}
 		
 		public function Page_Not_Found() {
-			
+			$this->LoadTemplate('pages/404');
 		}
 		
 		public function Access_Denied() {
 			
+		}
+		public function Form_processor($page, $which) {
+			if($which == 'add') :
+				if($page == 'agency') :
+					//create array from port post elements
+					$form = $this->input->post();
+					$add = $this->administration->addAgencies($form);
+					if($add) {
+						redirect('/admin/agency/success','location');
+					}else {
+						redirect('admin/agency/add/error', 'location');	
+					}
+				endif;
+			elseif($which == 'edit') :
+				
+			elseif($which == 'delete') :
+			
+			endif;
 		}
 	}

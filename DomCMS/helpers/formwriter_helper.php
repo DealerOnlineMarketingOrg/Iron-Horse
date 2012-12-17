@@ -6,8 +6,6 @@
 
     function LoginForm() {
 
-        $ci =& get_instance();
-        $ci->load->helper('form');
 
         $form_attr = array(
             'name' => 'login_form',
@@ -69,7 +67,8 @@
         
     }
 	
-	function AddAgencyForm() {
+	function AgencyAddForm() {
+		
 		$ci =& get_instance();
 		$ci->load->helper('form');
 		
@@ -80,15 +79,25 @@
 		);	
 		
 		$name = array(
-			'name' => 'agency_name',
-			'class' => 'validate[required,onlyLetterSp] required',
+			'name' => 'AGENCY_Name',
+			'class' => 'validate[required,onlyLetterSp] required input',
 			'id' => 'agency_name'
 		);
 		
 		$desc = array(
-			'name' => 'agency_desc',
-			'class' => '',
+			'name' => 'AGENCY_Notes',
+			'class' => 'input',
 			'id' => 'agency_desc'
+		);
+		
+		$active = array(
+			'name' => 'AGENCY_Active',
+			'value' => 1
+		);
+		
+		$created = array(
+			'name' => 'AGENCY_Created',
+			'value' => date(FULL_MILITARY_DATETIME)
 		);
 		
 		$submit_button = array(
@@ -108,18 +117,25 @@
 		);
 
 		$form_array = array(
-			form_open('admin/add_agency', $form_attr),
-			'<ul>',
-				'<li>' . form_label('Agency Name','agency_name',$required) . '</li>',
-				'<li>' . form_input($name) . '</li>',
-				'<li>' . form_label('Agency Description', 'agency_desc') . '</li>',
-				'<li class="error">' . form_error('name') . '</li>',
-				'<li>' . form_textarea($desc) . '</li>',
-				'<li class="error">' . form_error('desc') . '</li>',
-				'<li class="error">' . form_error('query_error') . '</li>',
-				'<li class="buttons">' . form_reset($clear_button) . form_submit($submit_button) . '&nbsp;&nbsp;' . '</li>',
-			'</ul>',
-			form_close()
+			'<div class="form_group">',
+				form_open('admin/form_processor/agency/add', $form_attr),
+				'<fieldset>',
+					'<div>' . 
+						form_label('Agency Name','agency_name',$required) . '<em>The Agency name</em>' .
+						form_input($name) . 
+						'<div class="error">' . form_error('name') . '</div>' .
+					'</div>',
+					'<div>' . 
+						form_label('Agency Description', 'agency_desc') .
+						form_textarea($desc)  .
+						'<div class="error">' . form_error('desc') . '</div>' .
+						'<div class="error">' . form_error('query_error') . '</div>' .
+						form_hidden($created) . form_hidden($active) .
+					'</div>',
+					'<div class="buttons" style="text-align:right">' . form_reset($clear_button) . form_submit($submit_button) . '&nbsp;&nbsp;' . '</div>',
+				'</fieldset>',
+				form_close(),
+			'</div>'
 		);
 		
 		$form = '';
@@ -132,9 +148,6 @@
      
     function ForgotPassForm() {
          
-        $ci =& get_instance();
-        $ci->load->helper('form');
-
         $form_attr = array(
             'name' => 'reset_pass_form',
             'class' => 'validate',
@@ -179,9 +192,6 @@
     }
     
     function ChangePasswordAfterLoginForm($email) {
-        $ci =& get_instance();
-        $ci->load->helper('form');
-		
         //Attributes for the form
         $form_attr = array(
             'name' => 'reset_password',
