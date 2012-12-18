@@ -9,6 +9,7 @@
 		//All we need is the construct and all controllers will pass through this on every page.
 		
 		public $user;
+		public $LevelView;
 		
 		public function __construct() {
 			parent::__construct();
@@ -37,12 +38,65 @@
 			$this->load->view(DOMDIR 	. 'incl/footer');
 		}
 		
+		public function CheckModule($column_name = false,$module_name = false) {
+			$this->load->model('mods');
+			$user_level = $this->user['AccessLevel'];
+			switch($column_name) :
+				case 'name' :
+					$permission = $this->mods->getModLevelByName($module_name);
+					if(!$permission) {
+						return FALSE;	
+					}else {
+						if($user_level <= $permission->Level) {
+							return TRUE;
+						}else {
+							return FALSE;	
+						}
+					}
+				break;
+				case 'id' :
+					$permission = $this->mods->getModLevelByID($module_name);
+					if(!$permission) {
+						return FALSE;	
+					}else {
+						if($user_level >= $permission->Level) {
+							return TRUE;	
+						}else {
+							return FALSE;	
+						}
+					}
+				break;
+				default:
+					$modules = $this->mods->getModulesByAccessLevel($user_level);
+					return $modules;
+				break;
+			endswitch;	
+		}
+		
 		public function Page_Not_Found() {
 			$this->LoadTemplate('pages/404');
 		}
 		
-		public function Access_Denied() {
-			
+		//Access Denied
+		public function AccessDenied() {
+			$this->LoadTemplate('pages/access_denied');
+		}
+		
+		public function DisplaySettings() {
+			$display_session = $this->user['DropdownDefault'];
+			$level = substr($display_session->SelectedID, 0, 1);
+			//Readable way to tell what level were on.
+			if($level == 'a') {
+				$this->LevelView = 'Agency';	
+			}elseif($level == 'g') {
+				$this->LevelView = 'Group';	
+			}elseif($level == 'c') {
+				$this->LevelView = 'Client';	
+			}else {
+				//if super admin
+				$this->LevelView = 'Agency';
+				//if group admin group level
+			}
 		}
 		
 		public function Form_processor($page, $which) {
@@ -52,9 +106,9 @@
 					$form = $this->input->post();
 					$add = $this->administration->addAgencies($form);
 					if($add) {
-						redirect('/admin/agency/success','location');
+						redirect('/admin/agency/listing/success','location');
 					}else {
-						redirect('admin/agency/add/error', 'location');	
+						redirect('/admin/agency/add/error', 'location');	
 					}
 				endif;
 			elseif($which == 'edit') :

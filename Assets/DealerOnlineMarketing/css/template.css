@@ -153,26 +153,6 @@ div.success{border:1px solid #A1B900;background:#fff;color:#666;font-size:12px;f
 .form-wrapper button::-moz-focus-inner{border:0;padding:0}
 .float_right{float:right;margin-top:-27px;height:auto!important}
 .form-wrapper input::-webkit-input-placeholder,.form-wrapper input:-moz-placeholder,.form-wrapper input:-ms-input-placeholder{color:#999;font-weight:400;font-style:italic}
-.candy{background-color:#2d3035;color:#fff;font-weight:700;text-align:center;text-shadow:1px 1px 1px #191b1e;border-radius:3px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.2)}
-.candy input:checked + label{color:#333;text-shadow:0 1px 0 rgba(255,255,255,0.5)}
-.candy .slide-button{border:1px solid #333;background-color:#70c66b;background-image:linear-gradient(top,rgba(255,255,255,0.2), rgba(0,0,0,0));box-shadow:0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.45);border-radius:3px}
-.candy p{color:#333;text-shadow:none}
-.candy.blue .slide-button{background-color:#38a3d4}
-.candy.yellow .slide-button{background-color:#f5e560}
-.android{background-color:#b6b6b6;color:#fff}
-.android.toggle{border:2px solid #b6b6b6}
-.android.switch{overflow:hidden}
-.android.switch .slide-button{background-color:#279fca;-webkit-transform:skew(20deg) translateX(10px);-moz-transform:skew(20deg) translateX(10px);-ms-transform:skew(20deg) translateX(10px);-o-transform:skew(20deg) translateX(10px);transform:skew(20deg)}
-.android.toggle .slide-button{border-radius:2px;background-color:#848484}
-.android.toggle input:first-of-type:checked ~ .slide-button{background-color:#279fca}
-.android.switch input:first-of-type:checked ~ .slide-button{-webkit-transform:skew(20deg) translateX(-10px);-moz-transform:skew(20deg) translateX(-10px);-ms-transform:skew(20deg) translateX(-10px);-o-transform:skew(20deg) translateX(-10px);transform:skew(20deg) translateX(-10px)}
-.android p{color:#333}
-.android.switch,.android span{text-transform:uppercase}
-.ios{background:linear-gradient(top,#cfcfcf,#efefef50%,#f9f9f950%,#fefefe);-webkit-box-shadow:inset 0 2px 2px #b6b6b6, inset 3px 0 3px #b6b6b6;box-shadow:inset 0 2px 2px #b6b6b6, inset 3px 0 3px #b6b6b6;border:1px solid #efefef;border-radius:3px;color:#7f7f7f;font:bold 14px sans-serif;text-align:center;text-shadow:none}
-.ios.toggle .slide-button{border:1px solid #919191;background:linear-gradient(top,#cdcdcd,#fbfbfb);border-radius:3px;-webkit-box-shadow:inset 0 1px 0 #f0f0f0;box-shadow:inset 0 1px 0 #f0f0f0}
-.ios.toggle input:first-of-type:checked ~ p span:first-child,.ios.switch input:checked + label{color:#fff;text-shadow:0 -1px 0 #1b3b6f}
-.ios.toggle input:first-of-type:checked ~ .slide-button,.ios.switch .slide-button{background:linear-gradient(top,#3672dc,#4085ec50%,#4d8fef50%,#76adfc);border-radius:3px;border:1px solid #1654b5;text-align:center;color:#fff;font:bold 14px sans-serif;text-shadow:0 -1px 0 #1b3b6f}
-.ios.toggle p span{color:#7f7f7f}
 section li,section dd,section li,section dd{margin-left:1.5em}
 section dl,blockquote p,section dl{font-size:1em;line-height:1.5;margin:.5em 0}
 section figure br,section figure br,.cf:after{clear:both}
@@ -180,8 +160,13 @@ table tr.odd,#header,table tr.odd,#header{background:#fff}
 label,#header h1:hover,label,#header h1:hover{cursor:pointer}
 #header h1 span,#nav div.subnav span:last-child,.switch .slide-button,.toggle p span{display:none}
 #userNav h5 span,#userNav ul li a:hover,.candy span,.android span{color:#fff}
+
+div.status_radio_buttons {margin-left:213px;}
+div.status_radio_buttons label {float:none;display:inline;}
+
+/* Toggle switch */
 @media only screen {
-	.toggle{position:relative;margin-left:100px;padding:0}
+/*	.toggle{position:relative;margin-left:100px;padding:0}
 	.toggle label{position:relative;z-index:3;display:block;width:100%}
 	.toggle input{position:absolute;opacity:0;z-index:5}
 	.toggle p{position:absolute;left:-100px;width:100%;padding-right:100px;text-align:left;margin:0}
@@ -211,4 +196,26 @@ label,#header h1:hover,label,#header h1:hover{cursor:pointer}
 	.switch,.toggle{-webkit-animation:bugfix infinite 1s}
 	to{position:relative}
 	.toggle p span:last-child,.switch input:last-of-type:checked ~ .slide-button,.switch.switch-four input:checked:nth-of-type(3) ~ .slide-button{left:50%}
+	.candy{background-color:#2d3035;color:#fff;font-weight:700;text-align:center;text-shadow:1px 1px 1px #191b1e;border-radius:3px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.2)}
+	.candy input:checked + label{color:#333;text-shadow:0 1px 0 rgba(255,255,255,0.5)}
+	.candy .slide-button{border:1px solid #333;background-color:#70c66b;background-image:linear-gradient(top,rgba(255,255,255,0.2), rgba(0,0,0,0));box-shadow:0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.45);border-radius:3px}
+	.candy p{color:#333;text-shadow:none}
+	.candy.blue .slide-button{background-color:#38a3d4}
+	.candy.yellow .slide-button{background-color:#f5e560}
+	.android{background-color:#b6b6b6;color:#fff}
+	.android.toggle{border:2px solid #b6b6b6}
+	.android.switch{overflow:hidden}
+	.android.switch .slide-button{background-color:#279fca;-webkit-transform:skew(20deg) translateX(10px);-moz-transform:skew(20deg) translateX(10px);-ms-transform:skew(20deg) translateX(10px);-o-transform:skew(20deg) translateX(10px);transform:skew(20deg)}
+	.android.toggle .slide-button{border-radius:2px;background-color:#848484}
+	.android.toggle input:first-of-type:checked ~ .slide-button{background-color:#279fca}
+	.android.switch input:first-of-type:checked ~ .slide-button{-webkit-transform:skew(20deg) translateX(-10px);-moz-transform:skew(20deg) translateX(-10px);-ms-transform:skew(20deg) translateX(-10px);-o-transform:skew(20deg) translateX(-10px);transform:skew(20deg) translateX(-10px)}
+	.android p{color:#333}
+	.android.switch,.android span{text-transform:uppercase}
+	.ios{background:linear-gradient(top,#cfcfcf,#efefef50%,#f9f9f950%,#fefefe);-webkit-box-shadow:inset 0 2px 2px #b6b6b6, inset 3px 0 3px #b6b6b6;box-shadow:inset 0 2px 2px #b6b6b6, inset 3px 0 3px #b6b6b6;border:1px solid #efefef;border-radius:3px;color:#7f7f7f;font:bold 14px sans-serif;text-align:center;text-shadow:none}
+	.ios.toggle .slide-button{border:1px solid #919191;background:linear-gradient(top,#cdcdcd,#fbfbfb);border-radius:3px;-webkit-box-shadow:inset 0 1px 0 #f0f0f0;box-shadow:inset 0 1px 0 #f0f0f0}
+	.ios.toggle input:first-of-type:checked ~ p span:first-child,.ios.switch input:checked + label{color:#fff;text-shadow:0 -1px 0 #1b3b6f}
+	.ios.toggle input:first-of-type:checked ~ .slide-button,.ios.switch .slide-button{background:linear-gradient(top,#3672dc,#4085ec50%,#4d8fef50%,#76adfc);border-radius:3px;border:1px solid #1654b5;text-align:center;color:#fff;font:bold 14px sans-serif;text-shadow:0 -1px 0 #1b3b6f}
+	.ios.toggle p span{color:#7f7f7f}
+
+	*/
 }
