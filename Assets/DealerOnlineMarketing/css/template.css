@@ -2,7 +2,7 @@ body{font-family:"Open Sans", sans-serif}
 section,nav,article,aside,header,footer,img,figure,figcaption,ul.main_nav li.active img{display:block}
 h1,h2,h3,h4,h5,h6{font-family:Ubuntu, sans-serif}
 h2,legend{color:#666;font-size:1.2em;font-weight:300;letter-spacing:0;line-height:1;margin:0;padding:0}
-section h2,legend{color:#039;font-size:1.5em;font-weight:600;letter-spacing:0;line-height:1;margin:1.3333em 0 0;padding:.3333em 0}
+section h2,legend{color:#666;font-size:1.2em;font-weight:300;letter-spacing:0;line-height:1;margin:1.3333em 0 0;padding:.3333em 0}
 section h3{border-top:0 none;color:#333;font-size:1.25em;font-weight:400;line-height:1.2;margin:1.2em 0 0}
 section h4{color:#444;font-size:1em;font-weight:400;line-height:1;margin:1.5em 0 0}
 section h5,section h6{color:#555;font-size:.875em;font-weight:400;letter-spacing:.1429em;line-height:1.1429;text-transform:uppercase;margin:1.7143em 0 0}
@@ -53,7 +53,9 @@ input.sprite,sprite{border:0 none;cursor:pointer;font-size:1em;font-weight:400;l
 label.check{float:none;width:inherit;margin:0;padding:.5em 0}
 fieldset.options{margin:0}
 #header h1{width:150px;height:38px;background:url(../imgs/Logo.png) no-repeat top left;float:left;margin:10px 0 10px 10px}
-#header #clientSwitch{float:left;margin-left:60px;padding-top:15px;width:180px}
+#header #clientSwitch{float:left;margin-left:60px;padding-top:15px;width:360px}
+table tr td form{text-align:center;margin:0;padding:0}
+#header #clientSwitch .select{width:350px}
 #header #clientTags{float:left;padding-top:15px;width:135px}
 #header #siteSearch{padding-top:13px}
 #header #siteSearch input.input{-webkit-border-radius:3px;border-radius:3px;border:1px solid #ccc;color:#666;font-size:11px;background:url(../imgs/search_icon.jpg) no-repeat top right #fff;margin-top:2px;padding:6px}
