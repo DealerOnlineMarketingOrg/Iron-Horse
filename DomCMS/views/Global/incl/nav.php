@@ -20,8 +20,7 @@
                 <div class="subnav" id="advertising_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="#" class="google">Google</a>
-                    <a href="#" class="yahoo">Yahoo</a>
-                    <a href="#" class="bing">Bing</a>
+                    <a href="#" class="yahoo">Yahoo/Bing</a>
                     <a href="#" class="facebook">Facebook</a>
                     <div class="clear"></div>
                 </div>

@@ -489,5 +489,47 @@
 				<p><a class="action" href="http://www.justgiving.com/prlrun2012/">Sponsor my run on Just Giving ›</a></p>
 		</div>
         </section>
+        <section>
+        <h3>Breadcrumbs</h3>
+        <p>A navigation aid used in user interfaces. It allows users to keep track of their locations within programs or documents.</p>
+        <div class="clear"></div>
+        <div class="example relative" style="top:10px; height:50px;; margin-bottom:10px;">
+        	<div id="breadcrumbs" style="bottom:5px; top:10px; margin-left:10px;">
+				<ul class="crumbs" style="list-style-type:none;">
+					<li>
+						<a href="#">admin</a>
+					</li>
+					<li>
+						<a class="current" href="#">agency</a>
+					</li>
+				</ul>
+			<div class="clear"></div>
+			</div>
+        </div>
+        </section>
+        <section>
+        <h2>HTML5 References</h2>
+        <p>Descriptions of HTML5 tags we use.</p>
+        <h3>Article</h3>
+        <p>Defines an article</p>
+        <h3>Aside</h3>
+        <p>Defines content aside from the page content</p>
+        <h3>Canvas</h3>
+        <p>Used to draw graphics, on the fly, via scripting (usually JavaScript)</p>
+        <h3>Embed</h3>
+        <p>Defines a container for an external (non-HTML) application</p>
+        <h3>Footer</h3>
+        <p>Defines a footer for a document or section</p>
+        <h3>Header</h3>
+        <p>Defines a header for a document or section</p>
+        <h3>Nav</h3>
+        <p>Defines navigation links</p>
+        <h3>Progress</h3>
+        <p>Represents the progress of a task</p>
+        <h3>Section</h3>
+        <p>Defines a section in a document</p>
+        <h3>Video</h3>
+        <p>Defines a video or movie</p>
+        </section>
     </div>
 </div>

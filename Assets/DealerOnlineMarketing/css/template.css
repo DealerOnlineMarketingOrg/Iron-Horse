@@ -52,6 +52,16 @@ input.search[type=submit]{background-attachment:scroll;background-clip:border-bo
 input.sprite,sprite{border:0 none;cursor:pointer;font-size:1em;font-weight:400;line-height:1.5;padding:.25em .5em}
 label.check{float:none;width:inherit;margin:0;padding:.5em 0}
 fieldset.options{margin:0}
+ul.pagination {border-top: 1px solid #EEEEEE;clear: both;font-size: 1em;line-height: 1.5;overflow: hidden;padding-top: 0.4375em;width: 100%;}
+ul.pagination li {display: block;float: left;margin: 0 0.25em 0 0;}
+ul.pagination a, ul.pagination span {border: 1px solid #DDDDDD;display: block;line-height: 1.5;padding: 0 0.5em;}
+ul.pagination a:hover {border-color:#dddddd; text-decoration:none;}
+ul.pagination li span.active {background-color: #039;border: 1px solid #039;color: #FFFFFF;font-size: 1em;font-weight: 400;line-height: 1.5;padding: 0 0.5em;}
+.notification.message {background-color: #FFF9DD;}
+.notification {margin-bottom: 1em;padding: 0.5em 1em 0.25em;}
+.notification h4 {margin-top: 0.5em;}
+
+
 #header h1{width:150px;height:38px;background:url(../imgs/Logo.png) no-repeat top left;float:left;margin:10px 0 10px 10px}
 #header #clientSwitch{float:left;margin-left:60px;padding-top:15px;width:360px}
 table tr td form{text-align:center;margin:0;padding:0}
