@@ -42,5 +42,11 @@ class Dropdown extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	public function Group_Selected_Check($id){
+		$sql = "SELECT CLIENT_ID FROM Clients WHERE GROUP_ID='".$id."'";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 
