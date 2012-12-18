@@ -181,34 +181,34 @@ label,#header h1:hover,label,#header h1:hover{cursor:pointer}
 #header h1 span,#nav div.subnav span:last-child,.switch .slide-button,.toggle p span{display:none}
 #userNav h5 span,#userNav ul li a:hover,.candy span,.android span{color:#fff}
 @media only screen {
-.toggle{position:relative;margin-left:100px;padding:0}
-.toggle label{position:relative;z-index:3;display:block;width:100%}
-.toggle input{position:absolute;opacity:0;z-index:5}
-.toggle p{position:absolute;left:-100px;width:100%;padding-right:100px;text-align:left;margin:0}
-.toggle p span{position:absolute;top:0;left:0;z-index:5;display:block;width:50%;margin-left:100px;text-align:center}
-.toggle .slide-button{position:absolute;right:0;top:0;z-index:4;display:block;width:50%;height:100%;padding:0}
-.switch{position:relative;padding:0}
-.switch input{position:absolute;opacity:0}
-.switch label{position:relative;z-index:2;float:left;width:50%;height:100%;text-align:center;margin:0}
-.switch .slide-button{position:absolute;top:0;left:0;z-index:1;width:50%;height:100%;padding:0}
-.switch.switch-three label,.switch.switch-three .slide-button{width:33.3%}
-.switch.switch-three input:checked:nth-of-type(2) ~ .slide-button{left:33.3%}
-.switch.switch-three input:checked:last-of-type ~ .slide-button{left:66.6%}
-.switch.switch-four label,.switch.switch-four .slide-button{width:25%}
-.switch.switch-four input:checked:nth-of-type(2) ~ .slide-button{left:25%}
-.switch.switch-four input:checked:last-of-type ~ .slide-button{left:75%}
-.switch.switch-five label,.switch.switch-five .slide-button{width:20%}
-.switch.switch-five input:checked:nth-of-type(2) ~ .slide-button{left:20%}
-.switch.switch-five input:checked:nth-of-type(3) ~ .slide-button{left:40%}
-.switch.switch-five input:checked:nth-of-type(4) ~ .slide-button{left:60%}
-.switch.switch-five input:checked:last-of-type ~ .slide-button{left:80%}
-.toggle,.switch{display:block;height:30px}
-.switch *,.toggle *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box}
-.switch .slide-button,.toggle .slide-button{display:block;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;-ms-transition:all .3s ease-out;-o-transition:all .3s ease-out;transition:all .3s ease-out}
-.toggle label,.toggle p,.switch label{line-height:30px;vertical-align:middle}
-.toggle input:checked ~ .slide-button{right:50%}
-.toggle input:focus ~ .slide-button,.switch input:focus + label{outline:1px dotted #888}
-.switch,.toggle{-webkit-animation:bugfix infinite 1s}
-to{position:relative}
-.toggle p span:last-child,.switch input:last-of-type:checked ~ .slide-button,.switch.switch-four input:checked:nth-of-type(3) ~ .slide-button{left:50%}
+	.toggle{position:relative;margin-left:100px;padding:0}
+	.toggle label{position:relative;z-index:3;display:block;width:100%}
+	.toggle input{position:absolute;opacity:0;z-index:5}
+	.toggle p{position:absolute;left:-100px;width:100%;padding-right:100px;text-align:left;margin:0}
+	.toggle p span{position:absolute;top:0;left:0;z-index:5;display:block;width:50%;margin-left:100px;text-align:center}
+	.toggle .slide-button{position:absolute;right:0;top:0;z-index:4;display:block;width:50%;height:100%;padding:0}
+	.switch{position:relative;padding:0}
+	.switch input{position:absolute;opacity:0}
+	.switch label{position:relative;z-index:2;float:left;width:50%;height:100%;text-align:center;margin:0}
+	.switch .slide-button{position:absolute;top:0;left:0;z-index:1;width:50%;height:100%;padding:0}
+	.switch.switch-three label,.switch.switch-three .slide-button{width:33.3%}
+	.switch.switch-three input:checked:nth-of-type(2) ~ .slide-button{left:33.3%}
+	.switch.switch-three input:checked:last-of-type ~ .slide-button{left:66.6%}
+	.switch.switch-four label,.switch.switch-four .slide-button{width:25%}
+	.switch.switch-four input:checked:nth-of-type(2) ~ .slide-button{left:25%}
+	.switch.switch-four input:checked:last-of-type ~ .slide-button{left:75%}
+	.switch.switch-five label,.switch.switch-five .slide-button{width:20%}
+	.switch.switch-five input:checked:nth-of-type(2) ~ .slide-button{left:20%}
+	.switch.switch-five input:checked:nth-of-type(3) ~ .slide-button{left:40%}
+	.switch.switch-five input:checked:nth-of-type(4) ~ .slide-button{left:60%}
+	.switch.switch-five input:checked:last-of-type ~ .slide-button{left:80%}
+	.toggle,.switch{display:block;height:30px}
+	.switch *,.toggle *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box}
+	.switch .slide-button,.toggle .slide-button{display:block;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;-ms-transition:all .3s ease-out;-o-transition:all .3s ease-out;transition:all .3s ease-out}
+	.toggle label,.toggle p,.switch label{line-height:30px;vertical-align:middle}
+	.toggle input:checked ~ .slide-button{right:50%}
+	.toggle input:focus ~ .slide-button,.switch input:focus + label{outline:1px dotted #888}
+	.switch,.toggle{-webkit-animation:bugfix infinite 1s}
+	to{position:relative}
+	.toggle p span:last-child,.switch input:last-of-type:checked ~ .slide-button,.switch.switch-four input:checked:nth-of-type(3) ~ .slide-button{left:50%}
 }
