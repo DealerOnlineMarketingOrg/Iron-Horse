@@ -6,6 +6,10 @@
 			parent::__construct();	
 			//loading the member model here makes it available for any member of the dashboard controller.
 		}
+		
+		public function Index() {
+			$this->Dashboard();	
+		}
 	
 		public function Dashboard() {
 			$this->load->helper('pass');
