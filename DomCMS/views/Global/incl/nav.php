@@ -19,9 +19,9 @@
             	<a href="/advertising"><span>Advertising</span></a>
                 <div class="subnav" id="advertising_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#" class="google">Google</a>
-                    <a href="#" class="yahoo">Yahoo/Bing</a>
-                    <a href="#" class="facebook">Facebook</a>
+                    <a href="/advertising/google" class="google">Google</a>
+                    <a href="/advertising/yahoo_bing" class="yahoo">Yahoo/Bing</a>
+                    <a href="/advertising/facebook" class="facebook">Facebook</a>
                     <div class="clear"></div>
                 </div>
             </li>
@@ -42,11 +42,9 @@
                 <a href="/content"><span>Content</span></a>
                 <div class="subnav" id="content_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#">Dealership Pages</a>
-                    <a href="#">New Cars</a>
-                    <a href="#">Used Cars</a>
-                    <a href="#">Variable Ops Pages</a>
-                    <a href="#">Fixed Ops Pages</a>
+                    <a href="/content/dealership_pages">Dealership Pages</a>
+                    <a href="/content/variable_ops">Variable Ops Pages</a>
+                    <a href="/content/fixed_ops">Fixed Ops Pages</a>
                     <div class="clear"></div>
                 </div>
             </li>
@@ -54,11 +52,11 @@
             	<a href="/merchandising"><span>Merchandising</span></a>
                 <div class="subnav" id="merch_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#">New Car</a>
-                    <a href="#">Used Car</a>
-                    <a href="#">Service</a>
-                    <a href="#">Parts</a>
-                    <a href="#">Body Shop</a>
+                    <a href="/merchandising/new_car">New Car</a>
+                    <a href="/merchandising/used_car">Used Car</a>
+                    <a href="/merchandising/service">Service</a>
+                    <a href="/merchandising/parts">Parts</a>
+                    <a href="/merchandising/body_shop">Body Shop</a>
                     <div class="clear"></div>
                 </div>
             </li>
@@ -66,12 +64,13 @@
             	<a href="/reputation"><span>Reputation/Social</span></a>
                 <div class="subnav" id="rep_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#" class="google_plus">Google+</a>
-                    <a href="#" class="yelp">Yelp</a>
-                    <a href="#" class="yahoo">Yahoo</a>
-                    <a href="#" class="bing">Bing</a>
+                    <a href="/social/google" class="google_plus">Google+</a>
+                    <a href="/social/yelp" class="yelp">Yelp</a>
+                    <a href="/social/yahoo" class="yahoo">Yahoo</a>
+                    <a href="/social/bing" class="bing">Bing</a>
                     <div class="clear"></div>
                 </div>
+                
             </li>
             <li class="admin">
             	<a href="/admin"><span>Admin</span></a>

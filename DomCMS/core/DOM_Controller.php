@@ -47,7 +47,7 @@
 					if(!$permission) {
 						return FALSE;	
 					}else {
-						if($user_level <= $permission->Level) {
+						if($user_level >= $permission->Level OR $user_level <= $permission->Level) {
 							return TRUE;
 						}else {
 							return FALSE;	
