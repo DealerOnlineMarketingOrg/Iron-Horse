@@ -120,8 +120,8 @@
 					
 					$clientstyle = 'double-indent client';
 					//And style client as double 
-					
 					foreach ($cQuery as $cRow){
+						
 							$selected = 0;
 							
 							if($cRow->CLIENT_ID == $id && $type == 'c'):

@@ -1,6 +1,22 @@
 // JavaScript Document
 $(document).ready(function() {
-    $('.select').select2({minimumResultsForSearch:'10'});
+	
+	$("select#client>option").each( function(){
+		 var $option = $(this);  
+		 	
+			if($(this).prev().attr('data-level') == $option.attr('data-level')) {
+				if(!$(this).hasClass('agency')) {
+					$(this).prev().remove();
+					$(this).removeClass('double-indent').addClass('single-indent');
+				}
+			}
+		 
+		 //$option.siblings().filter( function(){ return $(this).attr('data-level') == $option.attr('data-level')} )
+	})
+	
+	$('select#client').find('option:last-child').removeClass('break');
+	
+	$('.select').select2({minimumResultsForSearch:'10'});
     $('.required').prepend('<span class="red">&#42;</span> ');
         
     $('table tr:even').addClass('even');
@@ -16,6 +32,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 	$('#tags').change(function(evt) {
 		$.ajax({
 			url:'/ajax/selected_tag',
@@ -26,6 +43,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 	$('#add_agency_btn').click(function() {
 		$.ajax({
 			url:'/ajax/add_agency_popup',
@@ -43,7 +61,12 @@ $(document).ready(function() {
 		$(this).parent().slideUp('fast');
 	});
 	
+	
 });
+
+function format(state) {
+	return state.text;	
+}
 
 function remove_popup_form(div,speed) {
 	jQuery(div).find('div.popup').fadeOut(speed,function() {

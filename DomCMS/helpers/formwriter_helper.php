@@ -150,7 +150,6 @@
 						'<div class="status_radio_buttons">',
 							form_radio($enabled_radio), form_label('Enabled','enabled'),
 							form_radio($disabled_radio), form_label('Disabled','disabled'),
-							'<span class="slide-button">&nbsp;</span>',
 						'</div>',
 						'<div class="clear"></div>',
 						'<div class="buttons" style="text-align:left;margin-left:213px;">' . form_reset($clear_button) . form_submit($submit_button) . '&nbsp;&nbsp;' . '</div>',

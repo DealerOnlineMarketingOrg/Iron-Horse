@@ -1,5 +1,5 @@
 <div class="wrapper content-padding">
-    <div id="<?= $page_id; ?>" class="content-page">
+    <div id="<?= $page_id; ?>" class="content-page block">
     <?php
 		if($msg != '') { ?>
     		<div id="error_notification" class="red">

@@ -1,14 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 	class Admin extends DOM_Controller {
-	
 		public function __construct() {
 			parent::__construct();	
 			//loading the member model here makes it available for any member of the dashboard controller.
 			$this->load->model('administration');
 			$this->DisplaySettings();
 		}
-	
 		public function index() {
 			
 			/*
@@ -19,14 +16,11 @@
 			*/
 			$this->LoadTemplate('pages/dashboard');
 		}
-		
 		public function Agency($page = false, $msg = false) {
-			
 			$this->load->helper('form');
 			$this->load->helper('formwriter');
 			$this->load->library('table');
 			$this->load->helper('html');
-			
 			switch($page) :			
 				/* THE ADD AGENCY PAGE */
 				case 'add' :
@@ -194,7 +188,7 @@
 			$this->load->library('table');
 			$this->load->helper('html');
 			
-			print_object($this->user['DropdownDefault']);
+			//print_object($this->user['DropdownDefault']);
 			
 			$agency_id = $this->user['AgencyID'];
 			$group_id  = $this->user['ClientID'];

@@ -65,7 +65,7 @@
 				$selected='';
 			endif;
 			
-			$DropStringCode .= '<option '.$selected.' value="'.$value[0].$value[1].'" class="'.$value[3].'">'.$value[2].'</option>';
+			$DropStringCode .= '<option data-level="' . $value[1] . '"'.$selected.' value="'.$value[0].$value[1].'" class="'.$value[3].'">'.$value[2].'</option>';
 		}
 		
 		return $DropStringCode;
