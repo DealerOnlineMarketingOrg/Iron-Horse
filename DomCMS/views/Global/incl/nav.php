@@ -6,12 +6,12 @@
                 <div class="subnav" id="reports_nav">
                     <div class="pivot">&nbsp;</div>
                     <a href="/reports/dashboard">Dashboard</a>
-                    <a href="#">DPR</a>
-                    <a href="#">Reports Query</a>
-                    <a href="#">Game Day</a>
-                    <a href="#">DMS Database</a>
-                    <a href="#">Web</a>
-                    <a href="#">Leads</a>
+                    <a href="/reports/dpr">DPR</a>
+                    <a href="/reports/reports_query">Reports Query</a>
+                    <a href="/reports/game_day">Game Day</a>
+                    <a href="/reports/dms">DMS Database</a>
+                    <a href="/reports/web">Web</a>
+                    <a href="/reports/leads">Leads</a>
                     <div class="clear"></div>
                 </div>
             </li>
