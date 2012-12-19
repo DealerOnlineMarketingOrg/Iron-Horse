@@ -400,7 +400,7 @@
 						</div>
 						<div><label for="checkbox">Single Checkbox</label>
                         	 	<label class="check" for="checkbox"><input id="checkbox" class="checkbox" type="checkbox">Label</label>
-						</div>
+						</div><div>
 						<div><label for="select">Select</label>
 								<select id="select">
 									<optgroup label="Option Group">
@@ -509,27 +509,51 @@
         </section>
         <section>
         <h2>HTML5 References</h2>
-        <p>Descriptions of HTML5 tags we use.</p>
+        	<p>Descriptions of HTML5 tags we use.</p>
         <h3>Article</h3>
-        <p>Defines an article</p>
+        	<p>Defines an article</p>
+            <div class="example">
+        		<article>
+        			<h3>Apple</h3>
+        				<p>The <b>apple</b> is the pomaceous fruit of the apple tree...</p>
+				</article>
+            </div>
         <h3>Aside</h3>
         <p>Defines content aside from the page content</p>
+        	<div class="example">
+            </div>
         <h3>Canvas</h3>
         <p>Used to draw graphics, on the fly, via scripting (usually JavaScript)</p>
+        	<div class="example">
+            </div>
         <h3>Embed</h3>
-        <p>Defines a container for an external (non-HTML) application</p>
+        <p>Defines a container for a n external (non-HTML) application</p>
+        	<div class="example">
+            </div>
         <h3>Footer</h3>
         <p>Defines a footer for a document or section</p>
+        	<div class="example">
+            </div>
         <h3>Header</h3>
         <p>Defines a header for a document or section</p>
+        	<div class="example">
+            </div>
         <h3>Nav</h3>
         <p>Defines navigation links</p>
+        	<div class="example">
+            </div>
         <h3>Progress</h3>
         <p>Represents the progress of a task</p>
+        	<div class="example">
+            </div>
         <h3>Section</h3>
         <p>Defines a section in a document</p>
+        	<div class="example">
+            </div>
         <h3>Video</h3>
         <p>Defines a video or movie</p>
+        	<div class="example">
+            </div>
         </section>
     </div>
 </div>
