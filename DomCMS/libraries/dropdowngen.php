@@ -8,25 +8,26 @@
 		public $str;
 		
 		public function __construct() {
-			$this->str = $this->drivedrop();
-			//print_r($str);
+			//DO NOTHING
 		}
 		
 		public function drivedrop() {
-			//DO NOTHING
 			$this->ci =& get_instance();
 			$this->ci->load->model('dropdown');
 			$this->ci->load->model('tagdrop');	
 			$this->ValidUser = $this->ci->session->userdata('valid_user');
 			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
+			
 			$PermType = $this->DropdownDefault->PermType;
 			$LevelID = $this->DropdownDefault->LevelID;
 			$LevelType = $this->DropdownDefault->LevelType;
 			$SelectedID = $this->DropdownDefault->SelectedID;
 			$SelectedTag = $this->DropdownDefault->SelectedTag;
+			//set var defualt
 			$TagView=false;
+			//see if tag is selected
 			(($SelectedTag=='0' || $SelectedTag=='noshow' ) ? $TagView=false : $TagView = $this->ci->tagdrop->TagsQuery( $SelectedTag )) ;
-			
+			//set defaults for selected id if not set
 			if($SelectedID != 'null'):
 				$type = $SelectedID[0];
 				$id = substr($SelectedID,-1);
@@ -35,12 +36,39 @@
 				$type = $LevelType;
 				$id = $LevelID;
 			endif;
+			
+			//set specialtagsid into array for later use below.
+			if(!empty($TagView)) {$specialtagids = client_id_parser($TagView->CLIENT_IDS);}
+			
+			//check to see if current selection is in tag if not reset to highest level
+			if( ($type == 'c' || $type == 'g') && isset($specialtagids)&&$specialtagids!=false&&!empty($specialtagids) ){
+				if($type == 'c'&&!in_array($id,$specialtagids)){
+					$type = $LevelType;
+				    $id = $LevelID;
+					$selected_id = $type.$id;
+					$this->ci->session->userdata['valid_user']['DropdownDefault']->SelectedID = $selected_id;
+					$this->ci->session->sess_write();
+				}
+				if($type == 'g'){
+					$check = $this->ci->dropdown->Group_Selected_Check($id);
+					foreach ($check as &$value) {
+    					if(!in_array($value->CLIENT_ID,$specialtagids)){
+						$type = $LevelType;
+				    	$id = $LevelID;
+						$selected_id = $type.$id;
+						$this->ci->session->userdata['valid_user']['DropdownDefault']->SelectedID = $selected_id;
+						$this->ci->session->sess_write();
+						}
+					}
+				}
+			}
+			
 			//set based on PermType
 		    $str = '';
 			if($PermType == 'SuperAdmin') {
 				$str .= $this->SuperAdmin($type,$id);	
 				if($TagView){
-				$str .= $this->SuperAdmin($type,$id,$TagView);
+				$str .= $this->SuperAdmin($type,$id,$specialtagids);
 				}
 				else{
 				$str .= $this->SuperAdmin($type,$id,false);	
@@ -50,13 +78,12 @@
 			}else if($PermType == 'ClientAdmin') {
 				$str .= $this->Client($type,$id);	
 			}
-			//var_dump($str);
-			//print_r($str);
 			return $str;
 			
 		}
 		
 		public function SuperAdmin($type, $id, $tag_c_ids) {
+			
 			
 			$DropString = '';
 			$selected = 0;
@@ -76,6 +103,8 @@
 				$DropString .= 'a:' . $aRow->AGENCY_ID . ';' . $aRow->AGENCY_Name . '^' . $agentstyle . ',' . $selected . '|';
 				$gQuery = $this->ci->dropdown->GroupsQuery(false, $aRow->AGENCY_ID);
 				
+				
+				
 				foreach ($gQuery as $gRow){
 					$cQuery = $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
 					if(count($cQuery) > 1) :
@@ -84,40 +113,51 @@
 						$groupstyle  = 'single-indent group';
 						$clientstyle = 'double-indent client';
 						//And style client as double if more than one.
+					$selected = 0;
+					if($gRow->GROUP_ID == $id && $type == 'g'):
+						$selected = 1;
+					else:
 						$selected = 0;
-						if($gRow->GROUP_ID == $id && $type == 'g'):
-							$selected = 1;
-						else:
-							$selected = 0;
-						endif;
+					endif;
 						$DropString .= 'g:' . $gRow->GROUP_ID . ';' . $gRow->GROUP_Name . '^' . $groupstyle . ',' . $selected .'|';
 					else:
 						$clientstyle = 'single-indent';
 						//use this style for single client groups
 					endif;
-					//counting for last client 
-					$i = 0;
-					$n = count($cQuery);
+					
+					$groupstyle  = 'single-indent group';
+					
+					$DropString .= 'g:' . $gRow->GROUP_ID . ';' . $gRow->GROUP_Name . '^' . $groupstyle . ',' . $selected .'|';
+					
+					$cQuery =  $this->ci->dropdown->ClientQuery(false, $gRow->GROUP_ID);
+					
+					$clientstyle = 'double-indent client';
+					//And style client as double 
 					
 					foreach ($cQuery as $cRow){
-						$selected = 0;
+							$selected = 0;
 						$i++;
 						if($cRow->CLIENT_ID == $id && $type == 'c'):
 							$selected = 1;
 						else:
 							$selected = 0;
-						endif;
-						if ($i == $n):
-							$clientstyle .= ' break';
-						endif;
-						$DropString .= 'c:' . $cRow->CLIENT_ID . ';' . $cRow->CLIENT_Name . '^' . $clientstyle . ',' . $selected . '|';
+							
+							if($cRow->CLIENT_ID == $id && $type == 'c'):
+								$selected = 1;
+							else:
+								$selected = 0;
+							endif;
+							
+							if (!isset($tag_c_ids)||$tag_c_ids==false) {
+								$DropString .= 'c:' . $cRow->CLIENT_ID . ';' . $cRow->CLIENT_Name . '^' . $clientstyle . ',' . $selected . '|';
+							}
+							else if(isset($tag_c_ids)&&in_array($cRow->CLIENT_ID, $tag_c_ids)){
+								$DropString .= 'c:' . $cRow->CLIENT_ID . ';' . $cRow->CLIENT_Name . '^' . $clientstyle . ',' . $selected . '|';
+							}
+						}
 					}
 				}
-					
-			} 
-			
-			return $DropString;
-			
+			return $DropString;			
 		}
 		
 		public function GroupAdmin($type,$id) {
@@ -160,10 +200,8 @@
 					endif;
 					$DropString .= 'c:' . $cRow->CLIENT_ID . ';' . $cRow->CLIENT_Name . '^' . $clientstyle . ',' . $selected . '|';
 				}
-					
 			} 
 			return $DropString;
-			
 		}
 		
 		public function Client($type,$id){
@@ -177,5 +215,4 @@
 			}
 			return $DropString;
 		}
-		
 	}

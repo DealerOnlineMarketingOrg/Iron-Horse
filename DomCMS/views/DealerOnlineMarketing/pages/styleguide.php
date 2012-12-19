@@ -393,7 +393,7 @@
 						</div>
 						<div><label for="search">Search</label>
 								<input id="search" class="text" type="search">
-								<input id="password" class="button green" type="submit"><em>Note about this field</em>
+								<input id="password" class="search sprite" type="submit"><em>Note about this field</em>
 						</div>
 						<div><label for="textarea">Textarea</label>
 								<textarea id="textarea" cols="48" rows="8"></textarea><em class="clear">Note about this field</em>
@@ -416,47 +416,37 @@
                         	Checkbox
                             <abbr title="Required">*</abbr>
                         </legend>
-						<ul>
-							<li>
+							<div>
 								<label for="checkbox1">
 									<input id="checkbox1" type="checkbox" checked="checked" name="checkbox">
 									Choice A
 								</label>
-							</li>
-							<li>
 								<label for="checkbox2">
 									<input id="checkbox2" type="checkbox" name="checkbox">
 									Choice B
 								</label>
-							</li>
-							<li>
 								<label for="checkbox3">
 									<input id="checkbox3" type="checkbox" name="checkbox">
 									Choice C
 								</label>
-							</li>
-						</ul>
+							</div>
 					</fieldset>
 					<fieldset class="options">
 						<legend>Radio</legend>
-						<ul>
-							<li>
+							<div>
 								<label for="radio1">
 									<input id="radio1" class="radio" type="radio" checked="checked" name="radio">
 									Option 1
 								</label>
-							</li>
-							<li>
 								<label for="radio2">
 									<input id="radio2" class="radio" type="radio" name="radio">
 									Option 2
 								</label>
-							</li>
-						</ul>
+							</div>
 					</fieldset>
 					<div class="submit">
-						<input class="button" type="submit" value="Post Comment">
-						<input class="button" type="button" value="Preview">
+						<input class="button green" type="submit" value="Post Comment">
+						<input class="button green" type="button" value="Preview">
 						<a href="#">Cancel</a>
 					</div>
 				</fieldset>

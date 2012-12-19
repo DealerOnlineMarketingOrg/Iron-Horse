@@ -6,10 +6,12 @@
                <?= dealer_selector(); ?>
             </select>
         </div>
-        <div id="clientTags">
-        	<select id="tags" class="select" name="tag_dropdown">
-            	<?  echo tag_selector(); ?>          
-            </select>
+         <div id="clientTags">
+        <?php 
+		/* future check of sessionid*/ 
+		(('0' == '0') ? $str = tag_selector() : $str='' ) ; 
+		echo $str;	 
+		?>
         </div>
         <div id="userNav" class="insetShadow">
             <h5 class="textShadow"><?= get_welcome_message(); ?></h5>
