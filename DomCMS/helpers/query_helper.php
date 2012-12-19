@@ -1,15 +1,17 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 	//USE THIS HELPER TO CHECK AND COUNT ROWS
-	function query_results($context,$sql) {
+	function query_results($context = false,$sql) {
 		$query = $context->db->query($sql);
-		
 		if(!$query) :
+			//If no results are found return false to the system
 			return FALSE;	
 		else :
+			//else if more than one result is detected we use the result() function
 			if($query->num_rows() > 1) {
 				return $query->result();
 			}else {
+				//else we use the row() function to bring back one result. 
 				return $query->row();	
 			}
 		endif;
