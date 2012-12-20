@@ -400,9 +400,9 @@
 						</div>
 						<div><label for="checkbox">Single Checkbox</label>
                         	 	<label class="check" for="checkbox"><input id="checkbox" class="checkbox" type="checkbox">Label</label>
-						</div><div>
+						</div>
 						<div><label for="select">Select</label>
-								<select id="select">
+								<select id="select" class="select">
 									<optgroup label="Option Group">
 										<option>Option One</option>
 										<option>Option Two</option>
