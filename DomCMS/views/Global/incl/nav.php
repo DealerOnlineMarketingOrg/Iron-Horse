@@ -29,12 +29,12 @@
             	<a href="/creative"><span>Creative</span></a>
                 <div class="subnav" id="creative_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#">Campaigns</a>
-                    <a href="#">E-Blasts</a>
-                    <a href="#">Newsletters</a>
-                    <a href="#">CRM Templates</a>
-                    <a href="#">Specials</a>
-                    <a href="#">Misc</a>
+                    <a href="/creative/campaigns">Campaigns</a>
+                    <a href="/creative/e_blasts">E-Blasts</a>
+                    <a href="/creative/newsletters">Newsletters</a>
+                    <a href="/creative/crm_templates">CRM Templates</a>
+                    <a href="/creative/specials">Specials</a>
+                    <a href="/creative/misc">Misc</a>
                     <div class="clear"></div>
                 </div>
             </li>
@@ -76,15 +76,15 @@
             	<a href="/admin"><span>Admin</span></a>
                 <div class="subnav" id="admin_nav">
                     <div class="pivot">&nbsp;</div>
-                    <a href="#">Portal</a>
+                    <a href="/admin/portal">Portal</a>
                     <a href="/admin/agency">Agency</a>
-                    <a href="#">Groups</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Users</a>
-                    <a href="#">Contacts</a>
-                    <a href="#">Websites</a>
-                    <a href="#">Master List</a>
-                    <a href="#">My Account</a>
+                    <a href="/admin/groups">Groups</a>
+                    <a href="/admin/clients">Clients</a>
+                    <a href="/admin/users">Users</a>
+                    <a href="/admin/contacts">Contacts</a>
+                    <a href="/admin/websites">Websites</a>
+                    <a href="admin/master_list">Master List</a>
+                    <a href="admin/my_account">My Account</a>
                     <div class="clear"></div>
                 </div>
             </li>

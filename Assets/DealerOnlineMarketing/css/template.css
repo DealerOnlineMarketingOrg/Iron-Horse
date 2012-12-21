@@ -41,6 +41,7 @@ table a.button{height:auto!important;width:auto!important;text-align:center;disp
 section fieldset legend{margin-top:0}
 fieldset div{margin:.5em 0 1em}
 fieldset div.select2-container div{margin:0}
+fieldset div.formError, fieldset div.formError div{margin:0;}
 label,fieldset.options legend{float:left;width:23.539%;color:#333;display:block;font-size:1em;font-weight:400;line-height:1;margin:.5em 0;padding:0}
 fieldset abbr[title=Required]{border-bottom:0 none;color:#900;font-size:1.25em;font-weight:400;line-height:0.1}
 input.text,button select,textarea{background-color:#EEE;font-size:1em;line-height:1.5;vertical-align:middle;width:96%;padding:.25em}
@@ -61,8 +62,6 @@ ul.pagination li span.active {background-color: #039;border: 1px solid #039;colo
 .notification.message {background-color: #FFF9DD;}
 .notification {margin-bottom: 1em;padding: 0.5em 1em 0.25em;}
 .notification h4 {margin-top: 0.5em;}
-
-
 #header h1{width:150px;height:38px;background:url(../imgs/Logo.png) no-repeat top left;float:left;margin:10px 0 10px 10px}
 #header #clientSwitch{float:left;margin-left:60px;padding-top:15px;width:360px}
 table tr td form{text-align:center;margin:0;padding:0}
@@ -179,7 +178,6 @@ table tr.odd,#header,table tr.odd,#header{background:#fff}
 label,#header h1:hover,label,#header h1:hover{cursor:pointer}
 #header h1 span,#nav div.subnav span:last-child,.switch .slide-button,.toggle p span{display:none}
 #userNav h5 span,#userNav ul li a:hover,.candy span,.android span{color:#fff}
-
 div.status_radio_buttons {margin-left:213px;}
 div.status_radio_buttons label {float:none;display:inline;}
 
