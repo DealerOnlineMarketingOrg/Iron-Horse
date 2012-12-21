@@ -25,7 +25,7 @@
 					<div class="submit">
 						<input class="button green" type="submit" value="Submit">
 						<input class="button green" type="button" value="Cancel">
-					</div>
+					</div> 	
 				</fieldset>
 			</form>
     </div>
