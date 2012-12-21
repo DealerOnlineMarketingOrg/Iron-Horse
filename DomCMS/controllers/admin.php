@@ -16,6 +16,63 @@
 			*/
 			$this->LoadTemplate('pages/dashboard');
 		}
+		
+		public function Users($page = false, $msg = false) {
+			$this->load->model('administration');
+			$this->load->helper('html');
+			$this->load->library('table');
+			
+			print_object($this->user);
+			
+			switch($page) {
+				
+				case 'add':
+					$this->LoadTemplate('forms/form_addusers');
+				break;
+				case 'edit':
+					$user_id = $this->input->post('user_id');
+					$user = $this->administration->getUsers($user_id);
+					
+					print_object($user);
+				break;
+				default:
+				
+					//Default listing table
+				
+					$users = $this->administration->getUsers();
+					//Creating the table headings (th)
+					$this->table->set_heading('Email Address','Name','Status','Member Since', '');
+					foreach($users as $user) {
+						$form_cred = array(
+							'name' => 'edit_user',
+							'id' => 'user_' . $user->ID
+						);
+						$form_submit = array(
+							'name' => 'submit',
+							'id' => 'usr_id_' . $user->ID,
+							'class' => 'button blue',
+							'value' => 'Edit'
+						);
+						
+						//edit button
+						$edit_form = form_open('/admin/users/edit',$form_cred) . form_hidden('user_id',$user->ID) . form_submit($form_submit) . form_close();
+
+						$this->table->add_row($user->EmailAddress,$user->LastName . ', ' . $user->FirstName,(($user->Status == 1) ? 'Active' : 'Disabled'),date('n-j-Y', strtotime($user->JoinDate)),$edit_form);
+					}
+					$page_html = heading('Users',2) . $this->table->generate();
+					
+					$data = array(
+						'page_id'  => 'users',
+						'page_html' => $page_html,
+						'msg' => $msg
+					);
+					
+					$this->LoadTemplate('pages/listings',$data);
+				break;
+			}
+
+		}
+		
 		public function Agency($page = false, $msg = false) {
 			$this->load->helper('form');
 			$this->load->helper('formwriter');

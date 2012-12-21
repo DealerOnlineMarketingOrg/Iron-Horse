@@ -8,6 +8,29 @@
 			$this->load->helper('query');
 		}
 		
+		public function getUsers($id = false) { //query to show users info on listing and edit pages.
+			$sql = "SELECT 
+					u.USER_ID as ID, 
+					u.USER_Name as EmailAddress,
+					ui.USER_Password as Password,
+					ui.USER_Active as Status,
+					ui.USER_Created as JoinDate,
+					ui.USER_ActiveTS as LastUpdate,
+					ui.USER_Perm as Modules,
+					d.DIRECTORY_Type as UserType,
+					d.DIRECTORY_FirstName as FirstName,
+					d.DIRECTORY_LastName as LastName,
+					d.DIRECTORY_Address as Address,
+					d.DIRECTORY_EMAIL as Emails,
+					d.DIRECTORY_Phone as Phones,
+					d.DIRECTORY_Notes as Notes
+					FROM Users u
+					INNER JOIN Users_Info ui ON ui.USER_ID = u.USER_ID
+					INNER JOIN Directories d ON ui.DIRECTORY_ID = d.DIRECTORY_ID " . (($id) ? "WHERE u.USER_ID = '" . $id . "' " : "") . "
+					ORDER BY d.DIRECTORY_LastName ASC LIMIT 10";
+			return query_results($this,$sql);
+		}
+		
 		public function getAgencies() {
 			$sql = "SELECT AGENCY_ID as Id, AGENCY_Name as Name,AGENCY_Notes as Description, AGENCY_Active as Status FROM Agencies ORDER BY AGENCY_Name; ";
 			return query_results($this,$sql);

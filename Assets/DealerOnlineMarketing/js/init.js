@@ -14,6 +14,8 @@ $(document).ready(function() {
 		 //$option.siblings().filter( function(){ return $(this).attr('data-level') == $option.attr('data-level')} )
 	})
 	
+	$('.validate').validationEngine();
+	
 	$('select#client').find('option:last-child').removeClass('break');
 	
 	$('.select').select2({minimumResultsForSearch:'10'});

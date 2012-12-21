@@ -87,7 +87,7 @@ class Members extends CI_Model {
 			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
 			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
 			   'AccessName' 	=> (string)$row->ACCESS_Name,
-			   'UserPerm' 		=> (object)mod_parser($row->USER_Perm),
+			   'UserModules' 		=> (object)mod_parser($row->USER_Modules),
 			   'isActive' 		=> (bool)$row->USER_Active,
 			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
 			   'isGenerated' 	=> (int)$row->USER_Generated,

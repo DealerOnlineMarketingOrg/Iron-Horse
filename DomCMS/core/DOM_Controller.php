@@ -38,6 +38,7 @@
 			$this->load->view(DOMDIR 	. 'incl/footer');
 		}
 		
+		//This checks to see if the user has permissions to the specific module
 		public function CheckModule($column_name = false,$module_name = false) {
 			$this->load->model('mods');
 			$user_level = $this->user['AccessLevel'];
@@ -73,6 +74,7 @@
 			endswitch;	
 		}
 		
+		//custom 404 page
 		public function Page_Not_Found() {
 			$this->LoadTemplate('pages/404');
 		}
@@ -82,6 +84,7 @@
 			$this->LoadTemplate('pages/access_denied');
 		}
 		
+		//This tells me what level the user is currently logged in as.
 		public function DisplaySettings() {
 			$display_session = $this->user['DropdownDefault'];
 			$level = substr($display_session->SelectedID, 0, 1);
@@ -100,21 +103,44 @@
 		}
 		
 		public function Form_processor($page, $which) {
-			if($which == 'add') :
-				if($page == 'agency') :
-					//create array from port post elements
-					$form = $this->input->post();
-					$add = $this->administration->addAgencies($form);
-					if($add) {
-						redirect('/admin/agency/listing/success','location');
-					}else {
-						redirect('/admin/agency/add/error', 'location');	
-					}
-				endif;
-			elseif($which == 'edit') :
-				
-			elseif($which == 'delete') :
+			switch($page) :
+				case "agency":
+					switch($which):
+						case "add":
+							//create array from port post elements
+							$form = $this->input->post();
+							$add = $this->administration->addAgencies($form);
+							if($add) {
+								redirect('/admin/agency/listing/success','location');
+							}else {
+								redirect('/admin/agency/add/error', 'location');	
+							}
+						break;
+						case "edit":
+							//todo
+						break;
+						case "disable":
+							//disable
+						break;
+					endswitch;
+				break;
+				case "users":
+					switch($which) :
+						case "add":
+							//add users
+							$form = $this->input->post();
+							print_object($form); 
+							/*
+							$add = $this->administration->addAgencies($form);
+							if($add) {
+								redirect('/admin/users/listing/success','location');	
+							}else {
+								redirect('/admin/users/add/error','location');
+							}*/
+						break;
+					endswitch;
+				break;
 			
-			endif;
+			endswitch;
 		}
 	}
