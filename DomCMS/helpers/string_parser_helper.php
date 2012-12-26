@@ -51,8 +51,11 @@
 	 }
 	 
 	 function dropdown_parser($DropString) {
+		 
+		 var_dump($DropString);
+		 
 		 //$DropString = 'a:1;Dealer Online Marketing^no-indent agency break,1|g:1;Dealer Online Marketing^single-indent group break,0|c:1;Dealer Online Marketing^double-indent client,0|c:2;DDI Marketing^double-indent client break,0|';
-		 $DropString = substr($DropString, 0, -1);
+		 $DropString = '';
 		 $pattern = '/[|]/';
 		 $pattern2 = '/[:;^,]/';
 		 $arr = preg_split( $pattern, $DropString );

@@ -87,7 +87,7 @@ class Members extends CI_Model {
 			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
 			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
 			   'AccessName' 	=> (string)$row->ACCESS_Name,
-			   'UserModules' 		=> (object)mod_parser($row->USER_Modules),
+			   'UserModules' 	=> $this->UserModules(mod_parser($row->USER_Modules)),
 			   'isActive' 		=> (bool)$row->USER_Active,
 			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
 			   'isGenerated' 	=> (int)$row->USER_Generated,
@@ -101,6 +101,20 @@ class Members extends CI_Model {
 
 	   }
    }    
+   
+   public function UserModules($mods) {
+		$modules = array();
+		foreach($mods as $key => $value) {
+			if($value != 0) {
+				$sql = "SELECT * FROM xModules WHERE MODULE_ID = '" . $key . "';";	
+				$query = $this->db->query($sql);
+				if($query) {
+					array_push($modules,$query->row());	
+				}
+			}
+		}
+		return $modules;
+   }
    
    public function reset_password($email,$new_pass) {
 		$this->load->helper('msg_helper');

@@ -3,14 +3,14 @@
         <h1 id="DOM"><span>Dealer Online Marketing</span></h1>
             <div id="clientSwitch">
             <select id="client" class="select" name="dealer_dropdown">
-               <?= dealer_selector(); ?>
+               <? //= dealer_selector(); ?>
             </select>
         </div>
          <div id="clientTags">
         <?php 
-		/* future check of sessionid*/ 
+		/* future check of sessionid
 		(('0' == '0') ? $str = tag_selector() : $str='' ) ; 
-		echo $str;	 
+		echo $str;	 */ 
 		?>
         </div>
         <div id="userNav" class="insetShadow">

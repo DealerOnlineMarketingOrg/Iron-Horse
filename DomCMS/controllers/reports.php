@@ -13,6 +13,7 @@
 	
 		public function Dashboard() {
 			$this->load->helper('pass');
+			
 			/*
 				$ga = $this->gapi;
 				$ga->requestReportData(54919407,array('browser','browserVersion'),array('pageviews','visits'));
@@ -24,13 +25,12 @@
 				}
 				$google .= '<p>Total pageviews: ' . $ga->getPageviews() . ' total visits: ' . $ga->getVisits() . '</p>';
 			*/
-			$this->ValidUser = $this->session->userdata('valid_user');
-			$this->DropdownDefault = $this->ValidUser['DropdownDefault'];
 			//var_dump($this->DropdownDefault);    
 			$google = '';
 			
 			$data = array(
-				'google' => $google
+				'google' => $google,
+				'widgets' => $this->user['UserModules']
 			);
 			
 			$this->LoadTemplate('pages/dashboard',$data);
