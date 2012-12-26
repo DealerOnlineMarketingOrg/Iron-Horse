@@ -4,16 +4,13 @@
 				<fieldset>
 					<legend>Add New Client</legend>
 						<div><label for="text">Name:<abbr title="Required">*</abbr></label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
+								<input id="text" class="text" type="text" /><em>Note about this field</em>
 						</div>
 						<div><label for="text">Address:</label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
-						</div>
-						<div><label for="text">Address 1:</label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
+								<input id="text" class="text" type="text" /><em>Note about this field</em>
 						</div>
 						<div><label for="text">City:</label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
+								<input id="text" class="text" type="text" /><em>Note about this field</em>
 						</div>
 						<div><label for="select">State:</label>
 								<select id="select" class="select" style="width:30%;">
@@ -71,24 +68,30 @@
 							<em>Note about this selection</em>
 						</div>
 						<div><label for="text">Zip:</label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
+								<input id="text" class="text" type="text" /><em>Note about this field</em>
 						</div>
-						<div><label for="text">Phone Sales:</label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
-						</div>
-						<div><label for="text">Phone Service:</label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
+						<div><label for="text">Phone:<abbr title="Required">*</abbr></label>
+								<input id="text" class="text" type="text" /><em>Note about this field</em>
 						</div>
 						<div><label for="textarea">Notes:</label>
 								<textarea id="textarea" cols="48" rows="8"></textarea><em class="clear">Note about this field</em>
 						</div>
 						<div><label for="text">Client Code:<abbr title="Required">*</abbr></label>
-								<input id="text" class="text" type="text"><em>Note about this field</em>
+								<input id="text" class="text" type="text" /><em>Note about this field</em>
 						</div>
-						<div><label for="select">Member of:</label>
+						<div><label for="select">Member of:<abbr title="Required">*</abbr></label>
 								<select id="select" class="select" style="width:30%;">
 										<option>DDI</option>
 										<option>Dealer Online Marketing</option>
+								</select>
+							<em>Note about this selection</em>
+						</div>
+						<div><label for="select">Tags:</label>
+								<select id="select" class="select" style="width:30%;">
+										<option>Red Team</option>
+										<option>Blue Team</option>
+										<option>Green Team</option>
+										<option>Etc.</option>
 								</select>
 							<em>Note about this selection</em>
 						</div>
