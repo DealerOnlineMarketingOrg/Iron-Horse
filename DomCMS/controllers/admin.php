@@ -22,8 +22,6 @@
 			$this->load->helper('html');
 			$this->load->library('table');
 			
-			print_object($this->user);
-			
 			switch($page) {
 				
 				case 'add':
@@ -55,9 +53,9 @@
 						);
 						
 						//edit button
-						$edit_form = form_open('/admin/users/edit',$form_cred) . form_hidden('user_id',$user->ID) . form_submit($form_submit) . form_close();
+						$edit_form = form_open('/admin/users/edit', $form_cred) . form_hidden('user_id',$user->ID) . form_submit($form_submit) . form_close();
 
-						$this->table->add_row($user->EmailAddress,$user->LastName . ', ' . $user->FirstName,(($user->Status == 1) ? 'Active' : 'Disabled'),date('n-j-Y', strtotime($user->JoinDate)),$edit_form);
+						$this->table->add_row($user->EmailAddress,$user->LastName . ', ' . $user->FirstName, (($user->Status == 1) ? 'Active' : 'Disabled'), date('n-j-Y',strtotime($user->JoinDate)), $edit_form);
 					}
 					$page_html = heading('Users',2) . $this->table->generate();
 					
@@ -244,8 +242,6 @@
 			$this->load->helper('formwriter');
 			$this->load->library('table');
 			$this->load->helper('html');
-			
-			//print_object($this->user['DropdownDefault']);
 			
 			$agency_id = $this->user['AgencyID'];
 			$group_id  = $this->user['ClientID'];

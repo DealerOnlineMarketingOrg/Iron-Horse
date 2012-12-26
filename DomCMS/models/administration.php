@@ -16,7 +16,7 @@
 					ui.USER_Active as Status,
 					ui.USER_Created as JoinDate,
 					ui.USER_ActiveTS as LastUpdate,
-					ui.USER_Perm as Modules,
+					ui.USER_Modules as Modules,
 					d.DIRECTORY_Type as UserType,
 					d.DIRECTORY_FirstName as FirstName,
 					d.DIRECTORY_LastName as LastName,

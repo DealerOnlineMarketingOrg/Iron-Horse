@@ -10,6 +10,8 @@
 		
 		public $user;
 		public $LevelView;
+		public $man_nav;
+		public $user_nav;
 		
 		public function __construct() {
 			parent::__construct();
@@ -26,16 +28,33 @@
 			//This checks the user validation
 			$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
 			if(!$this->validUser) redirect('login','refresh');
+			
+			$this->load->model('nav');
+			$this->main_nav = $this->nav->main($this->user['AccessLevel']);
+			
+			$this->user_nav = $this->nav->user($this->user['AccessLevel']);
 		}
 		
-		public function LoadTemplate($filepath,$data = false) {
+		public function LoadTemplate($filepath,$data = false, $header_data = false, $nav_data = false, $footer_data = false) {
+			
+			$nav = array(
+				'nav' => $this->main_nav
+			);
+			
+			$user_nav = array(
+				'nav' => $this->user_nav,
+				'user' => $this->user,
+				'avatar' => base_url() . 'Assets/' . DOMDIR . 'imgs/avatars/' . strtolower($this->user['FirstName']) . '_' . strtolower($this->user['LastName']) . '.jpg',
+			);
+			
 			/* THEME BLOCK */
-			$this->load->view(DOMDIR 	. 'incl/header');
+			$this->load->view(DOMDIR 	. 'incl/header', (($header_data) ? $header_data : array()));
 			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
-			$this->load->view(DOMDIR 	. 'incl/nav');
+			$this->load->view(DOMDIR 	. 'incl/nav', $nav);
+			$this->load->view(DOMDIR    . 'incl/user_nav',$user_nav);
 			$this->load->view(THEMEDIR 	. $filepath, (($data) ? $data : array()));
 			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
-			$this->load->view(DOMDIR 	. 'incl/footer');
+			$this->load->view(DOMDIR 	. 'incl/footer', (($footer_data) ? $footer_data : array()));
 		}
 		
 		//This checks to see if the user has permissions to the specific module

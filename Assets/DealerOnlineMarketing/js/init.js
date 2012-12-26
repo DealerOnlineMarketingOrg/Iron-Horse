@@ -14,6 +14,10 @@ $(document).ready(function() {
 		 //$option.siblings().filter( function(){ return $(this).attr('data-level') == $option.attr('data-level')} )
 	})
 	
+	$('.nav_toggle').click(function() {
+		$('div#user_nav').animate({left:'0px'},'slow');
+	});
+	
 	$('.validate').validationEngine();
 	
 	$('select#client').find('option:last-child').removeClass('break');
