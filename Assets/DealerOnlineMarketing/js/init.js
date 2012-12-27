@@ -15,7 +15,15 @@ $(document).ready(function() {
 	})
 	
 	$('.nav_toggle').click(function() {
-		$('div#user_nav').animate({left:'0px'},'slow');
+		
+		var Position = $('div#user_nav').position();
+		
+		if(Position.left >= 0) {
+			$('div#user_nav').animate({left:'-160px'},'slow');
+		}else {
+			$('div#user_nav').animate({left:'0px'},'slow');	
+		}
+		
 	});
 	
 	$('.validate').validationEngine();

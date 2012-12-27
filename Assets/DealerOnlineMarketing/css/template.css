@@ -248,7 +248,7 @@ ul.select2-results li.double-indent {padding-left:20px;}
 ul.select2-results li.select2-highlighted{background:#43ADE9; color:#000;}
 
 #user_nav {width:150px;border-top-right-radius:5px;border-bottom-right-radius:5px;background:#fafaFA;border:1px solid #ccc; padding:5px;position:fixed;top:160px;left:-160px;}
-#user_nav img.user_avatar{float:left;}
+#user_nav img.user_avatar{float:left;width:65px;}
 #user_nav h2 {margin-left:70px;font-size:16px;}
 #user_nav nav {margin-top:15px;}
 #user_nav nav a {display:block;border-bottom:1px solid #ddd;padding:5px 0;font-size:11px;}

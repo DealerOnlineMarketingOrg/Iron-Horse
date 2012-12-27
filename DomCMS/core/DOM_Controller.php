@@ -12,10 +12,13 @@
 		public $LevelView;
 		public $man_nav;
 		public $user_nav;
+		public $avatar;
 		
 		public function __construct() {
 			parent::__construct();
 			$this->load->helper('template');
+			$this->load->library('gravatar');
+			
 			//Active button sets the highlighted icon on the view
 			$active_button = $this->router->fetch_class();
 			$current_subnav_button = $this->uri->rsegment(2); // The Function 
@@ -24,7 +27,8 @@
 			define('SUBNAV_BUTTON','/' . $active_button  . '/' . $current_subnav_button);
 			
 			$this->user = $this->session->userdata('valid_user');
-			
+			$this->avatar = $this->gravatar->get_gravatar($this->user['Username']);
+						
 			//This checks the user validation
 			$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
 			if(!$this->validUser) redirect('login','refresh');
@@ -44,7 +48,7 @@
 			$user_nav = array(
 				'nav' => $this->user_nav,
 				'user' => $this->user,
-				'avatar' => base_url() . 'Assets/' . DOMDIR . 'imgs/avatars/' . strtolower($this->user['FirstName']) . '_' . strtolower($this->user['LastName']) . '.jpg',
+				'avatar' => $this->avatar,
 			);
 			
 			/* THEME BLOCK */

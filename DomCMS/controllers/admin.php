@@ -256,7 +256,9 @@
 				break;
 				
 				default:
+					
 					$permissions = $this->CheckModule('name','Group_List');
+					
 					if(!$permissions) {
 						$this->AccessDenied();
 					}else {
@@ -300,7 +302,7 @@
 							'page_html' => $page_html,
 							'msg' => $msg
 						);
-						
+						//LOAD THE TEMPLATE
 						$this->LoadTemplate('pages/listings',$data);
 					}
 				break;
