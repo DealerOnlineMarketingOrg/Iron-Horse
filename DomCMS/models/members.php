@@ -73,6 +73,7 @@ class Members extends CI_Model {
 			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
 			   'LastName' 		=> (string)$row->DIRECTORY_LastName,
 			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
+			   'Gravatar'		=> (string)$row->USER_GravatarEmail,
 			   'UserID' 		=> (int)$row->USER_ID,
 			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
 			   'ClientID' 	    => (int)$row->CLIENT_ID,

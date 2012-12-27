@@ -13,14 +13,6 @@
 		echo $str;	 */ 
 		?>
         </div>
-        <div id="userNav" class="insetShadow">
-            <h5 class="textShadow"><?= get_welcome_message(); ?></h5>
-            <ul>
-            	<li><a href="<?= base_url(); ?>account/preferences">Preferences</a></li>
-                <li><a href="#">My Account</a></li>
-                <li><a href="<?= base_url(); ?>logout">Logout</a></li>
-            </ul>
-        </div>
         <div class="clearfix"></div>
     </div>
 </div>
