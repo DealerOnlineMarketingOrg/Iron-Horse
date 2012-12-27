@@ -27,7 +27,7 @@
 			define('SUBNAV_BUTTON','/' . $active_button  . '/' . $current_subnav_button);
 			
 			$this->user = $this->session->userdata('valid_user');
-			$this->avatar = $this->gravatar->get_gravatar($this->user['Gravatar']);
+			$this->avatar = $this->gravatar->get_gravatar((($this->user['Gravatar']) ? $this->user['Gravatar'] : $this->user['Username']));
 			
 			//print_object($this->user);
 						
