@@ -33,12 +33,12 @@
 				$dash_js  = array();
 				
 				$widget_css = new stdClass();
-				$widget_css->href = base_url() . 'Assets/' . THEMEDIR . 'css/widgets.css';
+				$widget_css->href = 'Assets/' . THEMEDIR . 'css/widgets.css';
 				
 				array_push($dash_css,$widget_css);
 				
 				$widget_js = new stdClass();
-				$widget_js->src = base_url() . 'Assets/' . THEMEDIR . 'js/widgets.js';			
+				$widget_js->src = 'Assets/' . THEMEDIR . 'js/widgets.js';			
 				
 				array_push($dash_js,$widget_js);
 			/** END WIDGETS **/

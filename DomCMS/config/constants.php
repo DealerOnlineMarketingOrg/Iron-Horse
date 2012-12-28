@@ -37,7 +37,7 @@ define('FOPEN_WRITE_CREATE_STRICT',		'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
 
 define('SITETITLE','Dealer Online Marketing | Content Manager');
-define('THEMEDIR','DealerOnlineMarketing/');
+define('THEMEDIR','Organon/');
 define('DOMDIR','Global/');
 
 //Some date display templates

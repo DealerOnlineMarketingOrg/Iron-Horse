@@ -18,6 +18,7 @@
 			parent::__construct();
 			$this->load->helper('template');
 			$this->load->library('gravatar');
+			$this->load->helper('template');
 			
 			//Active button sets the highlighted icon on the view
 			$active_button = $this->router->fetch_class();
@@ -53,14 +54,20 @@
 				'avatar' => $this->avatar,
 			);
 			
-			/* THEME BLOCK */
-			$this->load->view(DOMDIR 	. 'incl/header', (($header_data) ? $header_data : array()));
-			$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
-			$this->load->view(DOMDIR 	. 'incl/nav', $nav);
-			$this->load->view(DOMDIR    . 'incl/user_nav',$user_nav);
-			$this->load->view(THEMEDIR 	. $filepath, (($data) ? $data : array()));
-			$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
-			$this->load->view(DOMDIR 	. 'incl/footer', (($footer_data) ? $footer_data : array()));
+			
+			if(THEMEDIR == 'DealerOnlineMarketing/') :
+				/* THEME BLOCK */
+				$this->load->view(DOMDIR 	. 'incl/header', (($header_data) ? $header_data : array()));
+				$this->load->view(THEMEDIR 	. 'incl/dom.header.php');
+				$this->load->view(DOMDIR 	. 'incl/nav', $nav);
+				$this->load->view(DOMDIR    . 'incl/user_nav',$user_nav);
+				$this->load->view(THEMEDIR 	. $filepath, (($data) ? $data : array()));
+				$this->load->view(THEMEDIR 	. 'incl/dom.footer.php');
+				$this->load->view(DOMDIR 	. 'incl/footer', (($footer_data) ? $footer_data : array()));
+			elseif(THEMEDIR == 'Organon/') :
+				$this->load->view(DOMDIR . 'incl/header',(($header_data) ? $header_data : array()));
+				
+			endif;
 		}
 		
 		//This checks to see if the user has permissions to the specific module

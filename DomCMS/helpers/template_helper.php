@@ -29,6 +29,47 @@
 		return $link;
 	}
 	
+	function load_default_css() {
+		$css_files = array(
+			'Assets/' . THEMEDIR . 'css/plugins/jquery.visualize.css',
+			'Assets/' . THEMEDIR . 'css/plugins/jquery.fullcalendar.css',
+			'Assets/' . DOMDIR . 	'css/global.css',
+			'Assets/' . THEMEDIR . 'css/template.css',
+			'Assets/' . DOMDIR . 	'css/select2.css',
+			'Assets/' . DOMDIR . 	'css/validationEngine.jquery.css'
+		);
+		
+		$css = '';
+		foreach($css_files as $file) { 
+        	if(file_exists(FCPATH . $file)) { 
+				$css .= '<link rel="stylesheet" type="text/css" href="' . base_url() . $file . '" />' . "\n";
+			}
+	    }
+		
+		return $css;
+	}
+	
+	function load_default_js() {
+		$js = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>' . "\n";
+	
+		$scripts = array(
+			'Assets/' . THEMEDIR . 'js/libs/modernizr.js',
+			'Assets/' . THEMEDIR . 'js/libs/selectivizr.js',
+			'Assets/' . DOMDIR . 'js/select2.min.js',
+			'Assets/' . DOMDIR . 'js/plugin.iconNav.js',
+			'Assets/' . DOMDIR . 'js/jquery.formvalidation-en.js',
+			'Assets/' . DOMDIR . 'js/jquery.formvalidation.js'
+		);
+	
+		foreach($scripts as $script) :
+			if(file_exists(FCPATH . $script)) :
+				$js .= '<script type="text/javascript" src="' . base_url() . $script . '" charset="utf-8"></script>' . "\n";
+			endif;
+		endforeach;
+		
+		return $js;
+	}
+	
 	function dealer_selector() {
 		$ci =& get_instance();
 		$ci->load->library('dropdowngen');

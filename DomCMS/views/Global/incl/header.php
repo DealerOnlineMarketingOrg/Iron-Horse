@@ -1,31 +1,44 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if IE 8]>    <html class="no-js ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 ie" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title><?= SITETITLE; ?></title>
-    <link href="http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url(); ?>Assets/<?= DOMDIR; ?>css/global.css" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url(); ?>Assets/<?= THEMEDIR; ?>css/template.css" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url(); ?>Assets/<?= DOMDIR; ?>css/select2.css" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url(); ?>Assets/<?= DOMDIR; ?>css/validationEngine.jquery.css" type="text/css" />
-    <?php 
-		if(isset($extra_css)) {
-			foreach($extra_css as $css) {
-				echo '<link rel="stylesheet" href="' . $css->href . '" type="text/css" />' . "\n";	
-			}
-		}
-	?>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>Assets/<?= DOMDIR; ?>js/select2.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>Assets/<?= DOMDIR; ?>js/plugin.iconNav.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>Assets/<?=DOMDIR; ?>js/jquery.formvalidation-en.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>Assets/<?=DOMDIR; ?>js/jquery.formvalidation.js" charset="utf-8"></script>
+    <meta name="description" content="" />
+    <meta name="author" content="Dealer Online Marketing, LLC | www.dealeronlinemarketing.com" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    
     <?php
+	
+		echo load_default_css();
+	
+		if(isset($extra_css)) :
+			foreach($extra_css as $css) :
+				if(file_exists(FCPATH . $css->href)) :
+					echo '<link rel="stylesheet" href="' . base_url() . $css->href . '" type="text/css" />' . "\n";	
+				endif;
+			endforeach;
+		endif;
+	
+		echo load_default_js();
+		
 		if(isset($extra_js)) {
 			foreach($extra_js as $js) {
-				echo '<script type="text/javascript" src="' . $js->src . '" charset="utf-8"></script>' . "\n";	
+				if(file_exists(FCPATH . $js->src)) :
+					echo '<script type="text/javascript" src="' . base_url() . $js->src . '" charset="utf-8"></script>' . "\n";	
+				endif;
 			}
 		}
-	?>
+		
+		if(THEMEDIR == 'Organon') : ?>
+			<script type="text/javascript">
+                $(document).ready(function() {
+                    $('.user-profile a, .dashboard .badge').tooltip({ placement:'top'});
+					$('.brand,.navbar-search input').tooltip({placement:'bottom'});
+					$('.main-navigation .badge').tooltip({placement:'right'});
+                });
+            </script>
+		<? endif; ?>
 </head>
 <body>
