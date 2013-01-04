@@ -11,6 +11,7 @@
 			$this->Dashboard();	
 		}
 		
+		
 		public function Analytics() {
 			/*
 			$ga = $this->gapi;

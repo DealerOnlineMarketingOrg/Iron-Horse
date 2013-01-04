@@ -45,7 +45,7 @@
 		public function LoadTemplate($filepath,$data = false, $header_data = false, $nav_data = false, $footer_data = false) {
 			
 			$nav = array(
-				'nav' => $this->main_nav
+				'nav' => $this->main_nav,
 			);
 			
 			$user_nav = array(
@@ -59,7 +59,10 @@
 			$this->load->view(THEMEDIR . '/incl/header',($header_data) ? $header_data : array());
 			$this->load->view(THEMEDIR . '/incl/global/sidebar', ($nav) ? $nav : array());
 			$this->load->view(THEMEDIR . '/incl/section_wrapper_top');
-			$this->load->view(THEMEDIR . '/incl/global/breadcrumb');
+			//IF THE BREADCRUMB FEATURE IS ENABLED IN CONFIGURATION THEN SHOW IT
+			((BREADCRUMBS) ? $this->load->view(THEMEDIR . '/incl/global/breadcrumb') : '');
+			//IF THE SEARCH FEATURE IS ENABLED IN CONFIGURATION THEN SHOW IT
+			((SEARCH) ? $this->load->view(THEMEDIR . '/incl/global/search') : '');
 			$this->load->view(THEMEDIR . '/' . $filepath, ($data) ? $data : array());
 			$this->load->view(THEMEDIR . '/incl/section_wrapper_bottom');
 			$this->load->view(THEMEDIR . '/incl/wrapper_bottom');
@@ -145,7 +148,13 @@
 							}
 						break;
 						case "edit":
-							//todo
+							$form = $this->input->post();
+							$edit = $this->administration->editAgency($form);
+							if($edit) {
+								redirect('/admin/agency/listing/success','location');	
+							}else {
+								redirect('/admin/agency/edit/error','location');	
+							}
 						break;
 						case "disable":
 							//disable

@@ -27,18 +27,32 @@ define('DIR_WRITE_MODE', 0777);
 |
 */
 
-define('FOPEN_READ',				'rb');
-define('FOPEN_READ_WRITE',			'r+b');
-define('FOPEN_WRITE_CREATE_DESTRUCTIVE',	'wb'); // truncates existing file data, use with care
-define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE',	'w+b'); // truncates existing file data, use with care
-define('FOPEN_WRITE_CREATE',			'ab');
-define('FOPEN_READ_WRITE_CREATE',		'a+b');
-define('FOPEN_WRITE_CREATE_STRICT',		'xb');
-define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
+define('FOPEN_READ','rb');
+define('FOPEN_READ_WRITE','r+b');
+define('FOPEN_WRITE_CREATE_DESTRUCTIVE','wb'); // truncates existing file data, use with care
+define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE','w+b'); // truncates existing file data, use with care
+define('FOPEN_WRITE_CREATE','ab');
+define('FOPEN_READ_WRITE_CREATE','a+b');
+define('FOPEN_WRITE_CREATE_STRICT','xb');
+define('FOPEN_READ_WRITE_CREATE_STRICT','x+b');
 
 define('SITETITLE','Dealer Online Marketing | Content Manager');
 define('THEMEDIR','ReActive');
 define('DOMDIR','Global');
+define('DROPDOWNS',true);
+define('CLIENTFILTER',true);
+define('TAGFILTER',true);
+define('SEARCH',true);
+define('BREADCRUMBS',true);
+define('USERNAVIGATION',true);
+define('BOOKMARKS',true);
+define('ACCOUNT',true);
+define('SETTINGS',true);
+define('PRIVACY',true);
+define('APPROVALS',true);
+define('MESSAGES',true);
+
+define('COPYRIGHT', '&copy; Copyright ' . date('Y') . ' DealerOnlineMarketing.com. All Rights Reserved.');
 
 //Some date display templates
 define('FULL_MILITARY_DATETIME','Y-m-d H:i:s'); //DISPLAYS IN 24 HOUR FORMAT

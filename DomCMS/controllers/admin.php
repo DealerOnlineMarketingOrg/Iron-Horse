@@ -81,7 +81,7 @@
 				case 'add' :
 					//MODULE PERMISSIONS
 					$permissions = $this->CheckModule('name','Agency_Add');					
-					if(!$permission) {
+					if(!$permissions) {
 						$this->AccessDenied();	
 					}else {
 						//PREPARE THE DATA FOR PAGE
@@ -93,7 +93,7 @@
 							'msg' => (($msg) ? 'There was an error adding your agency to the system. Please try again' : '')
 						);
 						//THIS IS THE DEFAULT VIEW FOR ANY BASIC FORM.
-						$this->LoadTemplate('forms/generic_form',$data);
+						$this->LoadTemplate('forms/form_addagency',$data);
 					}
 				break;
 				/* THE EDIT AGENCY PAGE */
@@ -104,16 +104,15 @@
 					}else {
 						//WE POST WHAT AGENCY WERE EDITING, THIS IS THE ID IN THE DB.
 						$agency_id = $this->input->post('agency_id');
+						$this->load->model('administration');
+						$agency = $this->administration->getAgencyByID($agency_id);
 						//PREPARE THE VIEW FOR THE FORM
 						$data = array(
-							'form' => AgencyEditForm($agency_id),
-							'page_id' => 'edit_agency',
-							'formName' => 'Edit Agency',
+							'agency' => $agency,
 							'msg' => (($msg) ? 'There was an error editing your agencies information. Please try again' : '')
 						);
-						
 						//THIS IS THE DEFAULT VIEW FOR ANY BASIC FORM.
-						$this->LoadTemplate('forms/generic_form',$data);
+						$this->LoadTemplate('forms/form_editagency',$data);
 					}
 				break;		
 				/* THE DEFAULT LISTING PAGE */

@@ -34,12 +34,24 @@
 <script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.jgrowl.min.js"></script>
 <!-- Knob -->
 <script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.knob.js"></script>
+<!-- Masked inputs -->
+<script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.masked-inputs.js"></script>
+<!-- Chosen -->
+<script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.chosen.js"></script>
+<!-- Draggable Slider -->
+<script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.slider.js"></script>
 <!-- WYSIHTML5 -->
 <script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.wysihtml5.js"></script>
+<!-- iPhone Style Checkbox -->
+<script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.iphonecheckbox.js"></script>
+<!-- Minicolors -->
+<script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.minicolors.js"></script>
+<!-- DatePicker -->
+<script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.datepicker.js"></script>
 <!-- SparkLine -->
 <script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/jquery.sparkline.js"></script>
 
-<!-- Caffeine custom JS -->
+<!-- DOMCMS custom JS -->
 <script type="text/javascript" src="<?= base_url() . 'Assets/' . THEMEDIR; ?>/js/custom.js"></script>
 
 <!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]--> 

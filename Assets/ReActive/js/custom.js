@@ -666,8 +666,11 @@ jQuery(document).ready(function() {
 		}
 		else {
 			t.find('a').append('<span class="arrow"></span>');
+			t.find('ul.submenu a').find('span.arrow').remove();
 			if(t.hasClass('has-menu')) {
-				t.find('ul.submenu').slideToggle();	
+				t.find('ul.submenu').slideToggle();
+				t.addClass('expanded');
+				t.find('span.plus').removeClass('plus').addClass('minus');	
 			}
 		}
 	});
