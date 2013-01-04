@@ -155,7 +155,7 @@
 							'href'  => 'javascript:void(0)',
 						);
 						//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
-						$page_html = heading('Agencies',2) . (($this->CheckModule('name','Agency_Add')) ? anchor(base_url() . 'admin/agency/add','+','class="button green float_right" id="add_agency_btn"') : '') . $this->table->generate();
+						$page_html = '<div class="three-fourths">' . heading('Agencies',2) . '</div>' . (($this->CheckModule('name','Agency_Add')) ? '<div class="one-fourth right">' . anchor(base_url() . 'admin/agency/add','Add New Agency','class="button green float_right" id="add_agency_btn"') . '</div>' : '') . $this->table->generate();
 						
 						$data = array(
 							'page_id'  => 'agency',
@@ -223,7 +223,7 @@
 							'href'  => 'javascript:void(0)',
 						);
 						//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
-						$page_html = heading('Groups',2) . (($this->CheckModule('name','Group_Add')) ? anchor(base_url() . 'admin/groups/add','+','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
+						$page_html = heading('Groups',2) . (($this->CheckModule('name','Group_Add')) ? anchor(base_url() . 'admin/groups/add','Add New Group','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
 						
 						$data = array(
 							'page_id'  => 'groups',

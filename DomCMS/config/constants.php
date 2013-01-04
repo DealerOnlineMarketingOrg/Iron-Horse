@@ -37,8 +37,8 @@ define('FOPEN_WRITE_CREATE_STRICT',		'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
 
 define('SITETITLE','Dealer Online Marketing | Content Manager');
-define('THEMEDIR','Organon/');
-define('DOMDIR','Global/');
+define('THEMEDIR','ReActive');
+define('DOMDIR','Global');
 
 //Some date display templates
 define('FULL_MILITARY_DATETIME','Y-m-d H:i:s'); //DISPLAYS IN 24 HOUR FORMAT

@@ -9,23 +9,24 @@
 		$ci = &get_instance();
 		$i=1;
 		$uri = $ci->uri->segment($i);
-		$link = '<ul class="crumbs">';
+		$link = '<div class="three-fourths breadcrumb">';
+		$link .= '<span><a href="' . base_url() . '" class="icon entypo home"></a></span><span class="middle"></span>';
 		while($uri != ''){
 			$prep_link = '';
 			for($j=1; $j<=$i;$j++){
 				$prep_link .= $ci->uri->segment($j).'/';
 			}
 			if($ci->uri->segment($i+1) == ''){
-				$link.='<li><a class="current" href="'.site_url($prep_link).'">';
-				$link.=$ci->uri->segment($i).'</a></li> ';
+				$link .= '<span><a href="' . site_url($prep_link) . '">' . $ci->uri->segment($i) . '</a></span>';
+				$link .= '<span class="end"></span>';
 			}else{
-				$link.='<li><a href="'.site_url($prep_link).'">';
-				$link.=$ci->uri->segment($i).'</a></li> ';
+				$link .= '<span><a href="' . site_url($prep_link) . '">' . $ci->uri->segment($i) . '</a></span>';
+				$link .= '<span class="middle"></span>';
 			}
 			$i++;
 			$uri = $ci->uri->segment($i);
 		}
-		$link .= '</ul>';
+		$link .= '</div>';
 		return $link;
 	}
 	

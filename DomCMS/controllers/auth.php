@@ -21,7 +21,7 @@
 			$data = array(
 			  'form' => LoginForm()  
 			);
-			$this->load->view(THEMEDIR . 'forms/auth/login', $data);
+			$this->load->view(THEMEDIR . '/forms/auth/login', $data);
 		}
 		
 		//logout function
@@ -35,7 +35,7 @@
 			$data = array(
 				'form' => ChangePasswordForm($user->USER_Name)
 			);
-			$this->load->view(THEMEDIR . 'forms/auth/changepass',$data);
+			$this->load->view(THEMEDIR . '/forms/auth/changepass',$data);
 		}
 		
 		//This is the page generated to reset the password by email address.
@@ -43,7 +43,7 @@
 			$data = array(
 					'form' => ForgotPassForm()
 			);
-			$this->load->view(THEMEDIR . 'forms/auth/forgotpass',$data);
+			$this->load->view(THEMEDIR . '/forms/auth/forgotpass',$data);
 		}
 		
 		//Process forgot password form
@@ -58,19 +58,19 @@
 					$data = array(
 						'form' => ForgotPassForm()
 					);
-					$this->load->view(THEMEDIR . 'forms/auth/forgotpass',$data);
+					$this->load->view(THEMEDIR . '/forms/auth/forgotpass',$data);
 				}else {
 					$data = array(
 					  'form' => LoginForm()  
 					);
-					$this->load->view(THEMEDIR . 'forms/auth/login', $data);
+					$this->load->view(THEMEDIR . '/forms/auth/login', $data);
 				}
 			}else {
 				$this->form_validation->set_message('email','The email address is required to reset the password');
 				$data = array(
 						'form' => ForgotPassForm()
 				);
-				$this->load->view(THEMEDIR . 'forms/auth/forgotpass',$data);	
+				$this->load->view(THEMEDIR . '/forms/auth/forgotpass',$data);	
 			}
 		}
 			
@@ -113,7 +113,7 @@
 					$data = array(
 						'form' => LoginForm()
 					);
-					$this->load->view(THEMEDIR . 'forms/auth/login', $data);
+					$this->load->view(THEMEDIR . '/forms/auth/login', $data);
 	
 					//add a failed login attempt
 					$this->attempts->add($ip_address,$email);
@@ -138,7 +138,7 @@
 						$data = array(
 							'form' => LoginForm()
 						);
-						$this->load->view(THEMEDIR . 'forms/auth/login', $data);	
+						$this->load->view(THEMEDIR . '/forms/auth/login', $data);	
 	
 					}else {
 						
@@ -151,7 +151,7 @@
 								'form' => ChangePasswordAfterLoginForm($user->Username)
 						   );
 						   //load the change password form after a user logs in
-						   $this->load->view(THEMEDIR . 'forms/auth/changepass', $data);
+						   $this->load->view(THEMEDIR . '/forms/auth/changepass', $data);
 						}else {
 						   redirect('reports/dashboard','location');
 						}
@@ -163,7 +163,7 @@
 				$data = array(
 				  'form' => ForgotPassForm()  
 				);
-				$this->load->view(THEMEDIR . 'forms/auth/forgotpass', $data);
+				$this->load->view(THEMEDIR . '/forms/auth/forgotpass', $data);
 			}
 			
 		} 
@@ -187,7 +187,7 @@
 				$data = array(
 					'form' => ChangePasswordAfterLoginForm($this->security->xss_clean($this->input->post('email')))
 				);
-				$this->load->view(THEMEDIR . 'forms/auth/changepass', $data);			
+				$this->load->view(THEMEDIR . '/forms/auth/changepass', $data);			
 			}else {
 				$change = $this->members->password_change();
 				if($change) {
@@ -196,7 +196,7 @@
 					$data = array(
 						'form' => ChangePasswordAfterLoginForm($this->security->xss_clean($this->input->post('email')))
 					);
-					$this->load->view(THEMEDIR . 'forms/auth/changepass', $data);
+					$this->load->view(THEMEDIR . '/forms/auth/changepass', $data);
 				}		
 			}
 		}
