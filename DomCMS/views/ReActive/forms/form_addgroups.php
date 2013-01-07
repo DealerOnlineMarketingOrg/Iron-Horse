@@ -1,26 +1,27 @@
-<div class="wrapper content-padding">
-    <div id="form_addgroups" class="content-page block">
+<div class="full-width">
+    <div id="form_addgroups" class="box">
+    	<div class="inner">
 			<form action="#">
-				<fieldset>
-					<legend>Add New Group</legend>
-						<div><label for="text">Name:<abbr title="Required">*</abbr></label>
-								<input id="text" class="text" type="text" /><em>Note about this field</em>
-						</div>
-						<div><label for="textarea">Notes:</label>
-								<textarea id="textarea" cols="48" rows="8"></textarea><em class="clear">Note about this field</em>
-						</div>
-						<div><label for="select">Member of:<abbr title="Required">*</abbr></label>
-								<select id="select" class="select" style="width:30%;">
-										<option>DDI</option>
-										<option>Dealer Online Marketing</option>
-								</select>
-							<em>Note about this selection</em>
-						</div>
-					<div class="submit">
-						<input class="button green" type="submit" value="Submit">
-						<input class="button green" type="button" value="Cancel">
-					</div>
-				</fieldset>
+                <div class="titlebar"><span>Edit Group</span></div>
+                <div class="contents">
+                    <div class="row">
+                        <input id="text" placeholder="Group Name" class="large" type="text" />
+                    </div>
+                    <div class="row">
+                        <textarea placeholder="Group Description" id="textarea" cols="48" rows="8"></textarea>
+                    </div>
+                    <div class="row last">
+                        <select id="select" class="chzn-select" placeholder="Parent Agency" style="width:30%;">
+                                <option>DDI</option>
+                                <option>Dealer Online Marketing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bar-big">
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </div>
 			</form>
+         </div>
     </div>
 </div>
