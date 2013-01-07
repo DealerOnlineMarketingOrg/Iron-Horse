@@ -9,11 +9,11 @@
 			$this->load->helper('string_parser');
 		}
 		
-		public function getUsers($id = false) { //query to show users info on listing and edit pages.
+		public function getUsers($id = false) { 
+			//query to show users info on listing and edit pages.
 			$sql = "SELECT 
 					u.USER_ID as ID, 
 					u.USER_Name as EmailAddress,
-					ui.USER_Password as Password,
 					ui.USER_Active as Status,
 					ui.USER_Created as JoinDate,
 					ui.USER_ActiveTS as LastUpdate,
@@ -24,15 +24,20 @@
 					d.DIRECTORY_Address as Address,
 					d.DIRECTORY_EMAIL as Emails,
 					d.DIRECTORY_Phone as Phones,
-					d.DIRECTORY_Notes as Notes
+					d.DIRECTORY_Notes as Notes,
+					a.ACCESS_NAME as AccessName,
+					a.ACCESS_Level as AccessLevel
 					FROM Users u
 					INNER JOIN Users_Info ui ON ui.USER_ID = u.USER_ID
+					INNER JOIN xSystemAccess a ON ui.ACCESS_ID = a.ACCESS_ID
 					INNER JOIN Directories d ON ui.DIRECTORY_ID = d.DIRECTORY_ID " . (($id) ? "WHERE u.USER_ID = '" . $id . "' " : "") . "
 					ORDER BY d.DIRECTORY_LastName ASC LIMIT 10";
 			$users = query_results($this,$sql);
 			
 			if($id) {
 				$users->Address = group_parser($users->Address);
+				$users->Emails = mod_parser($users->Emails);
+				$users->Phones = mod_parser($users->Phones);
 			}
 			
 			return $users;

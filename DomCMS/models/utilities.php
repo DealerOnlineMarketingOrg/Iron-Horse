@@ -12,4 +12,9 @@
 			$sql = "SELECT STATE_NAME as Name, STATE_Abbrev as Abbrev FROM xStates ORDER BY STATE_NAME ASC";
 			return query_results($this,$sql);
 		}
+		
+		public function getAccessLevels() {
+			$sql = "SELECT ACCESS_Name as Name, ACCESS_Level as Level FROM xSystemAccess ORDER BY ACCESS_LEVEL DESC";
+			return query_results($this,$sql);	
+		}
 	}
