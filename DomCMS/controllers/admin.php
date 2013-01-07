@@ -294,7 +294,7 @@
 							//EACH FORM HAS THE SAME NAME BUT DIFFERENT ID
 							$button = array(
 								'name' => 'submit',
-								'id' => 'group_id_' . $group->GroupId,
+								'id' => 'client_id_' . $group->GroupId,
 								'class' => 'button blue',
 								'value' => 'Edit'
 							);
@@ -304,7 +304,7 @@
 								$group->Name,$group->AgencyName,
 								(($group->Status) ? 'Active' : 'Disabled'),
 								//IF THE USER HAS TO HAVE THE CORRECT PERMISSIONS TO VIEW A FEATURE
-								(($this->CheckModule('name','Group_Edit')) ? form_open('/admin/clients/edit',$form_attr) . form_hidden('group_id', $group->GroupId) . form_submit($button) . form_close() : ''));
+								(($this->CheckModule('name','Client_Edit')) ? form_open('/admin/clients/edit',$form_attr) . form_hidden('group_id', $group->GroupId) . form_submit($button) . form_close() : ''));
 						endforeach;
 						//THE ADD AGENCY BUTTON
 						$add_button = array(
@@ -313,7 +313,7 @@
 							'href'  => 'javascript:void(0)',
 						);
 						//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
-						$page_html = heading('Groups',2) . (($this->CheckModule('name','Group_Add')) ? anchor(base_url() . 'admin/clients/add','+','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
+						$page_html = heading('Clients',2) . (($this->CheckModule('name','Client_Add')) ? anchor(base_url() . 'admin/clients/add','+','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
 						
 						$data = array(
 							'page_id'  => 'groups',
