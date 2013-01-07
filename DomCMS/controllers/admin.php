@@ -20,7 +20,9 @@
 		public function Users($page = false, $msg = false) {
 			$this->load->model('administration');
 			$this->load->helper('html');
+			$this->load->helper('template');
 			$this->load->library('table');
+			$this->load->model('utilities');
 			
 			switch($page) {
 				
@@ -30,8 +32,11 @@
 				case 'edit':
 					$user_id = $this->input->post('user_id');
 					$user = $this->administration->getUsers($user_id);
-					
-					print_object($user);
+					$data = array(
+						'user' => $user,
+						'states' => $this->utilities->getStates()
+					);
+					$this->LoadTemplate('forms/form_editusers', $data);
 				break;
 				default:
 				
@@ -323,6 +328,27 @@
 						//LOAD THE TEMPLATE
 						$this->LoadTemplate('pages/listings',$data);
 					}
+				break;
+			endswitch;
+		}
+		
+		public function Websites($page = false, $msg = false) {
+			$this->load->helper('form');
+			$this->load->helper('formwriter');
+			$this->load->library('table');
+			$this->load->helper('html');
+			
+			switch($page) :
+			
+				case 'add':
+					$this->LoadTemplate('forms/form_addwebsites');
+				break;
+				
+				case 'edit':
+					$this->LoadTemplate('forms/form_editwebsites');
+				break;
+				default:
+				
 				break;
 			endswitch;
 		}

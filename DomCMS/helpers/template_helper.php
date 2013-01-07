@@ -30,6 +30,17 @@
 		return $link;
 	}
 	
+	function showStates() {
+		$ci = $get_instance();
+		$ci->load->model('utilities');
+		$states = $ci->utilities->getStates();
+		$options = '';
+		foreach($states as $state) {
+			$option .= '<option value="' . $state->Abbrev . '">' . $state->Name . '</option>';
+		}
+		return $options;
+	}
+	
 	function load_default_css() {
 		$css_files = array(
 			'Assets/' . THEMEDIR . 'css/plugins/jquery.visualize.css',

@@ -6,6 +6,7 @@
 			// Call the Model constructor
 			parent::__construct();
 			$this->load->helper('query');
+			$this->load->helper('string_parser');
 		}
 		
 		public function getUsers($id = false) { //query to show users info on listing and edit pages.
@@ -28,7 +29,13 @@
 					INNER JOIN Users_Info ui ON ui.USER_ID = u.USER_ID
 					INNER JOIN Directories d ON ui.DIRECTORY_ID = d.DIRECTORY_ID " . (($id) ? "WHERE u.USER_ID = '" . $id . "' " : "") . "
 					ORDER BY d.DIRECTORY_LastName ASC LIMIT 10";
-			return query_results($this,$sql);
+			$users = query_results($this,$sql);
+			
+			if($id) {
+				$users->Address = group_parser($users->Address);
+			}
+			
+			return $users;
 		}
 		
 		public function getAgencies() {
