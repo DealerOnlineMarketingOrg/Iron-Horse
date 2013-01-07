@@ -14,6 +14,7 @@
 		
 		public function Analytics() {
 			/*
+			$this->load->library('gapi');
 			$ga = $this->gapi;
 			$ga->requestReportData(54919407,array('browser','browserVersion'),array('pageviews','visits'));
 			$google = '';

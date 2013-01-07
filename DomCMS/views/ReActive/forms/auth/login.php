@@ -47,7 +47,6 @@
     
     <section id="login-container">
         <div id="login_header"></div>
-		
 		<form id="login_form" action="<?= base_url(); ?>authenticate" method="post">
 			<div id="login_wrapper">
 				<div class="login_wrapper_container">
@@ -64,7 +63,7 @@
 								<div class="contents">
 									<div class="one-half username-half">
 										<label>Email Address</label>
-										<div class="field-box"><span class="icon awesome user for-input"></span><input name="email" type="text" class="w-icon validate[required]"></div>
+										<div class="field-box"><span class="icon awesome user for-input"></span><input autofocus="autofocus" name="email" type="text" class="w-icon validate[required]" id="email"></div>
 										<div class="clear"></div>
 									</div>
 									<div class="one-half password-half">
@@ -98,6 +97,11 @@
         <div id="login_footer">
         </div>
     </section>
-    
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('input#email').focus();
+			});
+		</script>
+
 </body> 
 </html>
