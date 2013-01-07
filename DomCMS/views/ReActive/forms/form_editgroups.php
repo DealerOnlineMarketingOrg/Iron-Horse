@@ -2,10 +2,10 @@
     <div id="form_addgroups" class="box">
     	<div class="inner">
 			<form action="#">
-                <div class="titlebar"><span>>Edit Group</span></div>
+                <div class="titlebar"><span>Edit Group</span></div>
                 <div class="contents">
                     <div class="row">
-                        <input id="text" placeholder="Group Name" class="text" type="text" />
+                        <input id="text" placeholder="Group Name" class="large" type="text" />
                     </div>
                     <div class="row">
                         <textarea placeholder="Group Description" id="textarea" cols="48" rows="8"></textarea>

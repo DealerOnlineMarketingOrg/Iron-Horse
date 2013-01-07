@@ -179,10 +179,10 @@
 			
 			switch($page) :
 				case 'add' :
-				
+					$this->LoadTemplate('forms/form_addgroups');
 				break;
 				case 'edit' :
-				
+					$this->LoadTemplate('forms/form_editgroups');
 				break;
 				default:
 					$permissions = $this->CheckModule('name','Group_List');
@@ -236,6 +236,25 @@
 			endswitch;
 		}
 		
+		public function Contacts($page = false, $msg = false) {
+			$this->load->helper('form');
+			$this->load->helper('formwriter');
+			$this->load->library('table');
+			$this->load->helper('html');
+			
+			switch($page) {
+				case 'add':
+					$this->LoadTemplate('forms/form_addcontacts');
+				break;
+				case 'edit':
+					$this->LoadTemplate('forms/form_editcontacts');
+				break;
+				default:
+					
+				break;	
+			}
+		}
+		
 		public function Clients($page = false, $msg = false) {
 			$this->load->helper('form');
 			$this->load->helper('formwriter');
@@ -247,11 +266,11 @@
 			
 			switch($page) :
 				case 'add' :
-					
+					$this->LoadTEmplate('forms/form_addclients');
 				break;
 				
 				case 'edit' :
-					
+					$this->LoadTemplate('forms/form_editclients');
 				break;
 				
 				default:
