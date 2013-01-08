@@ -34,7 +34,8 @@
 					$user = $this->administration->getUsers($user_id);
 					$data = array(
 						'user' => $user,
-						'states' => $this->utilities->getStates()
+						'states' => $this->utilities->getStates(),
+						'levels' => $this->utilities->getAccessLevels(),
 					);
 					$this->LoadTemplate('forms/form_editusers', $data);
 				break;
