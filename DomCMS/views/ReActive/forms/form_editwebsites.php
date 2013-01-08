@@ -1,28 +1,35 @@
-<div class="wrapper content-padding">
-    <div id="form_addgroups" class="content-page block">
+<div class="full-width">
+    <div id="form_addgroups" class="box">
+    	<div class="inner">
 			<form action="#">
-				<fieldset>
-					<legend>Edit Website</legend>
-						<div><label for="select">Type:<abbr title="Required">*</abbr></label>
-								<select id="select" class="select" style="width:30%;">
+            	<div class="titlebar"><span>Add New Website</span></div>
+                	<div class="contents">
+						<div class="row">
+                        	<label class="required" for="select"><span>*</span>Type:</label>
+                            	<div class="field-box">
+								<select data-placeholder="Type" style="width:350px;" class="chzn-select" tabindex="6">
+                                		<option value=""></option>
 										<option>Client</option>
 										<option>Vendor</option>
 										<option>Agency</option>
 										<option>Group</option>
 								</select>
-							<em>Note about this selection</em>
+                                </div>
 						</div>
-						<div><label for="text">URL:<abbr title="Required">*</abbr></label>
-								<input id="text" class="text" type="text" /><em>Note about this field</em>
+						<div class="row">
+                        	<label class="required" for="text"><span>*</span>URL:</label>
+							<input id="text" class="text" type="text" />
 						</div>
-						<div><label for="textarea">Notes:</label>
-								<textarea id="textarea" cols="48" rows="8"></textarea><em class="clear">Note about this field</em>
+						<div class="row">
+                        	<label for="textarea">Notes:</label>
+							<textarea id="textarea" cols="48" rows="8"></textarea>
 						</div>
-					<div class="submit">
-						<input class="button green" type="submit" value="Submit">
-						<input class="button green" type="button" value="Cancel">
-					</div>
-				</fieldset>
+            		</div>
+						<div class="bar-big">
+                        	<input type="submit" value="Submit" />
+                            <input type="reset" value="Reset" />
+						</div> 
 			</form>
+    	</div>
     </div>
 </div>

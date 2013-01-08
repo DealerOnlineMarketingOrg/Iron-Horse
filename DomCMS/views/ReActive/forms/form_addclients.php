@@ -94,6 +94,7 @@
                             	<label class="required"><span>*</span>Member of:</label> 
                                 <div class="field-box">
                                 	<select data-placeholder="Member of" style="width:350px;" class="chzn-select" tabindex="6">
+                                    	<option value=""></option>
 										<option>DDI</option>
 										<option>Dealer Online Marketing</option>
 								</select>
@@ -103,6 +104,7 @@
                         	<label>Tags:</label>
                         	<div class="field-box">
 								<select data-placeholder="Member of" style="width:350px;" class="chzn-select" tabindex="6">
+                                		<option value=""></option>
 										<option>Red Team</option>
 										<option>Blue Team</option>
 										<option>Green Team</option>
@@ -110,11 +112,11 @@
 								</select>
                         	</div>
 						</div>
+                  </div>
                         <div class="bar-big">
                             <input type="submit" value="Submit" />
                             <input type="reset" value="Reset" />
                         </div>
-                  </div>
 			</form>
          </div>
     </div>
