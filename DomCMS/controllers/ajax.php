@@ -11,8 +11,10 @@
         }
 
         public function name_changer() {
-            $name = $this->input->get('Agency');
-            echo $name;
+            $name = '<h3>' . $this->input->get('Agency') . '</h3>';
+			$level = substr($this->input->get('Level'),0,1);
+			$levelName = $this->generateLevelName($level);
+            echo $levelName . $name;
         }
 		
 		public function selected_dealer() {

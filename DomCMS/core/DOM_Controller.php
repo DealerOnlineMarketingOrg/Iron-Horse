@@ -29,8 +29,6 @@
 			
 			$this->user = $this->session->userdata('valid_user');
 			$this->avatar = $this->gravatar->get_gravatar((($this->user['Gravatar']) ? $this->user['Gravatar'] : $this->user['Username']));
-			
-			//print_object($this->user);
 						
 			//This checks the user validation
 			$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
@@ -38,8 +36,10 @@
 			
 			$this->load->model('nav');
 			$this->main_nav = $this->nav->main($this->user['AccessLevel']);
-			
 			$this->user_nav = $this->nav->user($this->user['AccessLevel']);
+			
+			print_object($this->user['DropdownDefault']);
+			
 		}
 		
 		public function LoadTemplate($filepath,$data = false, $header_data = false, $nav_data = false, $footer_data = false) {
@@ -67,6 +67,24 @@
 			$this->load->view(THEMEDIR . '/incl/section_wrapper_bottom');
 			$this->load->view(THEMEDIR . '/incl/wrapper_bottom');
 			$this->load->view(THEMEDIR . '/incl/global/footer',($footer_data) ? $footer_data : array());
+		}
+		
+		public function generateLevelName($level) {
+			switch($level) {
+				case 'g':
+					return "<h2>Group Name:</h2>";
+				break;
+				case 'c':
+					return "<h2>Client Name:</h2>";
+				break;
+				
+				case 'a':
+					return "<h2>Agency Name:</h2>";
+				break;
+				default:
+					return "<h2>Agency Name:</h2>";
+				break;	
+			};			
 		}
 		
 		//This checks to see if the user has permissions to the specific module

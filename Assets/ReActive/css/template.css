@@ -302,7 +302,7 @@ header#header figure#logo {
 	padding:0 5px;
 	float:left;
 	z-index:900;
-	position:fixed;
+	position:absolute;
 	top:0;
 	left:0;
 }
@@ -387,7 +387,7 @@ header#header #general-options .approval {
 }
 header#header #responsive-nav {
 	float:right;
-	padding:50px 30px;
+	padding:80px 30px 50px 30px;
 	display:none;
 }
 header#header #userinfo {
@@ -463,11 +463,28 @@ span.icon.awesome.off {
 }
 
 section.dropdown{
-	position:absolute;top:15px;right:120px;	width:400px;
+	position:absolute;top:15px;right:120px;	width:530px;
 }
 
-div.tags{width:45%;float:right;}
-div.client{width:45%;float:left;}
+#header figure#levelName {margin-left:310px;float:left;width:400px;}
+#header figure#levelName h2,#header figure#levelName h3 {float:left;margin:0;padding:0;}
+figure#levelName h2 {font-size:16px;color:#0CF;font-weight:normal;}
+header#header figure#levelName h3 {font-size:14px;margin-top:1px;margin-left:5px;}
+
+div.tags{width:25%;float:left;margin-left:10px;}
+div.client{width:73%;float:left;}
+
+ul.chzn-results li.break {
+	border-bottom:1px dotted #666;	
+}
+
+ul.chzn-results li.single-indent {
+	padding-left:15px;	
+}
+
+ul.chzn-results li.double-indent {
+	padding-left:30px;	
+}
 
 /**************
 	HEADER DROPDOWNS
@@ -505,7 +522,7 @@ nav#sidebar {
 	width:220px;
 	overflow:visible;
 	min-height:100%;
-	position:fixed;
+	position:absolute;
 	z-index:200;
 }
 nav#sidebar .sidebar-top {

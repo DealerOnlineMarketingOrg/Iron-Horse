@@ -1,6 +1,10 @@
 <!-- Header -->
 <header id="header">
-    <figure id="logo"><a href="#" class="logo"></a></figure>
+    <figure id="logo"><a href="<?= base_url(); ?>" class="logo"></a></figure>
+    <figure id="levelName" class="boxer button blue">
+        	<h2><?= get_client_type(); ?></h2>
+            <h3><?= get_client_name(); ?></h3>
+    </figure>	
     <? if(USERNAVIGATION) : ?>
     <section id="general-options">
         <?= ((ACCOUNT) ? '<a href="#" class="users tipsy-header" title="My Account"></a>' : ''); ?>
@@ -12,18 +16,13 @@
     </section>
     <? endif; ?>
     <? 
-	
 	/* ENABLED OR DISABLED FEATURES */
 	if(DROPDOWNS) { ?>
-        
         <!-- TAGS -->
         <section id="dropdowns" class="dropdown">
         <? if(CLIENTFILTER) { ?>
             <div class="client">
-                <select id="client_dd" data-placeholder="Select a Agency, Group or Client" class="chzn-select" style="width:100%;">
-                    <option value="0">Dealer Online Marketing</option>
-                    <option value="1">DDI</option>
-                </select>
+            	<?= dealer_selector(); ?>
             </div>
         <? } if(TAGFILTER) { ?>
         	<div class="tags">
@@ -35,8 +34,6 @@
             </div>
         <? } ?>
         </section>
-        
-        
     <? } ?>
     <section id="responsive-nav">
         <select id="nav_select">

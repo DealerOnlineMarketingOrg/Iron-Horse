@@ -25,7 +25,6 @@
 			$this->load->model('utilities');
 			
 			switch($page) {
-				
 				case 'add':
 					$this->LoadTemplate('forms/form_addusers');
 				break;
@@ -40,9 +39,6 @@
 					$this->LoadTemplate('forms/form_editusers', $data);
 				break;
 				default:
-				
-					//Default listing table
-				
 					$users = $this->administration->getUsers();
 					//Creating the table headings (th)
 					$this->table->set_heading('Email Address','Name','Status','Member Since', '');
@@ -57,14 +53,14 @@
 							'class' => 'button blue',
 							'value' => 'Edit'
 						);
-						
 						//edit button
 						$edit_form = form_open('/admin/users/edit', $form_cred) . form_hidden('user_id',$user->ID) . form_submit($form_submit) . form_close();
-
 						$this->table->add_row($user->EmailAddress,$user->LastName . ', ' . $user->FirstName, (($user->Status == 1) ? 'Active' : 'Disabled'), date('n-j-Y',strtotime($user->JoinDate)), $edit_form);
 					}
-					$page_html = heading('Users',2) . $this->table->generate();
 					
+					//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
+					$page_html = '<div class="three-fourths">' . heading('Users',2) . '</div>' . (($this->CheckModule('name','User_Add')) ? '<div class="one-fourth right">' . anchor(base_url() . 'admin/users/add','Add New User','class="button green float_right" id="add_user_button"') . '</div>' : '') . $this->table->generate();
+
 					$data = array(
 						'page_id'  => 'users',
 						'page_html' => $page_html,
