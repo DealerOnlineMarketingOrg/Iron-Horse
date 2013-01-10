@@ -38,7 +38,7 @@
 			$this->main_nav = $this->nav->main($this->user['AccessLevel']);
 			$this->user_nav = $this->nav->user($this->user['AccessLevel']);
 			
-			print_object($this->user['DropdownDefault']);
+			//print_object($this->user['DropdownDefault']);
 			
 		}
 		
