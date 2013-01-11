@@ -42,4 +42,9 @@
 					return query_results($this,$sql);
 		}
 		
+		public function getAccessLevelByHref($href) {
+			$sql = 'SELECT NAV_Level as Level FROM xSystemNav WHERE NAV_Ref = "' . $href . '";';
+			return query_results($this,$sql);	
+		}
+		
 	}

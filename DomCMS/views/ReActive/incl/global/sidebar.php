@@ -21,3 +21,14 @@
     <div class="clear"></div>
 </nav> 
 <!-- Sidebar -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$('ul.nav li').each(function() {
+			if($(this).hasClass('admin')) {
+				$(this).attr('id','admin');	
+			}
+		});
+		
+	});
+</script>

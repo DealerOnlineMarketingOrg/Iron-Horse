@@ -21,7 +21,7 @@ function isiPhone(){ return ((navigator.platform.indexOf("iPhone") != -1) || (na
  *
  ************************************************************/
  $(document).ready(function() {
-		$("select#client_dd>option").each( function(){
+	$("select#client_dd>option,select#member_of>option").each( function(){
 		var $option = $(this);  
 		if($(this).prev().attr('data-level') == $option.attr('data-level')) {
 			if(!$(this).hasClass('agency')) {
@@ -30,6 +30,8 @@ function isiPhone(){ return ((navigator.platform.indexOf("iPhone") != -1) || (na
 			}
 		}
 	})
+	
+	
  
  });
 

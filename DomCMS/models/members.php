@@ -38,8 +38,12 @@ class Members extends CI_Model {
 				$dropdown_defaults = array(
 				   'LevelID' 		=> $AgencyID,
 				   'PermType' 		=> 'SuperAdmin',
+				   'PermLevel'		=> 600000,
 				   'LevelType'      => 1,
 				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
 				   'SelectedTag'	=> FALSE
 				);
 			//If the access level is less than 600,000 and greater than or equel to 500,000
@@ -47,8 +51,12 @@ class Members extends CI_Model {
 				$dropdown_defaults = array(
 				   'LevelID' 		=> $AgencyID,
 				   'PermType' 		=> 'AgencyAdmin',
-				   'LevelType'      => 1,
+				   'PermLevel'		=> 500000,
+				   'LevelType'      => 2,
 				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
 				   'SelectedTag'	=> FALSE
 				);
 			//If the access level is less than 500,000 and greater than or equel to 400,000
@@ -56,16 +64,48 @@ class Members extends CI_Model {
 				$dropdown_defaults = array(
 				   'LevelID' 		=> $GroupID,
 				   'PermType' 		=> 'GroupAdmin',
-				   'LevelType'      => 2,
+				   'PermLevel'		=> 400000,
+				   'LevelType'      => 3,
 				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> 'noshow'
+				);
+			elseif($AccessLevel < 400000 AND $AccessLevel >= 300000) :
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $ClientID,
+				   'PermType' 		=> 'ClientAdmin',
+				   'PermLevel'		=> 300000,
+				   'LevelType'      => 4,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> 'noshow'
+				);
+			elseif($AccessLevel < 300000 AND $AccessLevel >= 200000) :
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $ClientID,
+				   'PermType' 		=> 'Manager',
+				   'PermLevel'		=> 200000,
+				   'LevelType'      => 5,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
 				   'SelectedTag'	=> 'noshow'
 				);
 			else:
 				$dropdown_defaults = array(
 				   'LevelID' 		=> $ClientID,
-				   'PermType' 		=> 'Client',
-				   'LevelType'      => 3,
+				   'PermType' 		=> 'User',
+				   'PermLevel'		=> 100000,
+				   'LevelType'      => 6,
 				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
 				   'SelectedTag'	=> 'noshow'
 				);
 		   endif;

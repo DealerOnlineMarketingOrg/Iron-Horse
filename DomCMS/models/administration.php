@@ -43,6 +43,11 @@
 			return $users;
 		}
 		
+		public function getPermissionsList($userLevel) {
+			$sql = "SELECT ACCESS_ID as ID, ACCESS_Name as Name,ACCESS_Level as Level,ACCESS_Perm as Modules FROM xSystemAccess WHERE ACCESS_Level <= '" . $userLevel . "' ORDER BY ACCESS_LEVEL DESC;";
+			return query_results($this,$sql);
+		}
+		
 		public function getAgencies() {
 			$sql = "SELECT AGENCY_ID as Id, AGENCY_Name as Name,AGENCY_Notes as Description, AGENCY_Active as Status FROM Agencies ORDER BY AGENCY_Name; ";
 			return query_results($this,$sql);
@@ -64,6 +69,11 @@
 					WHERE g.AGENCY_ID = '" . $id . "';";
 			return query_results($this,$sql);
 			
+		}
+		
+		public function getClient($id) {
+			$sql = "SELECT CLIENT_ID as ID, CLIENT_Name as Name, GROUP_ID as GroupdID FROM Clients WHERE CLIENT_ID = '" . $id . "';";
+			return query_results($this,$sql);	
 		}
 		
 		public function getTypeList() {

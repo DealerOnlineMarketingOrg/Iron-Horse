@@ -69,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   line-height: normal;
   color:#d2d2d2;
+  font-weight:normal;
 }
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child { margin-top: 0; }
 h1 { font-size: 26px; margin: 20px 0 15px; }
@@ -548,16 +549,17 @@ nav#sidebar ul.nav {
 	margin:0px;
 }
 nav#sidebar ul.nav li {
-	font-size:14px;
+	font-size:12px;
 	background-image:url(../imgs/sep.png);
 	background-repeat:repeat-x;
 	background-position:bottom;
+	
 }
 nav#sidebar ul.nav li a {
 	color:#e7e7e7;
 	text-decoration:none;
 	display:block;
-	padding:10px 5px;
+	padding:8px 5px;
 }
 nav#sidebar ul.nav li a:hover,nav#sidebar ul.nav li.active a,nav#sidebar ul.nav li.active ul.submenu li.current a {
 	color:#becf00;
@@ -627,7 +629,8 @@ nav#sidebar ul.nav li ul.submenu li:hover, nav#sidebar ul.nav li ul.submenu li.a
 	background-repeat:repeat;
 }
 nav#sidebar ul.nav li ul.submenu li a {
-	padding: 8px 15px;
+	padding: 4px 15px;
+	font-size:11px;
 }
 
 .blocks-separator {
@@ -978,3 +981,4 @@ section#playground .widget.sparkline label { color:#fff; }
 	margin-bottom:10px!important;
 	font-weight:normal!important;
 }
+.float_right{float:right;}
