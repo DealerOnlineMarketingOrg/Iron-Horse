@@ -52,7 +52,7 @@ define('COMPANYURL','http://www.dealeronlinemarketing.com');
 define('THEMEDIR','ReActive');
 define('DOMDIR','Global');
 define('COPYRIGHT', '&copy; Copyright ' . date('Y') . ' DealerOnlineMarketing.com. All Rights Reserved.');
-define('LOGO', '<img src="' . base_url() . 'Assets/Global/imgs/login_logo.png" alt="Dealer Online Marketing" />');
+define('LOGO', '<img src="/Assets/Global/imgs/login_logo.png" alt="Dealer Online Marketing" />');
 define('APPNAME','DOM CMS');
 define('VERSION','Beta 0.2');
 define('GAPIEMAIL','');
