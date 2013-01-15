@@ -1,3 +1,0 @@
-<!-- footer scripts -->
-</body>
-</html>

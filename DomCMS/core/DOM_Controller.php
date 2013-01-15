@@ -13,12 +13,19 @@
 		public $man_nav;
 		public $user_nav;
 		public $avatar;
+		public $selected_agency;
+		public $selected_group;
+		public $selected_client;
+		public $theme_settings;
 		
 		public function __construct() {
 			parent::__construct();
 			$this->load->helper('template');
 			$this->load->library('gravatar');
 			$this->load->helper('template');
+			$this->load->model('mods');
+			
+			$this->theme_settings = $this->config->load('template');
 			
 			//Active button sets the highlighted icon on the view
 			$active_button = $this->router->fetch_class();
@@ -27,19 +34,20 @@
 			define('ACTIVE_BUTTON',$active_button);
 			define('SUBNAV_BUTTON','/' . $active_button  . '/' . $current_subnav_button);
 			
-			$this->user = $this->session->userdata('valid_user');
+			$this->user   = $this->session->userdata('valid_user');
 			$this->avatar = $this->gravatar->get_gravatar((($this->user['Gravatar']) ? $this->user['Gravatar'] : $this->user['Username']));
-			
-			//print_object($this->user);
 						
 			//This checks the user validation
 			$this->validUser = ($this->session->userdata('valid_user')) ? TRUE : FALSE;
 			if(!$this->validUser) redirect('login','refresh');
 			
-			$this->load->model('nav');
-			$this->main_nav = $this->nav->main($this->user['AccessLevel']);
+			$this->selected_agency = (($this->user['DropdownDefault']->SelectedAgency) ? $this->user['DropdownDefault']->SelectedAgency : $this->user['AgencyID']);
+			$this->selected_group = (($this->user['DropdownDefault']->SelectedGroup) ? $this->user['DropdownDefault']->SelectedGroup : $this->user['GroupID']);
+			$this->selected_client = (($this->user['DropdownDefault']->SelectedClient) ? $this->user['DropdownDefault']->SelectedClient : $this->user['ClientID']);
 			
-			$this->user_nav = $this->nav->user($this->user['AccessLevel']);
+			$this->load->model('nav');
+			$this->main_nav = $this->nav->main($this->user['DropdownDefault']->PermLevel);
+			$this->user_nav = $this->nav->user($this->user['AccessLevel']);			
 		}
 		
 		public function LoadTemplate($filepath,$data = false, $header_data = false, $nav_data = false, $footer_data = false) {
@@ -69,40 +77,106 @@
 			$this->load->view(THEMEDIR . '/incl/global/footer',($footer_data) ? $footer_data : array());
 		}
 		
-		//This checks to see if the user has permissions to the specific module
-		public function CheckModule($column_name = false,$module_name = false) {
-			$this->load->model('mods');
-			$user_level = $this->user['AccessLevel'];
-			switch($column_name) :
-				case 'name' :
-					$permission = $this->mods->getModLevelByName($module_name);
-					if(!$permission) {
-						return FALSE;	
-					}else {
-						if($user_level >= $permission->Level OR $user_level <= $permission->Level) {
-							return TRUE;
-						}else {
-							return FALSE;	
-						}
-					}
+		public function generateLevelName($level) {
+			switch($level) {
+				case 'g':
+					return "<h2>Group Name:</h2>";
 				break;
-				case 'id' :
-					$permission = $this->mods->getModLevelByID($module_name);
-					if(!$permission) {
-						return FALSE;	
-					}else {
-						if($user_level >= $permission->Level) {
-							return TRUE;	
-						}else {
-							return FALSE;	
-						}
-					}
+				case 'c':
+					return "<h2>Client Name:</h2>";
+				break;
+				
+				case 'a':
+					return "<h2>Agency Name:</h2>";
 				break;
 				default:
-					$modules = $this->mods->getModulesByAccessLevel($user_level);
-					return $modules;
-				break;
-			endswitch;	
+					return "<h2>Agency Name:</h2>";
+				break;	
+			};			
+		}
+		
+		//Gets the access level of the user.
+		public function generateLevelNumber($level) {
+			$loggedInUserLevel = $this->user['AccessLevel'];
+			if($loggedInUserLevel >= 600000) {
+				switch($level) {
+					case 'g' :
+						return 400000;
+					break;
+					case 'c' :
+						return 300000;
+					break;
+					case 2 :
+						return 400000;
+					break;
+					case 3 :
+						return 300000;
+					break;
+					default :
+						return 600000;
+					break;
+				}
+			}else if($loggedInUserLevel < 600000 AND $loggedInUserLevel >= 500000) {
+				switch($level) {
+					case 'g' :
+						return 400000;
+					break;
+					case 'c' :
+						return 300000;
+					break;
+					case 2:
+						return 400000;
+					break;
+					case 3:
+						return 300000;
+					break;
+					default :
+						return 500000;
+					break;	
+				}
+			}else if($loggedInUserLevel < 500000 AND $loggedInUserLevel >= 400000) {
+				switch($level) {
+					case 'c':
+						return 300000;
+					break;
+					case 3:
+						return 300000;
+					break;
+					default :
+						return 400000;
+					break;	
+				}
+			}else if($loggedInUserLevel < 400000 AND $loggedInUserLevel >= 300000) {
+				switch($level) {
+					default:
+						return 300000;
+					break;	
+				}
+			}else if($loggedInUserLevel < 300000 AND $loggedInUserLevel >= 200000) {
+				switch($level) {
+					default:
+						return 200000;
+					break;	
+				}
+			}else {
+				return 100000;	
+			}
+		}
+		
+		//This checks to see if the user has permissions to the specific module
+		public function CheckModule($module_name = false) {
+			$this->load->model('mods');
+			$user_level = $this->user['DropdownDefault']->PermLevel;
+			$permission = $this->mods->getModLevelByName($module_name);
+			if(!$permission) {
+				return FALSE;	
+			}else {
+				if($user_level >= $permission->Level) {
+					return TRUE;	
+				}else {
+					return FALSE;	
+				}
+			}
 		}
 		
 		//custom 404 page

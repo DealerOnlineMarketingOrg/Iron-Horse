@@ -72,7 +72,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'DomCMS';
+	$application_folder = 'domcms';
 
 /*
  * --------------------------------------------------------------------

@@ -21,7 +21,7 @@
 			$data = array(
 			  'form' => LoginForm()  
 			);
-			$this->load->view(THEMEDIR . '/forms/auth/login', $data);
+			$this->load->view($this->theme_settings['ThemeDir'] . '/forms/auth/login', $data);
 		}
 		
 		//logout function

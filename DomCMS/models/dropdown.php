@@ -6,6 +6,27 @@ class Dropdown extends CI_Model {
         parent::__construct();
 		$this->load->helper('query');
     }
+	
+	public function getAllAgencies() {
+		$sql = "SELECT 
+				a.AGENCY_ID as AgencyID, 
+				a.AGENCY_Name as AgencyName, 
+				a.AGENCY_Active as AgencyStatus
+			    from Agencies a
+				ORDER BY a.AGENCY_ID ASC";
+		return query_results($this,$sql);
+	}
+	
+	public function getGroupByAgencyID($id) {
+		$sql = "SELECT g.GROUP_ID as GroupID, g.GROUP_Name as GroupName,g.GROUP_Active as GroupStatus from Groups g WHERE g.AGENCY_ID = '" . $id . "' ORDER BY g.GROUP_ID ASC;";
+		return query_results($this,$sql);
+					
+	}
+	
+	public function getClientsByGroupID($id) {
+		$sql = "SELECT c.CLIENT_ID as ClientID,c.CLIENT_Name as ClientName,c.CLIENT_Active as ClientStatus from Clients c WHERE c.GROUP_ID = '" . $id . "' ORDER BY c.CLIENT_ID ASC;";
+		return query_results($this,$sql);
+	}
 
 	public function AgenciesQuery($a_id = false, $expect_row = false) {
 		$sql ="SELECT * FROM Agencies WHERE AGENCY_Active = 1 " . (($a_id) ? "AND AGENCY_ID = '" . $a_id . "'" : '') . " ORDER BY AGENCY_Name";

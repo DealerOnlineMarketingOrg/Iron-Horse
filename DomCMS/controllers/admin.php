@@ -25,7 +25,6 @@
 			$this->load->model('utilities');
 			
 			switch($page) {
-				
 				case 'add':
 					$this->LoadTemplate('forms/form_addusers');
 				break;
@@ -40,9 +39,6 @@
 					$this->LoadTemplate('forms/form_editusers', $data);
 				break;
 				default:
-				
-					//Default listing table
-				
 					$users = $this->administration->getUsers();
 					//Creating the table headings (th)
 					$this->table->set_heading('Email Address','Name','Status','Member Since', '');
@@ -57,14 +53,14 @@
 							'class' => 'button blue',
 							'value' => 'Edit'
 						);
-						
 						//edit button
-						$edit_form = form_open('/admin/users/edit', $form_cred) . form_hidden('user_id',$user->ID) . form_submit($form_submit) . form_close();
-
+						$edit_form = (($this->CheckModule('User_Edit')) ? form_open('/admin/users/edit', $form_cred) . form_hidden('user_id',$user->ID) . form_submit($form_submit) . form_close() : '');
 						$this->table->add_row($user->EmailAddress,$user->LastName . ', ' . $user->FirstName, (($user->Status == 1) ? 'Active' : 'Disabled'), date('n-j-Y',strtotime($user->JoinDate)), $edit_form);
 					}
-					$page_html = heading('Users',2) . $this->table->generate();
 					
+					//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
+					$page_html = '<div class="three-fourths">' . heading('Users',2) . '</div>' . (($this->CheckModule('User_Add')) ? '<div class="one-fourth right">' . anchor(base_url() . 'admin/users/add','Add New User','class="button green float_right" id="add_user_button"') . '</div>' : '') . $this->table->generate();
+
 					$data = array(
 						'page_id'  => 'users',
 						'page_html' => $page_html,
@@ -86,7 +82,7 @@
 				/* THE ADD AGENCY PAGE */
 				case 'add' :
 					//MODULE PERMISSIONS
-					$permissions = $this->CheckModule('name','Agency_Add');					
+					$permissions = $this->CheckModule('Agency_Add');					
 					if(!$permissions) {
 						$this->AccessDenied();	
 					}else {
@@ -123,14 +119,16 @@
 				break;		
 				/* THE DEFAULT LISTING PAGE */
 				default:
-					$permissions = $this->CheckModule('name','Agency_List');
+					$permissions = $this->CheckModule('Agency_List');
 					if(!$permissions) {
 						$this->AccessDenied();
 					}else {
 						//Get the agencies into an array/
-						$agencies = (($this->CheckModule('name','Agency_List')) ? $this->administration->getAgencies(false) : $this->administration->getAgencies($this->user['AgencyID']));
+						$agencies = (($this->CheckModule('Agency_List')) ? $this->administration->getAgencies(false) : $this->administration->getAgencies($this->user['AgencyID']));
+						
 						//create html table with codeigniter library. This is awesome btw.
 						$this->table->set_heading('Name','Description','Status','');
+						
 						//LOOP THROUGH EACH AGENCY AND CREATE A FORM BUTTON "EDIT" AND ROW FOR IT.
 						foreach($agencies as $agency) :
 							//EACH FORM IS NAMED BY THE EDIT_{AGENCY_ID}, SAME CONCEPT WITH THE ID
@@ -145,14 +143,16 @@
 								'class' => 'button blue',
 								'value' => 'Edit'
 							);
+							
 							//BUILD THE FORM ROW IN THE TABLE WITH NAME,DESCRIPTION,STATUS, and EDIT BUTTON, THE FORM ALSO HAS A HIDDEN ELEMENT WITH THE AGENCY ID, THIS IS WHAT WE
 							//USE TO POST TO THE EDIT PAGE TO GRAB THE CORRECT AGENCY FROM THE DB.
 							$this->table->add_row(
 								$agency->Name,$agency->Description,
 								(($agency->Status) ? 'Active' : 'Disabled'),
 								//IF THE USER HAS TO HAVE THE CORRECT PERMISSIONS TO VIEW A FEATURE
-								(($this->CheckModule('name','Agency_Edit')) ? form_open('/admin/agency/edit',$form_attr) . form_hidden('agency_id', $agency->Id) . form_submit($button) . form_close() : ''));
+								(($this->CheckModule('Agency_Edit')) ? form_open('/admin/agency/edit',$form_attr) . form_hidden('agency_id', $agency->Id) . form_submit($button) . form_close() : ''));
 						endforeach;
+						
 						//THE ADD AGENCY BUTTON
 						$add_button = array(
 							'class' => 'button green float_right',
@@ -160,14 +160,15 @@
 							'href'  => 'javascript:void(0)',
 						);
 						//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
-						$page_html = '<div class="three-fourths">' . heading('Agencies',2) . '</div>' . (($this->CheckModule('name','Agency_Add')) ? '<div class="one-fourth right">' . anchor(base_url() . 'admin/agency/add','Add New Agency','class="button green float_right" id="add_agency_btn"') . '</div>' : '') . $this->table->generate();
+						$page_html = '<div class="three-fourths">' . heading('Agencies',2) . '</div>' . 
+									 (($this->CheckModule('Agency_Add')) ? '<div class="one-fourth right">' . anchor(base_url() . 'admin/agency/add','Add New Agency','class="button green float_right" id="add_agency_btn"') . '</div>' : '') . 
+									 $this->table->generate();
 						
 						$data = array(
 							'page_id'  => 'agency',
 							'page_html' => $page_html,
 							'msg' => $msg
 						);
-						
 						$this->LoadTemplate('pages/listings',$data);
 					}
 				break;
@@ -191,10 +192,11 @@
 					$this->LoadTemplate('forms/form_editgroups');
 				break;
 				default:
-					$permissions = $this->CheckModule('name','Group_List');
+					$permissions = $this->CheckModule('Group_List');
 					if(!$permissions) {
 						$this->AccessDenied();
 					}else {
+						//print_object($this->user);
 						//Get the agencies into an array/
 						$groups = $this->administration->getGroups($agency_id);
 						//create html table with codeigniter library. This is awesome btw.
@@ -219,7 +221,7 @@
 								$group->Name,$group->AgencyName,
 								(($group->Status) ? 'Active' : 'Disabled'),
 								//IF THE USER HAS TO HAVE THE CORRECT PERMISSIONS TO VIEW A FEATURE
-								(($this->CheckModule('name','Group_Edit')) ? form_open('/admin/groups/edit',$form_attr) . form_hidden('group_id', $group->GroupId) . form_submit($button) . form_close() : ''));
+								(($this->CheckModule('Group_Edit')) ? form_open('/admin/groups/edit',$form_attr) . form_hidden('group_id', $group->GroupId) . form_submit($button) . form_close() : ''));
 						endforeach;
 						//THE ADD AGENCY BUTTON
 						$add_button = array(
@@ -228,7 +230,7 @@
 							'href'  => 'javascript:void(0)',
 						);
 						//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
-						$page_html = heading('Groups',2) . (($this->CheckModule('name','Group_Add')) ? anchor(base_url() . 'admin/groups/add','Add New Group','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
+						$page_html = '<div class="three-fourths">' . heading('Groups',2) . '</div>' . (($this->CheckModule('Group_Add')) ? anchor(base_url() . 'admin/groups/add','Add New Group','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
 						
 						$data = array(
 							'page_id'  => 'groups',
@@ -281,11 +283,12 @@
 				
 				default:
 					
-					$permissions = $this->CheckModule('name','Group_List');
+					$permissions = $this->CheckModule('Client_List');
 					
 					if(!$permissions) {
 						$this->AccessDenied();
 					}else {
+						print_object($this->user);
 						//Get the agencies into an array/
 						$groups = $this->administration->getGroups($agency_id);
 						//create html table with codeigniter library. This is awesome btw.
@@ -310,7 +313,7 @@
 								$group->Name,$group->AgencyName,
 								(($group->Status) ? 'Active' : 'Disabled'),
 								//IF THE USER HAS TO HAVE THE CORRECT PERMISSIONS TO VIEW A FEATURE
-								(($this->CheckModule('name','Client_Edit')) ? form_open('/admin/clients/edit',$form_attr) . form_hidden('group_id', $group->GroupId) . form_submit($button) . form_close() : ''));
+								(($this->CheckModule('Client_Edit')) ? form_open('/admin/clients/edit',$form_attr) . form_hidden('group_id', $group->GroupId) . form_submit($button) . form_close() : ''));
 						endforeach;
 						//THE ADD AGENCY BUTTON
 						$add_button = array(
@@ -319,7 +322,7 @@
 							'href'  => 'javascript:void(0)',
 						);
 						//BUILD THE HTML FOR THE PAGE HERE IN A STRING. THE VIEW JUST ECHOS THIS OUT.
-						$page_html = heading('Clients',2) . (($this->CheckModule('name','Client_Add')) ? anchor(base_url() . 'admin/clients/add','+','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
+						$page_html =' <div class="three-fourths">' . heading('Clients',2) . '</div>'. (($this->CheckModule('Client_Add')) ? anchor(base_url() . 'admin/clients/add','+','class="button green float_right" id="add_group_btn"') : '') . $this->table->generate();
 						
 						$data = array(
 							'page_id'  => 'groups',

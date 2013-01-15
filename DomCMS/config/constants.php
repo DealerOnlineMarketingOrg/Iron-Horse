@@ -36,30 +36,65 @@ define('FOPEN_READ_WRITE_CREATE','a+b');
 define('FOPEN_WRITE_CREATE_STRICT','xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT','x+b');
 
+/*
+|---------------------------------------------------------------------
+| STRING CONSTANTS AVAILABLE APP WIDE
+|---------------------------------------------------------------------
+|
+| These are strings available anywhere to any Model, View or Controller
+|
+**********************************************************************/
+
 define('SITETITLE','Dealer Online Marketing | Content Manager');
+define('COMPANYNAME','Dealer Online Marketing');
+define('COMPANYURLLINK','<a href="http://www.dealeronlinemarketing.com" target="_blank">www.dealeronlinemarketing.com</a>');
+define('COMPANYURL','http://www.dealeronlinemarketing.com');
 define('THEMEDIR','ReActive');
 define('DOMDIR','Global');
+define('COPYRIGHT', '&copy; Copyright ' . date('Y') . ' DealerOnlineMarketing.com. All Rights Reserved.');
+define('LOGO', '<img src="/Assets/Global/imgs/login_logo.png" alt="Dealer Online Marketing" />');
+define('APPNAME','DOM CMS');
+define('VERSION','Beta 0.2');
+define('GAPIEMAIL','');
+define('GAPIPASS','');
+define('GOOGLEFONTS','Abel|Open+Sans+Condensed:300');
+
+/*
+|----------------------------------------------------------------------
+| BOOLEAN CONSTANTS TO TURN FEATURES ON AND OFF GLOBALLY
+|----------------------------------------------------------------------
+|
+| These are lists of features that are able to be turned off by a simple boolean change
+|
+***********************************************************************/
+
 define('DROPDOWNS',true);
 define('CLIENTFILTER',true);
 define('TAGFILTER',true);
-define('SEARCH',true);
+define('SEARCH',false);
 define('BREADCRUMBS',true);
-define('USERNAVIGATION',true);
+define('USERNAVIGATION',false);
 define('BOOKMARKS',true);
 define('ACCOUNT',true);
 define('SETTINGS',true);
 define('PRIVACY',true);
 define('APPROVALS',true);
 define('MESSAGES',true);
+define('OFFLINE',false);
+define('OAUTH',false);
+define('FLUIDLAYOUT',false);
+/*
+|-----------------------------------------------------------------------
+| DATE TIME TEMPLATES
+|-----------------------------------------------------------------------
+|
+| These are date templates that can be used as templates in the date() function 
+|
+************************************************************************/
 
-define('COPYRIGHT', '&copy; Copyright ' . date('Y') . ' DealerOnlineMarketing.com. All Rights Reserved.');
-
-//Some date display templates
 define('FULL_MILITARY_DATETIME','Y-m-d H:i:s'); //DISPLAYS IN 24 HOUR FORMAT
 define('FULL_NORMAL_DATETIME', 'Y-m-d h:i:s a'); //DISPLAYS IN 12 HOUR FORMAT WITH AM OR PM, ALL NUMBERS
 define('FULL_TEXT_DATETIME','l F NS, Y \a\t g:i a'); //DISPLAYS TEXT DATETIME like Sunday January 1st 2012 at 1:00 am
-
-
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

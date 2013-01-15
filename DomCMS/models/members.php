@@ -26,7 +26,6 @@ class Members extends CI_Model {
 	    if($query->num_rows() == 1) {
 		   $row = $query->row();
 		   //This array becomes our session array, any data we want to travel from page to page, needs to be defined here.
-		   
 		   //Start drop down default insert for session
 		   $ClientID 	= $row->CLIENT_ID;
 		   $GroupID 	= $row->GROUP_ID;
@@ -34,69 +33,112 @@ class Members extends CI_Model {
 		   $AccessLevel = $row->ACCESS_Level;
 		   
 		   //process levels of users for drop down
-		   if($AccessLevel<200000) :
-		    $data1 = array(
-			   'LevelID' 		=> $AgencyID,
-			   'PermType' 		=> 'SuperAdmin',
-			   'LevelType'      => 'a',
-			   'SelectedID' 	=> 'null',
-			   'SelectedTag'	=> '0'
-	   		);
-			elseif ($AccessLevel>200000&&$AccessLevel<300000):
-			$data1 = array(
-			   'LevelID' 		=> $AgencyID,
-			   'PermType' 		=> 'AgencyAdmin',
-			   'LevelType'      => 'a',
-			   'SelectedID' 	=> 'null',
-			   'SelectedTag'	=> '0'
-	   		);
-			elseif ($AccessLevel>300000&&$AccessLevel<400000):
-			$data1 = array(
-			   'LevelID' 		=> $GroupID,
-			   'PermType' 		=> 'GroupAdmin',
-			   'LevelType'      => 'g',
-			   'SelectedID' 	=> 'null',
-			   'SelectedTag'	=> 'noshow'
-	   		);
+		   //If the access level is greater than or equel to 600,000 (SuperAdmin)
+		   if($AccessLevel >= 600000) : 
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $AgencyID,
+				   'PermType' 		=> 'SuperAdmin',
+				   'PermLevel'		=> 600000,
+				   'LevelType'      => 1,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> FALSE
+				);
+			//If the access level is less than 600,000 and greater than or equel to 500,000
+			elseif($AccessLevel < 600000 && $AccessLevel >= 500000) : 
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $AgencyID,
+				   'PermType' 		=> 'AgencyAdmin',
+				   'PermLevel'		=> 500000,
+				   'LevelType'      => 2,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> FALSE
+				);
+			//If the access level is less than 500,000 and greater than or equel to 400,000
+			elseif($AccessLevel < 500000 && $AccessLevel >= 400000) :
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $GroupID,
+				   'PermType' 		=> 'GroupAdmin',
+				   'PermLevel'		=> 400000,
+				   'LevelType'      => 3,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> 'noshow'
+				);
+			elseif($AccessLevel < 400000 AND $AccessLevel >= 300000) :
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $ClientID,
+				   'PermType' 		=> 'ClientAdmin',
+				   'PermLevel'		=> 300000,
+				   'LevelType'      => 4,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> 'noshow'
+				);
+			elseif($AccessLevel < 300000 AND $AccessLevel >= 200000) :
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $ClientID,
+				   'PermType' 		=> 'Manager',
+				   'PermLevel'		=> 200000,
+				   'LevelType'      => 5,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> 'noshow'
+				);
 			else:
-			$data1 = array(
-			   'LevelID' 		=> $ClientID,
-			   'PermType' 		=> 'Client',
-			   'LevelType'      => 'c',
-			   'SelectedID' 	=> 'null',
-			   'SelectedTag'	=> 'noshow'
-	   		);
+				$dropdown_defaults = array(
+				   'LevelID' 		=> $ClientID,
+				   'PermType' 		=> 'User',
+				   'PermLevel'		=> 100000,
+				   'LevelType'      => 6,
+				   'SelectedID' 	=> FALSE,
+				   'SelectedAgency' => FALSE,
+				   'SelectedGroup' => FALSE,
+				   'SelectedClient' => FALSE,
+				   'SelectedTag'	=> 'noshow'
+				);
 		   endif;
 
 		   $data = array(
-			   'Username' 		=> (string)$row->USER_Name,
-			   'FirstName' 		=> (string)$row->DIRECTORY_FirstName,
-			   'LastName' 		=> (string)$row->DIRECTORY_LastName,
-			   'Emails' 		=> (object)mod_parser($row->DIRECTORY_Email),
-			   'Gravatar'		=> (string)$row->USER_GravatarEmail,
-			   'UserID' 		=> (int)$row->USER_ID,
-			   'DirectoryID' 	=> (int)$row->DIRECTORY_ID,
-			   'ClientID' 	    => (int)$row->CLIENT_ID,
-			   'GroupID' 	    => (int)$row->GROUP_ID,
-			   'AgencyID' 	    => (int)$row->AGENCY_ID,
-			   'ClientName' 	=> (string)$row->CLIENT_Name,
-			   'ClientAddress' 	=> (object)group_parser($row->CLIENT_Address),
-			   'ClientPhone' 	=> (object)group_parser($row->CLIENT_Phone),
-			   'ClientNotes' 	=> (string)$row->CLIENT_Notes,
-			   'ClientCode' 	=> (string)$row->CLIENT_Code,
-			   'ClientActive' 	=> (bool)$row->CLIENT_Active,
-			   'ClientActiveTS' => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
-			   'AccessLevel' 	=> (int)$row->ACCESS_Level,
-			   'AccessName' 	=> (string)$row->ACCESS_Name,
-			   'UserModules' 	=> $this->UserModules(mod_parser($row->USER_Modules)),
-			   'isActive' 		=> (bool)$row->USER_Active,
-			   'TimeActive' 	=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
-			   'isGenerated' 	=> (int)$row->USER_Generated,
-			   'CreatedOn' 		=> date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
-			   'validated' 		=> (bool)TRUE,
-			   'DropdownDefault' =>(object)$data1
+			   'Username' 		 => (string)$row->USER_Name,
+			   'FirstName' 		 => (string)$row->DIRECTORY_FirstName,
+			   'LastName' 		 => (string)$row->DIRECTORY_LastName,
+			   'Emails' 		 => (object)mod_parser($row->DIRECTORY_Email),
+			   'Gravatar'		 => (string)$row->USER_GravatarEmail,
+			   'UserID' 		 => (int)$row->USER_ID,
+			   'DirectoryID' 	 => (int)$row->DIRECTORY_ID,
+			   'ClientID' 	     => (int)$row->CLIENT_ID,
+			   'GroupID' 	     => (int)$row->GROUP_ID,
+			   'AgencyID' 	     => (int)$row->AGENCY_ID,
+			   'ClientName' 	 => (string)$row->CLIENT_Name,
+			   'ClientAddress' 	 => (object)group_parser($row->CLIENT_Address),
+			   'ClientPhone' 	 => (object)group_parser($row->CLIENT_Phone),
+			   'ClientNotes' 	 => (string)$row->CLIENT_Notes,
+			   'ClientCode' 	 => (string)$row->CLIENT_Code,
+			   'ClientActive' 	 => (bool)$row->CLIENT_Active,
+			   'ClientActiveTS'  => date(FULL_MILITARY_DATETIME, strtotime($row->CLIENT_ActiveTS)),
+			   'AccessLevel' 	 => (int)$row->ACCESS_Level,
+			   'AccessName' 	 => (string)$row->ACCESS_Name,
+			   'UserModules' 	 => $this->UserModules(mod_parser($row->USER_Modules)),
+			   'isActive' 		 => (bool)$row->USER_Active,
+			   'TimeActive' 	 => date(FULL_MILITARY_DATETIME, strtotime($row->USER_ActiveTS)),
+			   'isGenerated' 	 => (int)$row->USER_Generated,
+			   'CreatedOn' 		 => date(FULL_MILITARY_DATETIME, strtotime($row->USER_Created)),
+			   'validated' 		 => (bool)TRUE,
+			   'DropdownDefault' => (object)$dropdown_defaults
 		   );
-		   
+		   		   
 		   $this->session->set_userdata('valid_user', $data);
 		   return (object)$data;
 

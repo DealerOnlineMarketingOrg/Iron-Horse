@@ -58,6 +58,9 @@
 		}
 		
 		public function DPR() {
+			$this->load->model('rep');
+			$selected_site_id = $this->user['DropdownDefault']->SelectedID;
+			$reports = $this->rep->getDPR($this->user['DropdownDefault']->SelectedID);
 			$this->LoadTemplate('pages/dashboard');
 		}
 		

@@ -51,30 +51,41 @@
 	 }
 	 
 	 function dropdown_parser($DropString) {
-		 
-		 var_dump($DropString);
-		 
+		
+		$ci =& get_instance();
+		$selected_item = $ci->session->userdata['valid_user']['DropdownDefault']->SelectedID;		
+		
 		 //$DropString = 'a:1;Dealer Online Marketing^no-indent agency break,1|g:1;Dealer Online Marketing^single-indent group break,0|c:1;Dealer Online Marketing^double-indent client,0|c:2;DDI Marketing^double-indent client break,0|';
-		 $DropString = '';
-		 $pattern = '/[|]/';
-		 $pattern2 = '/[:;^,]/';
-		 $arr = preg_split( $pattern, $DropString );
-		 $DropStringCode='';
-		 foreach($arr as &$value){
-			 $value = preg_split( $pattern2, $value );
-			 if($value[4]==1):
-			 	$selected='selected="selected"';
-			else:
-				$selected='';
-			endif;
-			
-			$DropStringCode .= '<option data-level="' . $value[1] . '"'.$selected.' value="'.$value[0].$value[1].'" class="'.$value[3].'">'.$value[2].'</option>';
+		 
+		 //$DropString      = '';
+		 $pattern         = '/[|]/';
+		 $pattern2        = '/[:;^,]/';
+		 $arr             = preg_split($pattern, $DropString);
+		 $DropStringCode  = '';
+		 for($i = 0; $i < count($arr); $i++) {
+			 $value = preg_split($pattern2, $arr[$i]);
+			 //print_object($value);
+			 if($selected_item != NULL AND isset($value[1])) {
+				 if($selected_item == $value[1]) {
+					$selected = 'selected="selected"'; 
+				 }else {
+					$selected = ''; 
+				 }
+			 }else {
+				 if(isset($value[4]) AND !$value[4]) :
+					$selected = '';
+				 else:
+					$selected = 'selected="selected"';
+				 endif;
+			 }
+			if(count($value) > 1)
+			$DropStringCode .= '<option id="' . $value[1] . '" data-level="' . $value[1] . '"' . $selected . ' value="' . $value[0] . $value[1] . '"' . ' class="' . $value[3] . '">' . $value[2] . '</option>' . "\n";
 		}
 		
-		return $DropStringCode;
-			//echo '<select>';
-			//echo '<pre>', print_r( $DropStringCode, 1 ), '</pre>';
-			//echo '</select>';
+		//echo $DropString;
+		
+		$myDropdown = $DropStringCode;
+		return $myDropdown;		
 	 }
 	 
 	  function client_tag_parser($tag_list_set, $tag_id) {
